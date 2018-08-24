@@ -1689,7 +1689,6 @@ void search_other()
 	if (database.is_open())
 	{
 		cout << "File has successfully been opened!" << endl << endl;	// Database has opened successfully
-		//cin.ignore();	// Ignore previous input to allow for new input
 		
 		cout << "Please enter your last name: ";
 		getline(cin, last_name);
@@ -1867,9 +1866,7 @@ void search_other()
 void GM_Update()
 {
 	string search_ID, search_ID1, search_ID2, search_ID3, search_ID4, end_tag;
-
-	int get_SID, get_birth_day, get_birth_year;
-	string get_F1, get_F2, get_F3, get_F4, get_F5, get_W1, get_W2, get_W3, get_W4, get_W5, get_S1, get_S2, get_S3, get_S4, get_S5;
+	int get_SID, get_birth_day, get_birth_year, token = 0;
 	get_GM GM;
 
 	// Open database
@@ -1883,100 +1880,166 @@ void GM_Update()
 		cin.ignore();	// Ignore previous input to allow for new input.
 
 		GM = get_GM_info();
-		cout << "Data held is: " << GM.together << endl;
-		// Do while to test for a minimum card input (bounds may need to be changed later)
 		do
 		{
-			cout << "Please swipe card for member lookup: ";	// Intro message
-			getline(cin, search_ID);		// Take in all data form card swipe
-
-											// Used to test length intially. If failed, display message
-			if (search_ID.length() < 95)
+			// Do while to test for a minimum card input (bounds may need to be changed later)
+			do
 			{
-				cout << "Card read error. Please retry swipe." << endl << endl;	// If executed, the min length was not reached by the card swipe, usually read error
-			}
-		} while (search_ID.length() < 95);	// Bound check to see if min data entry was reached
+				cout << "Please swipe card for member lookup (cancel to quit): ";	// Intro message
+				getline(cin, search_ID);		// Take in all data form card swipe
 
-		cout << endl << endl << endl << endl << endl;
-		size_t pos = search_ID.find(";");
-		string place_holder = search_ID.substr(pos + 1);	// Push one (1) position past the semi colon. Will be start of the card number
-		search_ID = place_holder.substr(0, 16);	// Take in 16 places from the intial card number
+				if (search_ID == "cancel")
+				{
+					search_ID = "%B00000000000000^Emeritus/Papa  ^54894878740000000000000      ?;00000000000000000=000000000000000000000000?";
+					break;
+				}
+												// Used to test length intially. If failed, display message
+				if (search_ID.length() < 95)
+				{
+					cout << "Card read error. Please retry swipe." << endl << endl;	// If executed, the min length was not reached by the card swipe, usually read error
+				}
+			} while (search_ID.length() < 95);	// Bound check to see if min data entry was reached
 
-		// Insert spaces at appropriate spots to allow for sub-divide the data that will be compared. It needs to have 4 groups of 4 for the 16 digits.
-		search_ID1 = search_ID.substr(0, 4);
-		search_ID2 = search_ID.substr(4, 4);
-		search_ID3 = search_ID.substr(8, 4);
-		search_ID4 = search_ID.substr(12, 4);
+			cout << endl << endl << endl << endl << endl;
+			size_t pos = search_ID.find(";");
+			string place_holder = search_ID.substr(pos + 1);	// Push one (1) position past the semi colon. Will be start of the card number
+			search_ID = place_holder.substr(0, 16);	// Take in 16 places from the intial card number
 
+													// Insert spaces at appropriate spots to allow for sub-divide the data that will be compared. It needs to have 4 groups of 4 for the 16 digits.
+			search_ID1 = search_ID.substr(0, 4);
+			search_ID2 = search_ID.substr(4, 4);
+			search_ID3 = search_ID.substr(8, 4);
+			search_ID4 = search_ID.substr(12, 4);
 
+			string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major;
+			string rep_F1, rep_F2, rep_F3, rep_F4, rep_F5, rep_W1, rep_W2, rep_W3, rep_W4, rep_W5, rep_S1, rep_S2, rep_S3, rep_S4, rep_S5;
+			int rep_SID, rep_birth_day, rep_birth_year;
+			// Put data in temp file
+			ifstream filein("records.txt"); //File to read from
+			ofstream fileout("text.txt"); //Temporary file
 
-
-
-
-		string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major;
-		int rep_SID, rep_birth_day, rep_birth_year;
-		// Put data in temp file
-		ifstream filein("records.txt"); //File to read from
-		ofstream fileout("text.txt"); //Temporary file
-
-		while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >>
-			rep_F1 >> rep_F2 >> rep_F3 >> rep_F4 >> rep_F5 >> rep_W1 >> rep_W2 >> rep_W3 >> rep_W4 >> rep_W5 >> rep_S1 >> rep_S2 >> rep_S3 >>
-			rep_S4 >> rep_S5 >> end_tag)
-		{
-			if ((rep_ID1 == get_ID1) && (rep_ID2 == get_ID2) && (rep_ID3 == get_ID3) && (rep_ID4 == get_ID4) && (rep_first_name == get_first_name))
+			while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >>
+				rep_F1 >> rep_F2 >> rep_F3 >> rep_F4 >> rep_F5 >> rep_W1 >> rep_W2 >> rep_W3 >> rep_W4 >> rep_W5 >> rep_S1 >> rep_S2 >> rep_S3 >>
+				rep_S4 >> rep_S5 >> end_tag)
 			{
-				// Setup database retrieval for user to easily read.
-				cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-				cout << get_first_name << " " << get_last_name << " has signed in for General Meeting: " << GM.number << ", this " << GM.quarter << " Quarter." << endl;
+				if ((rep_ID1 == search_ID1) && (rep_ID2 == search_ID2) && (rep_ID3 == search_ID3) && (rep_ID4 == search_ID4))
+				{
+					token = 1;
+					// Setup database retrieval for user to easily read.
+					cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+					cout << rep_first_name << " " << rep_last_name << " has signed in for General Meeting: " << GM.number << ", this " << GM.quarter << " Quarter." << endl;
 
-				rep_first_name = replaced.replacement;
+					if (GM.together == "rep_F1")
+					{
+						rep_F1 = "Yes";
+					}
+					else if (GM.together == "rep_F2")
+					{
+						rep_F2 = "Yes";
+					}
+					else if (GM.together == "rep_F3")
+					{
+						rep_F3 = "Yes";
+					}
+					else if (GM.together == "rep_F4")
+					{
+						rep_F4 = "Yes";
+					}
+					else if (GM.together == "rep_F5")
+					{
+						rep_F5 = "Yes";
+					}
+					else if (GM.together == "rep_W1")
+					{
+						rep_W1 = "Yes";
+					}
+					else if (GM.together == "rep_W2")
+					{
+						rep_W2 = "Yes";
+					}
+					else if (GM.together == "rep_W3")
+					{
+						rep_W3 = "Yes";
+					}
+					else if (GM.together == "rep_W4")
+					{
+						rep_W4 = "Yes";
+					}
+					else if (GM.together == "rep_W5")
+					{
+						rep_W5 = "Yes";
+					}
+					else if (GM.together == "rep_S1")
+					{
+						rep_S1 = "Yes";
+					}
+					else if (GM.together == "rep_S2")
+					{
+						rep_S2 = "Yes";
+					}
+					else if (GM.together == "rep_S3")
+					{
+						rep_S3 = "Yes";
+					}
+					else if (GM.together == "rep_S4")
+					{
+						rep_S4 = "Yes";
+					}
+					else if (GM.together == "rep_S5")
+					{
+						rep_S5 = "Yes";
+					}
+					else
+					{
+						cout << "An error has occurred! Please seek data loss immediately!!" << endl << endl;
+					}
+				}
+
+				fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major <<
+					" " << rep_F1 << " " << rep_F2 << " " << rep_F3 << " " << rep_F4 << " " << rep_F5 << " " << rep_W1 << " " << rep_W2 << " " <<
+					rep_W3 << " " << rep_W4 << " " << rep_W5 << " " << rep_S1 << " " << rep_S2 << " " << rep_S3 << " " << rep_S4 << " " << rep_S5 << " " << end_tag << endl;
 			}
-			fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major << " " << end_tag << endl;
 
-		}
+			filein.close();
+			fileout.close();
 
-		filein.close();
-		fileout.close();
+			// Put data in back in original file
+			ifstream filein2("text.txt"); //File to read from
+			ofstream fileout2("records.txt"); //Temporary file
 
-		// Put data in back in original file
-		ifstream filein2("text.txt"); //File to read from
-		ofstream fileout2("records.txt"); //Temporary file
-
-		string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major;
-		int ret_SID, ret_birth_day, ret_birth_year;
-		while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >> end_tag)
-		{
-			if ((ret_ID1 == rep_ID1) && (ret_ID2 == rep_ID2) && (ret_ID3 == rep_ID3) && (ret_ID4 == rep_ID4) && (rep_first_name == ret_first_name))
+			string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major;
+			string ret_F1, ret_F2, ret_F3, ret_F4, ret_F5, ret_W1, ret_W2, ret_W3, ret_W4, ret_W5, ret_S1, ret_S2, ret_S3, ret_S4, ret_S5;
+			int ret_SID, ret_birth_day, ret_birth_year;
+			while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >>
+				ret_F1 >> ret_F2 >> ret_F3 >> ret_F4 >> ret_F5 >> ret_W1 >> ret_W2 >> ret_W3 >> ret_W4 >> ret_W5 >> ret_S1 >> ret_S2 >> ret_S3 >>
+				ret_S4 >> ret_S5 >> end_tag)
 			{
-				ret_first_name == rep_first_name;
+				if ((ret_ID1 == rep_ID1) && (ret_ID2 == rep_ID2) && (ret_ID3 == rep_ID3) && (ret_ID4 == rep_ID4))
+				{
+					ret_first_name == rep_first_name;
+				}
+				fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major <<
+					" " << ret_F1 << " " << ret_F2 << " " << ret_F3 << " " << ret_F4 << " " << ret_F5 << " " << ret_W1 << " " << ret_W2 << " " <<
+					ret_W3 << " " << ret_W4 << " " << ret_W5 << " " << ret_S1 << " " << ret_S2 << " " << ret_S3 << " " << ret_S4 << " " << ret_S5 << " " << end_tag << endl;
 			}
-			fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major << " " << end_tag << endl;
 
-		}
+			filein2.close();
+			fileout2.close();
 
-		filein2.close();
-		fileout2.close();
+			// Test if the data is not found in database
+			if (token != 1)
+			{
+				cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMember doesn't exist." << endl << endl;
+			}
 
+			// Close file and verify
+			database.close();
+			if (!database.is_open())
+			{
+				cout << "\n\nThe file has successfully closed!" << endl << endl << endl;
+			}
 
-
-
-
-
-
-
-
-		// Test if the data is not found in database
-		if (!(search_ID1 == get_ID1) || !(search_ID2 == get_ID2) || !(search_ID3 == get_ID3) || !(search_ID4 == get_ID4))
-		{
-			cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMember doesn't exist." << endl << endl;
-		}
-
-		// Close file and verify
-		database.close();
-		if (!database.is_open())
-		{
-			cout << "\n\nThe file has successfully closed!" << endl << endl << endl;
-		}
+		}while (search_ID != "0000000000000000");
 	}
 	// Verify that the file has opened successfully.
 	else
@@ -2022,17 +2085,17 @@ get_GM get_GM_info()
 	{
 		case 'A':
 		{
-			quarter = "get_F";
+			quarter = "rep_F";
 			break;
 		}
 		case 'B':
 		{
-			quarter = "get_W";
+			quarter = "rep_W";
 			break;
 		}
 		case 'C':
 		{
-			quarter = "get_S";
+			quarter = "rep_S";
 			break;
 		}
 		default:
