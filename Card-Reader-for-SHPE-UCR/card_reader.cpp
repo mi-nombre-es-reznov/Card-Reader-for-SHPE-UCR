@@ -194,6 +194,16 @@ void new_user()
 		major = get_Major();
 		data << major << " ";
 
+		// Fall entries of data pushes of no attendence
+		string F1 = "No", F2 = "No", F3 = "No", F4 = "No", F5 = "No";
+		data << F1 << " " << F2 << " " << F3 << " " << F4 << " " << F5 << " ";
+		// Winter entries of data pushes of no attendence
+		string W1 = "No", W2 = "No", W3 = "No", W4 = "No", W5 = "No";
+		data << W1 << " " << W2 << " " << W3 << " " << W4 << " " << W5 << " ";
+		// Spring entries of data pushes of no attendence
+		string S1 = "No", S2 = "No", S3 = "No", S4 = "No", S5 = "No";
+		data << S1 << " " << S2 << " " << S3 << " " << S4 << " " << S5 << " ";
+
 		// End user row
 		data << "END";
 
@@ -341,6 +351,7 @@ void member_search()
 {
 	string search_ID, search_ID1, search_ID2, search_ID3, search_ID4, end_tag;
 	string get_ID1, get_ID2, get_ID3, get_ID4, get_first_name, get_last_name, get_netID, get_birth_month, get_major, get_email;
+	string get_F1, get_F2, get_F3, get_F4, get_F5, get_W1, get_W2, get_W3, get_W4, get_W5, get_S1, get_S2, get_S3, get_S4, get_S5;
 	int get_SID, get_birth_day, get_birth_year;
 
 	// Open database
@@ -378,7 +389,9 @@ void member_search()
 
 
 		// Data retrieveal from database to display for user.
-		while (database >> get_ID1 >> get_ID2 >> get_ID3 >> get_ID4 >> get_last_name >> get_first_name >> get_SID >> get_netID >> get_email >> get_birth_day >> get_birth_month >> get_birth_year >> get_major >> end_tag)
+		while (database >> get_ID1 >> get_ID2 >> get_ID3 >> get_ID4 >> get_last_name >> get_first_name >> get_SID >> get_netID >> get_email >> get_birth_day >> get_birth_month >> get_birth_year >> get_major >> 
+			get_F1 >> get_F2 >> get_F3 >> get_F4 >> get_F5 >> get_W1 >> get_W2 >> get_W3 >> get_W4 >> get_W5 >> get_S1 >> get_S2 >> get_S3 >>
+			get_S4 >> get_S5 >> end_tag)
 		{
 			// To replace major '_' with spaces
 			string altered_major = get_major;
@@ -435,9 +448,9 @@ void member_search()
 // -------------------------------
 void update_member_info()
 {
-	string search_ID, search_ID1, search_ID2, search_ID3, search_ID4, end_tag;
+	string search_ID, search_ID1, search_ID2, search_ID3, search_ID4, end_tag, line;
 	string get_ID1, get_ID2, get_ID3, get_ID4, get_first_name, get_last_name, get_netID, get_email, get_birth_month, get_major, replace;
-	string line;
+	string get_F1, get_F2, get_F3, get_F4, get_F5, get_W1, get_W2, get_W3, get_W4, get_W5, get_S1, get_S2, get_S3, get_S4, get_S5;
 	int get_SID, get_birth_day, get_birth_year;
 	replacements replaced;
 	Bday birthday;
@@ -482,7 +495,9 @@ void update_member_info()
 		search_ID4 = search_ID.substr(12, 4);
 
 		// Retrieve data from database to allow for user to see
-		while (database >> get_ID1 >> get_ID2 >> get_ID3 >> get_ID4 >> get_last_name >> get_first_name >> get_SID >> get_netID >> get_email >> get_birth_day >> get_birth_month >> get_birth_year >> get_major >> end_tag)
+		while (database >> get_ID1 >> get_ID2 >> get_ID3 >> get_ID4 >> get_last_name >> get_first_name >> get_SID >> get_netID >> get_email >> get_birth_day >> get_birth_month >> get_birth_year >> get_major >>
+			get_F1 >> get_F2 >> get_F3 >> get_F4 >> get_F5 >> get_W1 >> get_W2 >> get_W3 >> get_W4 >> get_W5 >> get_S1 >> get_S2 >> get_S3 >>
+			get_S4 >> get_S5 >> end_tag) 
 		{
 			string altered_major = get_major;
 			int position = altered_major.find("_");
@@ -549,12 +564,16 @@ void update_member_info()
 
 							string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major;
 							int rep_SID, rep_birth_day, rep_birth_year;
+							string rep_F1, rep_F2, rep_F3, rep_F4, rep_F5, rep_W1, rep_W2, rep_W3, rep_W4, rep_W5, rep_S1, rep_S2, rep_S3, rep_S4, rep_S5;
+
 							
 							// Put data in temp file
 							ifstream filein("records.txt"); //File to read from
 							ofstream fileout("text.txt"); //Temporary file
 
-							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >> end_tag)
+							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >>
+								rep_F1 >> rep_F2 >> rep_F3 >> rep_F4 >> rep_F5 >> rep_W1 >> rep_W2 >> rep_W3 >> rep_W4 >> rep_W5 >> rep_S1 >> rep_S2 >> rep_S3 >>
+								rep_S4 >> rep_S5 >> end_tag) 
 							{
 								if ((rep_ID1 == get_ID1) && (rep_ID2 == get_ID2) && (rep_ID3 == get_ID3) && (rep_ID4 == get_ID4))
 								{
@@ -563,8 +582,9 @@ void update_member_info()
 									rep_ID3 = replacement3;
 									rep_ID4 = replacement4;
 								}
-								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major << " " << end_tag << endl;
-
+								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major <<
+									" " << rep_F1 << " " << rep_F2 << " " << rep_F3 << " " << rep_F4 << " " << rep_F5 << " " << rep_W1 << " " << rep_W2 << " " <<
+									rep_W3 << " " << rep_W4 << " " << rep_W5 << " " << rep_S1 << " " << rep_S2 << " " << rep_S3 << " " << rep_S4 << " " << rep_S5 << " " << end_tag << endl;
 							}
 
 							filein.close();
@@ -574,9 +594,12 @@ void update_member_info()
 							ifstream filein2("text.txt"); //File to read from
 							ofstream fileout2("records.txt"); //Temporary file
 
+							string ret_F1, ret_F2, ret_F3, ret_F4, ret_F5, ret_W1, ret_W2, ret_W3, ret_W4, ret_W5, ret_S1, ret_S2, ret_S3, ret_S4, ret_S5;
 							string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major;
 							int ret_SID, ret_birth_day, ret_birth_year;
-							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >> end_tag)
+							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >>
+								ret_F1 >> ret_F2 >> ret_F3 >> ret_F4 >> ret_F5 >> ret_W1 >> ret_W2 >> ret_W3 >> ret_W4 >> ret_W5 >> ret_S1 >> ret_S2 >> ret_S3 >>
+								ret_S4 >> ret_S5 >> end_tag) 
 							{
 								if ((ret_ID1 == rep_ID1) && (ret_ID2 == rep_ID2) && (ret_ID3 == rep_ID3) && (ret_ID4 == rep_ID4))
 								{
@@ -585,7 +608,9 @@ void update_member_info()
 									ret_ID3 = rep_ID3;
 									ret_ID4 = rep_ID4;
 								}
-								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major << " " << end_tag << endl;
+								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major <<
+									" " << ret_F1 << " " << ret_F2 << " " << ret_F3 << " " << ret_F4 << " " << ret_F5 << " " << ret_W1 << " " << ret_W2 << " " <<
+									ret_W3 << " " << ret_W4 << " " << ret_W5 << " " << ret_S1 << " " << ret_S2 << " " << ret_S3 << " " << ret_S4 << " " << ret_S5 << " " << end_tag << endl;
 
 							}
 
@@ -601,18 +626,24 @@ void update_member_info()
 						{
 							string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major;
 							int rep_SID, rep_birth_day, rep_birth_year;
+							string rep_F1, rep_F2, rep_F3, rep_F4, rep_F5, rep_W1, rep_W2, rep_W3, rep_W4, rep_W5, rep_S1, rep_S2, rep_S3, rep_S4, rep_S5;
+							string ret_F1, ret_F2, ret_F3, ret_F4, ret_F5, ret_W1, ret_W2, ret_W3, ret_W4, ret_W5, ret_S1, ret_S2, ret_S3, ret_S4, ret_S5;
+
 							// Put data in temp file
 							ifstream filein("records.txt"); //File to read from
 							ofstream fileout("text.txt"); //Temporary file
 
-							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >> end_tag)
+							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >>
+								rep_F1 >> rep_F2 >> rep_F3 >> rep_F4 >> rep_F5 >> rep_W1 >> rep_W2 >> rep_W3 >> rep_W4 >> rep_W5 >> rep_S1 >> rep_S2 >> rep_S3 >>
+								rep_S4 >> rep_S5 >> end_tag) 
 							{
 								if ((rep_ID1 == get_ID1) && (rep_ID2 == get_ID2) && (rep_ID3 == get_ID3) && (rep_ID4 == get_ID4) && (rep_first_name == get_first_name))
 								{
 									rep_first_name = replaced.replacement;
 								}
-								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major << " " << end_tag << endl;
-
+								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major <<
+									" " << rep_F1 << " " << rep_F2 << " " << rep_F3 << " " << rep_F4 << " " << rep_F5 << " " << rep_W1 << " " << rep_W2 << " " <<
+									rep_W3 << " " << rep_W4 << " " << rep_W5 << " " << rep_S1 << " " << rep_S2 << " " << rep_S3 << " " << rep_S4 << " " << rep_S5 << " " << end_tag << endl;
 							}
 
 							filein.close();
@@ -624,13 +655,17 @@ void update_member_info()
 
 							string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major;
 							int ret_SID, ret_birth_day, ret_birth_year;
-							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >> end_tag)
+							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >>
+								ret_F1 >> ret_F2 >> ret_F3 >> ret_F4 >> ret_F5 >> ret_W1 >> ret_W2 >> ret_W3 >> ret_W4 >> ret_W5 >> ret_S1 >> ret_S2 >> ret_S3 >>
+								ret_S4 >> ret_S5 >> end_tag) 
 							{
 								if ((ret_ID1 == rep_ID1) && (ret_ID2 == rep_ID2) && (ret_ID3 == rep_ID3) && (ret_ID4 == rep_ID4) && (rep_first_name == ret_first_name))
 								{
 									ret_first_name == rep_first_name;
 								}
-								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major << " " << end_tag << endl;
+								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major <<
+									" " << ret_F1 << " " << ret_F2 << " " << ret_F3 << " " << ret_F4 << " " << ret_F5 << " " << ret_W1 << " " << ret_W2 << " " <<
+									ret_W3 << " " << ret_W4 << " " << ret_W5 << " " << ret_S1 << " " << ret_S2 << " " << ret_S3 << " " << ret_S4 << " " << ret_S5 << " " << end_tag << endl;
 
 							}
 
@@ -646,18 +681,24 @@ void update_member_info()
 						{
 							string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major;
 							int rep_SID, rep_birth_day, rep_birth_year;
+							string rep_F1, rep_F2, rep_F3, rep_F4, rep_F5, rep_W1, rep_W2, rep_W3, rep_W4, rep_W5, rep_S1, rep_S2, rep_S3, rep_S4, rep_S5;
+							string ret_F1, ret_F2, ret_F3, ret_F4, ret_F5, ret_W1, ret_W2, ret_W3, ret_W4, ret_W5, ret_S1, ret_S2, ret_S3, ret_S4, ret_S5;
+
 							// Put data in temp file
 							ifstream filein("records.txt"); //File to read from
 							ofstream fileout("text.txt"); //Temporary file
 
-							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >> end_tag)
+							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >>
+								rep_F1 >> rep_F2 >> rep_F3 >> rep_F4 >> rep_F5 >> rep_W1 >> rep_W2 >> rep_W3 >> rep_W4 >> rep_W5 >> rep_S1 >> rep_S2 >> rep_S3 >>
+								rep_S4 >> rep_S5 >> end_tag) 
 							{
 								if ((rep_ID1 == get_ID1) && (rep_ID2 == get_ID2) && (rep_ID3 == get_ID3) && (rep_ID4 == get_ID4) && (rep_last_name == get_last_name))
 								{
 									rep_last_name = replaced.replacement;
 								}
-								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major << " " << end_tag << endl;
-
+								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major <<
+									" " << rep_F1 << " " << rep_F2 << " " << rep_F3 << " " << rep_F4 << " " << rep_F5 << " " << rep_W1 << " " << rep_W2 << " " <<
+									rep_W3 << " " << rep_W4 << " " << rep_W5 << " " << rep_S1 << " " << rep_S2 << " " << rep_S3 << " " << rep_S4 << " " << rep_S5 << " " << end_tag << endl;
 							}
 
 							filein.close();
@@ -669,13 +710,17 @@ void update_member_info()
 
 							string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major;
 							int ret_SID, ret_birth_day, ret_birth_year;
-							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >> end_tag)
+							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >>
+								ret_F1 >> ret_F2 >> ret_F3 >> ret_F4 >> ret_F5 >> ret_W1 >> ret_W2 >> ret_W3 >> ret_W4 >> ret_W5 >> ret_S1 >> ret_S2 >> ret_S3 >>
+								ret_S4 >> ret_S5 >> end_tag) 
 							{
 								if ((ret_ID1 == rep_ID1) && (ret_ID2 == rep_ID2) && (ret_ID3 == rep_ID3) && (ret_ID4 == rep_ID4) && (rep_last_name == ret_last_name))
 								{
 									ret_last_name == rep_last_name;
 								}
-								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major << " " << end_tag << endl;
+								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major <<
+									" " << ret_F1 << " " << ret_F2 << " " << ret_F3 << " " << ret_F4 << " " << ret_F5 << " " << ret_W1 << " " << ret_W2 << " " <<
+									ret_W3 << " " << ret_W4 << " " << ret_W5 << " " << ret_S1 << " " << ret_S2 << " " << ret_S3 << " " << ret_S4 << " " << ret_S5 << " " << end_tag << endl;
 
 							}
 
@@ -691,19 +736,24 @@ void update_member_info()
 						{
 							string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major;
 							int rep_SID, rep_birth_day, rep_birth_year;
+							string rep_F1, rep_F2, rep_F3, rep_F4, rep_F5, rep_W1, rep_W2, rep_W3, rep_W4, rep_W5, rep_S1, rep_S2, rep_S3, rep_S4, rep_S5;
+
 							// Put data in temp file
 							ifstream filein("records.txt"); //File to read from
 							ofstream fileout("text.txt"); //Temporary file
 
-							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >> end_tag)
+							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >>
+								rep_F1 >> rep_F2 >> rep_F3 >> rep_F4 >> rep_F5 >> rep_W1 >> rep_W2 >> rep_W3 >> rep_W4 >> rep_W5 >> rep_S1 >> rep_S2 >> rep_S3 >>
+								rep_S4 >> rep_S5 >> end_tag) 
 							{
 								if ((rep_ID1 == get_ID1) && (rep_ID2 == get_ID2) && (rep_ID3 == get_ID3) && (rep_ID4 == get_ID4) && (rep_SID == get_SID))
 								{
 									rep_SID = replaced.SID;
 								}
 
-								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major << " " << end_tag << endl;
-
+								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major <<
+									" " << rep_F1 << " " << rep_F2 << " " << rep_F3 << " " << rep_F4 << " " << rep_F5 << " " << rep_W1 << " " << rep_W2 << " " <<
+									rep_W3 << " " << rep_W4 << " " << rep_W5 << " " << rep_S1 << " " << rep_S2 << " " << rep_S3 << " " << rep_S4 << " " << rep_S5 << " " << end_tag << endl;
 							}
 
 							filein.close();
@@ -713,15 +763,20 @@ void update_member_info()
 							ifstream filein2("text.txt"); //File to read from
 							ofstream fileout2("records.txt"); //Temporary file
 
+							string ret_F1, ret_F2, ret_F3, ret_F4, ret_F5, ret_W1, ret_W2, ret_W3, ret_W4, ret_W5, ret_S1, ret_S2, ret_S3, ret_S4, ret_S5;
 							string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major;
 							int ret_SID, ret_birth_day, ret_birth_year;
-							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >> end_tag)
+							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >>
+								ret_F1 >> ret_F2 >> ret_F3 >> ret_F4 >> ret_F5 >> ret_W1 >> ret_W2 >> ret_W3 >> ret_W4 >> ret_W5 >> ret_S1 >> ret_S2 >> ret_S3 >>
+								ret_S4 >> ret_S5 >> end_tag) 
 							{
 								if ((ret_ID1 == rep_ID1) && (ret_ID2 == rep_ID2) && (ret_ID3 == rep_ID3) && (ret_ID4 == rep_ID4) && (rep_SID == ret_SID))
 								{
 									ret_SID = rep_SID;
 								}
-								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major << " " << end_tag << endl;
+								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major <<
+									" " << ret_F1 << " " << ret_F2 << " " << ret_F3 << " " << ret_F4 << " " << ret_F5 << " " << ret_W1 << " " << ret_W2 << " " <<
+									ret_W3 << " " << ret_W4 << " " << ret_W5 << " " << ret_S1 << " " << ret_S2 << " " << ret_S3 << " " << ret_S4 << " " << ret_S5 << " " << end_tag << endl;
 
 							}
 
@@ -737,19 +792,24 @@ void update_member_info()
 						{
 							string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major;
 							int rep_SID, rep_birth_day, rep_birth_year;
+							string rep_F1, rep_F2, rep_F3, rep_F4, rep_F5, rep_W1, rep_W2, rep_W3, rep_W4, rep_W5, rep_S1, rep_S2, rep_S3, rep_S4, rep_S5;
+
 							// Put data in temp file
 							ifstream filein("records.txt"); //File to read from
 							ofstream fileout("text.txt"); //Temporary file
 
-							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >> end_tag)
+							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >>
+								rep_F1 >> rep_F2 >> rep_F3 >> rep_F4 >> rep_F5 >> rep_W1 >> rep_W2 >> rep_W3 >> rep_W4 >> rep_W5 >> rep_S1 >> rep_S2 >> rep_S3 >>
+								rep_S4 >> rep_S5 >> end_tag) 
 							{
 								if ((rep_ID1 == get_ID1) && (rep_ID2 == get_ID2) && (rep_ID3 == get_ID3) && (rep_ID4 == get_ID4) && (rep_netID == get_netID))
 								{
 									rep_netID = replaced.replacement;
 								}
 
-								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major << " " << end_tag << endl;
-
+								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major <<
+									" " << rep_F1 << " " << rep_F2 << " " << rep_F3 << " " << rep_F4 << " " << rep_F5 << " " << rep_W1 << " " << rep_W2 << " " <<
+									rep_W3 << " " << rep_W4 << " " << rep_W5 << " " << rep_S1 << " " << rep_S2 << " " << rep_S3 << " " << rep_S4 << " " << rep_S5 << " " << end_tag << endl;
 							}
 
 							filein.close();
@@ -761,13 +821,19 @@ void update_member_info()
 
 							string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major;
 							int ret_SID, ret_birth_day, ret_birth_year;
-							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >> end_tag)
+							string ret_F1, ret_F2, ret_F3, ret_F4, ret_F5, ret_W1, ret_W2, ret_W3, ret_W4, ret_W5, ret_S1, ret_S2, ret_S3, ret_S4, ret_S5;
+
+							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >>
+								ret_F1 >> ret_F2 >> ret_F3 >> ret_F4 >> ret_F5 >> ret_W1 >> ret_W2 >> ret_W3 >> ret_W4 >> ret_W5 >> ret_S1 >> ret_S2 >> ret_S3 >>
+								ret_S4 >> ret_S5 >> end_tag) 
 							{
 								if ((ret_ID1 == rep_ID1) && (ret_ID2 == rep_ID2) && (ret_ID3 == rep_ID3) && (ret_ID4 == rep_ID4) && (rep_netID == ret_netID))
 								{
 									ret_netID = rep_netID;
 								}
-								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major << " " << end_tag << endl;
+								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major <<
+									" " << ret_F1 << " " << ret_F2 << " " << ret_F3 << " " << ret_F4 << " " << ret_F5 << " " << ret_W1 << " " << ret_W2 << " " <<
+									ret_W3 << " " << ret_W4 << " " << ret_W5 << " " << ret_S1 << " " << ret_S2 << " " << ret_S3 << " " << ret_S4 << " " << ret_S5 << " " << end_tag << endl;
 
 							}
 
@@ -783,19 +849,24 @@ void update_member_info()
 						{
 							string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major;
 							int rep_SID, rep_birth_day, rep_birth_year;
+							string rep_F1, rep_F2, rep_F3, rep_F4, rep_F5, rep_W1, rep_W2, rep_W3, rep_W4, rep_W5, rep_S1, rep_S2, rep_S3, rep_S4, rep_S5;
+
 							// Put data in temp file
 							ifstream filein("records.txt"); //File to read from
 							ofstream fileout("text.txt"); //Temporary file
 
-							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >> end_tag)
+							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >>
+								rep_F1 >> rep_F2 >> rep_F3 >> rep_F4 >> rep_F5 >> rep_W1 >> rep_W2 >> rep_W3 >> rep_W4 >> rep_W5 >> rep_S1 >> rep_S2 >> rep_S3 >>
+								rep_S4 >> rep_S5 >> end_tag) 
 							{
 								if ((rep_ID1 == get_ID1) && (rep_ID2 == get_ID2) && (rep_ID3 == get_ID3) && (rep_ID4 == get_ID4) && (rep_email == get_email))
 								{
 									rep_email = replaced.replacement;
 								}
 
-								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major << " " << end_tag << endl;
-
+								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major <<
+									" " << rep_F1 << " " << rep_F2 << " " << rep_F3 << " " << rep_F4 << " " << rep_F5 << " " << rep_W1 << " " << rep_W2 << " " <<
+									rep_W3 << " " << rep_W4 << " " << rep_W5 << " " << rep_S1 << " " << rep_S2 << " " << rep_S3 << " " << rep_S4 << " " << rep_S5 << " " << end_tag << endl;
 							}
 
 							filein.close();
@@ -807,13 +878,19 @@ void update_member_info()
 
 							string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major;
 							int ret_SID, ret_birth_day, ret_birth_year;
-							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >> end_tag)
+							string ret_F1, ret_F2, ret_F3, ret_F4, ret_F5, ret_W1, ret_W2, ret_W3, ret_W4, ret_W5, ret_S1, ret_S2, ret_S3, ret_S4, ret_S5;
+
+							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >>
+								ret_F1 >> ret_F2 >> ret_F3 >> ret_F4 >> ret_F5 >> ret_W1 >> ret_W2 >> ret_W3 >> ret_W4 >> ret_W5 >> ret_S1 >> ret_S2 >> ret_S3 >>
+								ret_S4 >> ret_S5 >> end_tag) 
 							{
 								if ((ret_ID1 == rep_ID1) && (ret_ID2 == rep_ID2) && (ret_ID3 == rep_ID3) && (ret_ID4 == rep_ID4) && (rep_last_name == ret_last_name))
 								{
 									ret_email = rep_email;
 								}
-								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major << " " << end_tag << endl;
+								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major <<
+									" " << ret_F1 << " " << ret_F2 << " " << ret_F3 << " " << ret_F4 << " " << ret_F5 << " " << ret_W1 << " " << ret_W2 << " " <<
+									ret_W3 << " " << ret_W4 << " " << ret_W5 << " " << ret_S1 << " " << ret_S2 << " " << ret_S3 << " " << ret_S4 << " " << ret_S5 << " " << end_tag << endl;
 
 							}
 
@@ -829,11 +906,15 @@ void update_member_info()
 						{
 							string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major;
 							int rep_SID, rep_birth_day, rep_birth_year;
+							string rep_F1, rep_F2, rep_F3, rep_F4, rep_F5, rep_W1, rep_W2, rep_W3, rep_W4, rep_W5, rep_S1, rep_S2, rep_S3, rep_S4, rep_S5;
+
 							// Put data in temp file
 							ifstream filein("records.txt"); //File to read from
 							ofstream fileout("text.txt"); //Temporary file
 
-							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >> end_tag)
+							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >>
+								rep_F1 >> rep_F2 >> rep_F3 >> rep_F4 >> rep_F5 >> rep_W1 >> rep_W2 >> rep_W3 >> rep_W4 >> rep_W5 >> rep_S1 >> rep_S2 >> rep_S3 >>
+								rep_S4 >> rep_S5 >> end_tag) 
 							{
 								if ((rep_ID1 == get_ID1) && (rep_ID2 == get_ID2) && (rep_ID3 == get_ID3) && (rep_ID4 == get_ID4) && (rep_birth_day == get_birth_day) && (rep_birth_month == get_birth_month) && (rep_birth_year == get_birth_year))
 								{
@@ -842,8 +923,9 @@ void update_member_info()
 									rep_birth_year = replaced.year;
 								}
 
-								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major << " " << end_tag << endl;
-
+								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major <<
+									" " << rep_F1 << " " << rep_F2 << " " << rep_F3 << " " << rep_F4 << " " << rep_F5 << " " << rep_W1 << " " << rep_W2 << " " <<
+									rep_W3 << " " << rep_W4 << " " << rep_W5 << " " << rep_S1 << " " << rep_S2 << " " << rep_S3 << " " << rep_S4 << " " << rep_S5 << " " << end_tag << endl;
 							}
 
 							filein.close();
@@ -855,7 +937,11 @@ void update_member_info()
 
 							string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major;
 							int ret_SID, ret_birth_day, ret_birth_year;
-							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >> end_tag)
+							string ret_F1, ret_F2, ret_F3, ret_F4, ret_F5, ret_W1, ret_W2, ret_W3, ret_W4, ret_W5, ret_S1, ret_S2, ret_S3, ret_S4, ret_S5;
+
+							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >>
+								ret_F1 >> ret_F2 >> ret_F3 >> ret_F4 >> ret_F5 >> ret_W1 >> ret_W2 >> ret_W3 >> ret_W4 >> ret_W5 >> ret_S1 >> ret_S2 >> ret_S3 >>
+								ret_S4 >> ret_S5 >> end_tag) 
 							{
 								if ((ret_ID1 == rep_ID1) && (ret_ID2 == rep_ID2) && (ret_ID3 == rep_ID3) && (ret_ID4 == rep_ID4) && (ret_birth_day == rep_birth_day) && (ret_birth_month == rep_birth_month) && (ret_birth_year == rep_birth_year))
 								{
@@ -863,7 +949,9 @@ void update_member_info()
 									ret_birth_month = rep_birth_month;
 									ret_birth_year = rep_birth_year;
 								}
-								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major << " " << end_tag << endl;
+								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major <<
+									" " << ret_F1 << " " << ret_F2 << " " << ret_F3 << " " << ret_F4 << " " << ret_F5 << " " << ret_W1 << " " << ret_W2 << " " <<
+									ret_W3 << " " << ret_W4 << " " << ret_W5 << " " << ret_S1 << " " << ret_S2 << " " << ret_S3 << " " << ret_S4 << " " << ret_S5 << " " << end_tag << endl;
 
 							}
 
@@ -879,19 +967,24 @@ void update_member_info()
 						{
 							string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major;
 							int rep_SID, rep_birth_day, rep_birth_year;
+							string rep_F1, rep_F2, rep_F3, rep_F4, rep_F5, rep_W1, rep_W2, rep_W3, rep_W4, rep_W5, rep_S1, rep_S2, rep_S3, rep_S4, rep_S5;
+
 							// Put data in temp file
 							ifstream filein("records.txt"); //File to read from
 							ofstream fileout("text.txt"); //Temporary file
 
-							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >> end_tag)
+							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >>
+								rep_F1 >> rep_F2 >> rep_F3 >> rep_F4 >> rep_F5 >> rep_W1 >> rep_W2 >> rep_W3 >> rep_W4 >> rep_W5 >> rep_S1 >> rep_S2 >> rep_S3 >>
+								rep_S4 >> rep_S5 >> end_tag) 
 							{
 								if ((rep_ID1 == get_ID1) && (rep_ID2 == get_ID2) && (rep_ID3 == get_ID3) && (rep_ID4 == get_ID4) && (rep_major == get_major))
 								{
 									rep_major = replaced.replacement;
 								}
 
-								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major << " " << end_tag << endl;
-
+								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major <<
+									" " << rep_F1 << " " << rep_F2 << " " << rep_F3 << " " << rep_F4 << " " << rep_F5 << " " << rep_W1 << " " << rep_W2 << " " <<
+									rep_W3 << " " << rep_W4 << " " << rep_W5 << " " << rep_S1 << " " << rep_S2 << " " << rep_S3 << " " << rep_S4 << " " << rep_S5 << " " << end_tag << endl;
 							}
 
 							filein.close();
@@ -903,13 +996,19 @@ void update_member_info()
 
 							string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major;
 							int ret_SID, ret_birth_day, ret_birth_year;
-							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >> end_tag)
+							string ret_F1, ret_F2, ret_F3, ret_F4, ret_F5, ret_W1, ret_W2, ret_W3, ret_W4, ret_W5, ret_S1, ret_S2, ret_S3, ret_S4, ret_S5;
+
+							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >>
+								ret_F1 >> ret_F2 >> ret_F3 >> ret_F4 >> ret_F5 >> ret_W1 >> ret_W2 >> ret_W3 >> ret_W4 >> ret_W5 >> ret_S1 >> ret_S2 >> ret_S3 >>
+								ret_S4 >> ret_S5 >> end_tag) 
 							{
 								if ((ret_ID1 == rep_ID1) && (ret_ID2 == rep_ID2) && (ret_ID3 == rep_ID3) && (ret_ID4 == rep_ID4) && (rep_last_name == ret_last_name))
 								{
 									ret_major = rep_major;
 								}
-								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major << " " << end_tag << endl;
+								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major <<
+									" " << ret_F1 << " " << ret_F2 << " " << ret_F3 << " " << ret_F4 << " " << ret_F5 << " " << ret_W1 << " " << ret_W2 << " " <<
+									ret_W3 << " " << ret_W4 << " " << ret_W5 << " " << ret_S1 << " " << ret_S2 << " " << ret_S3 << " " << ret_S4 << " " << ret_S5 << " " << end_tag << endl;
 
 							}
 
@@ -1624,6 +1723,7 @@ void all_member_data()
 {
 	string search_ID, search_ID1, search_ID2, search_ID3, search_ID4, end_tag;
 	string get_ID1, get_ID2, get_ID3, get_ID4, get_first_name, get_last_name, get_netID, get_birth_month, get_major, get_email;
+	string get_F1, get_F2, get_F3, get_F4, get_F5, get_W1, get_W2, get_W3, get_W4, get_W5, get_S1, get_S2, get_S3, get_S4, get_S5;
 	int get_SID, get_birth_day, get_birth_year;
 
 	ifstream retrieve;
@@ -1634,7 +1734,9 @@ void all_member_data()
 		cout << "File has opened successfully." << endl << endl;
 
 		// Data retrieval from database to display all users.
-		while (retrieve >> get_ID1 >> get_ID2 >> get_ID3 >> get_ID4 >> get_last_name >> get_first_name >> get_SID >> get_netID >> get_email >> get_birth_day >> get_birth_month >> get_birth_year >> get_major >> end_tag)
+		while (retrieve >> get_ID1 >> get_ID2 >> get_ID3 >> get_ID4 >> get_last_name >> get_first_name >> get_SID >> get_netID >> get_email >> get_birth_day >> get_birth_month >> get_birth_year >> get_major >>
+			get_F1 >> get_F2 >> get_F3 >> get_F4 >> get_F5 >> get_W1 >> get_W2 >> get_W3 >> get_W4 >> get_W5 >> get_S1 >> get_S2 >> get_S3 >>
+			get_S4 >> get_S5 >> end_tag) 
 		{
 			// To replace major '_' with spaces
 			string altered_major = get_major;
@@ -1682,6 +1784,8 @@ void search_other()
 	string card_num, replacement_card, replacement_first, replacement_last, replacement_netID, replacement_email, replacement_major;
 	int replacement_SID, position = 0, token = 0;
 	bool numFail;
+	string get_F1, get_F2, get_F3, get_F4, get_F5, get_W1, get_W2, get_W3, get_W4, get_W5, get_S1, get_S2, get_S3, get_S4, get_S5;
+
 
 	ifstream database;
 	database.open("records.txt");
@@ -1718,7 +1822,9 @@ void search_other()
 		cout << endl << endl << endl << endl << endl;
 
 		// Retrieve data from database to allow for user to see
-		while (database >> get_ID1 >> get_ID2 >> get_ID3 >> get_ID4 >> get_last_name >> get_first_name >> get_SID >> get_netID >> get_email >> get_birth_day >> get_birth_month >> get_birth_year >> get_major >> end_tag)
+		while (database >> get_ID1 >> get_ID2 >> get_ID3 >> get_ID4 >> get_last_name >> get_first_name >> get_SID >> get_netID >> get_email >> get_birth_day >> get_birth_month >> get_birth_year >> get_major >>
+			get_F1 >> get_F2 >> get_F3 >> get_F4 >> get_F5 >> get_W1 >> get_W2 >> get_W3 >> get_W4 >> get_W5 >> get_S1 >> get_S2 >> get_S3 >>
+			get_S4 >> get_S5 >> end_tag) 
 		{
 			get_last_name.erase(remove(get_last_name.begin(), get_last_name.end(), ','), get_last_name.end());
 			string altered_major = get_major;
@@ -1750,7 +1856,7 @@ void search_other()
 
 				// Update Card number
 				card_num = (get_ID1 + get_ID2 + get_ID3 + get_ID4);
-				cin.ignore();
+				//cin.ignore();
 				// Do while to test for a minimum card input (bounds may need to be changed later)
 				do
 				{
@@ -1802,12 +1908,15 @@ void search_other()
 
 					string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major;
 					int rep_SID, rep_birth_day, rep_birth_year;
+					string rep_F1, rep_F2, rep_F3, rep_F4, rep_F5, rep_W1, rep_W2, rep_W3, rep_W4, rep_W5, rep_S1, rep_S2, rep_S3, rep_S4, rep_S5;
 
 					// Put data in temp file
 					ifstream filein("records.txt"); //File to read from
 					ofstream fileout("text.txt"); //Temporary file
 
-					while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >> end_tag)
+					while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >>
+						rep_F1 >> rep_F2 >> rep_F3 >> rep_F4 >> rep_F5 >> rep_W1 >> rep_W2 >> rep_W3 >> rep_W4 >> rep_W5 >> rep_S1 >> rep_S2 >> rep_S3 >>
+						rep_S4 >> rep_S5 >> end_tag) 
 					{
 						if ((rep_ID1 == get_ID1) && (rep_ID2 == get_ID2) && (rep_ID3 == get_ID3) && (rep_ID4 == get_ID4))
 						{
@@ -1816,7 +1925,9 @@ void search_other()
 							rep_ID3 = replacement3;
 							rep_ID4 = replacement4;
 						}
-						fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major << " " << end_tag << endl;
+						fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major <<
+							" " << rep_F1 << " " << rep_F2 << " " << rep_F3 << " " << rep_F4 << " " << rep_F5 << " " << rep_W1 << " " << rep_W2 << " " <<
+							rep_W3 << " " << rep_W4 << " " << rep_W5 << " " << rep_S1 << " " << rep_S2 << " " << rep_S3 << " " << rep_S4 << " " << rep_S5 << " " << end_tag << endl;
 
 					}
 
@@ -1829,7 +1940,11 @@ void search_other()
 
 					string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major;
 					int ret_SID, ret_birth_day, ret_birth_year;
-					while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >> end_tag)
+					string ret_F1, ret_F2, ret_F3, ret_F4, ret_F5, ret_W1, ret_W2, ret_W3, ret_W4, ret_W5, ret_S1, ret_S2, ret_S3, ret_S4, ret_S5;
+
+					while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >>
+						ret_F1 >> ret_F2 >> ret_F3 >> ret_F4 >> ret_F5 >> ret_W1 >> ret_W2 >> ret_W3 >> ret_W4 >> ret_W5 >> ret_S1 >> ret_S2 >> ret_S3 >>
+						ret_S4 >> ret_S5 >> end_tag) 
 					{
 						if ((ret_ID1 == rep_ID1) && (ret_ID2 == rep_ID2) && (ret_ID3 == rep_ID3) && (ret_ID4 == rep_ID4))
 						{
@@ -1838,14 +1953,14 @@ void search_other()
 							ret_ID3 = rep_ID3;
 							ret_ID4 = rep_ID4;
 						}
-						fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major << " " << end_tag << endl;
+						fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major <<
+							" " << ret_F1 << " " << ret_F2 << " " << ret_F3 << " " << ret_F4 << " " << ret_F5 << " " << ret_W1 << " " << ret_W2 << " " <<
+							ret_W3 << " " << ret_W4 << " " << ret_W5 << " " << ret_S1 << " " << ret_S2 << " " << ret_S3 << " " << ret_S4 << " " << ret_S5 << " " << end_tag << endl;
 
 					}
 
 					filein2.close();
 					fileout2.close();
-
-					break;
 				}
 			}
 		}
@@ -1863,9 +1978,12 @@ void search_other()
 	}
 }
 
+// -------------------------------
+//    General Meeting Sign-In
+// -------------------------------
 void GM_Update()
 {
-	string search_ID, search_ID1, search_ID2, search_ID3, search_ID4, end_tag;
+	string search_ID, search_ID1, search_ID2, search_ID3, search_ID4, end_tag, quarter;
 	int get_SID, get_birth_day, get_birth_year, token = 0;
 	get_GM GM;
 
@@ -1880,12 +1998,32 @@ void GM_Update()
 		cin.ignore();	// Ignore previous input to allow for new input.
 
 		GM = get_GM_info();
+		int position = GM.quarter.find("_");
+		GM.quarter = GM.quarter.substr(position + 1);
+		if (GM.quarter == "F")
+		{
+			GM.quarter = "Fall";
+		}
+		else if (GM.quarter == "W")
+		{
+			GM.quarter = "Winter";
+		}
+		else if (GM.quarter == "S")
+		{
+			GM.quarter = "Spring";
+		}
+		else
+		{
+			cout << "An error has occured";
+			GM.quarter = "error";
+		}
+
 		do
 		{
 			// Do while to test for a minimum card input (bounds may need to be changed later)
 			do
 			{
-				cout << "Please swipe card for member lookup (cancel to quit): ";	// Intro message
+				cout << "Please swipe card for member lookup ('cancel' to quit): ";	// Intro message
 				getline(cin, search_ID);		// Take in all data form card swipe
 
 				if (search_ID == "cancel")
@@ -2027,7 +2165,7 @@ void GM_Update()
 			fileout2.close();
 
 			// Test if the data is not found in database
-			if (token != 1)
+			if ((token != 1) && (search_ID != "0000000000000000"))
 			{
 				cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMember doesn't exist." << endl << endl;
 			}
@@ -2048,6 +2186,9 @@ void GM_Update()
 	}
 }
 
+// -------------------------------
+//       GM Info Collection
+// -------------------------------
 get_GM get_GM_info()
 {
 	char quarter_choice;
@@ -2157,11 +2298,13 @@ get_GM get_GM_info()
 	}
 
 	together = (quarter + number);
-	cout << "Choice: " << together << endl;
 
 	return get_GM{ quarter, number, together };
 }
 
+// -------------------------------
+//        Display Quarters
+// -------------------------------
 void Quarters()
 {
 	cout << endl << endl << endl << endl;
@@ -2173,6 +2316,9 @@ void Quarters()
 	cout << "\t\t\tC) Spring" << endl;
 }
 
+// -------------------------------
+//      GM Number information
+// -------------------------------
 void GM_Numbers()
 {
 	cout << endl << endl << endl << endl;
