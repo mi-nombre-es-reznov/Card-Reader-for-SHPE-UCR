@@ -66,6 +66,16 @@ void GM_Update();
 get_GM get_GM_info();
 void Quarters();
 void GM_Numbers();
+void Individual_GM_data();
+void Stats();
+void Stats_Menu();
+string get_Gender();
+void stats_birthdays();
+void stats_attendance_records();
+void stats_majors();
+void stats_sign_ins();
+string stats_pick_month();
+void get_all_months(string);
 
 // -------------------------------
 //              Main
@@ -107,7 +117,7 @@ void new_user()
 	bool numFail;
 	Bday birthday;
 	ofstream data;
-	string major;
+	string major, gender;
 	data.open("records.txt", ios::app);
 	if (data.is_open())
 	{
@@ -179,7 +189,12 @@ void new_user()
 
 		// Get student netID
 		cout << "netID: ";
-		cin >> netID;
+		getline(cin, netID);
+		int position = netID.find(" ");
+		if (position > 0)
+		{
+			netID = netID.substr(position);
+		}
 		data << netID << " ";
 
 		// Write e-mail address
@@ -193,6 +208,10 @@ void new_user()
 		// Get member major
 		major = get_Major();
 		data << major << " ";
+
+		// Gender
+		gender = get_Gender();
+		data << gender << " ";
 
 		// Fall entries of data pushes of no attendence
 		string F1 = "No", F2 = "No", F3 = "No", F4 = "No", F5 = "No";
@@ -230,11 +249,13 @@ void menu_choices()
 {
 	cout << endl << endl << endl;	// create space before displaying menu
 	cout << "\t\tA) Create a new member" << endl;
-	cout << "\t\tB) Retrieve member data" << endl;
+	cout << "\t\tB) Retrieve member info" << endl;
 	cout << "\t\tC) Update user info" << endl;
-	cout << "\t\tD) Retrieve all user data" << endl;
+	cout << "\t\tD) Retrieve all user info" << endl;
 	cout << "\t\tE) General Meeting Sign-In" << endl;
-	cout << "\t\tF) Exit program" << endl;
+	cout << "\t\tF) Retrieve individual GM data" << endl;
+	cout << "\t\tG) Statistics" << endl;
+	cout << "\t\tH) Exit program" << endl;
 }
 
 // -------------------------------
@@ -300,6 +321,18 @@ void option_selection()
 		}
 		case 'F':
 		{
+			cout << "Option F selected" << endl << endl << endl << endl;
+			Individual_GM_data();
+			break;
+		}
+		case 'G':
+		{
+			cout << "Option G selected" << endl << endl << endl << endl;
+			Stats();
+			break;
+		}
+		case 'H':
+		{
 			cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThank you for using NCompEng technologies. We appreciate that you have chosen our product for your database needs.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 			system("pause");
 			exit(0);
@@ -350,9 +383,9 @@ char Retry()
 void member_search()
 {
 	string search_ID, search_ID1, search_ID2, search_ID3, search_ID4, end_tag;
-	string get_ID1, get_ID2, get_ID3, get_ID4, get_first_name, get_last_name, get_netID, get_birth_month, get_major, get_email;
+	string get_ID1, get_ID2, get_ID3, get_ID4, get_first_name, get_last_name, get_netID, get_birth_month, get_major, get_gender, get_email;
 	string get_F1, get_F2, get_F3, get_F4, get_F5, get_W1, get_W2, get_W3, get_W4, get_W5, get_S1, get_S2, get_S3, get_S4, get_S5;
-	int get_SID, get_birth_day, get_birth_year;
+	int get_SID, get_birth_day, get_birth_year, count = 0;
 
 	// Open database
 	ifstream database;
@@ -389,7 +422,7 @@ void member_search()
 
 
 		// Data retrieveal from database to display for user.
-		while (database >> get_ID1 >> get_ID2 >> get_ID3 >> get_ID4 >> get_last_name >> get_first_name >> get_SID >> get_netID >> get_email >> get_birth_day >> get_birth_month >> get_birth_year >> get_major >> 
+		while (database >> get_ID1 >> get_ID2 >> get_ID3 >> get_ID4 >> get_last_name >> get_first_name >> get_SID >> get_netID >> get_email >> get_birth_day >> get_birth_month >> get_birth_year >> get_major >> get_gender >>
 			get_F1 >> get_F2 >> get_F3 >> get_F4 >> get_F5 >> get_W1 >> get_W2 >> get_W3 >> get_W4 >> get_W5 >> get_S1 >> get_S2 >> get_S3 >>
 			get_S4 >> get_S5 >> end_tag)
 		{
@@ -405,6 +438,68 @@ void member_search()
 			// If card number matches
 			if ((search_ID1 == get_ID1) && (search_ID2 == get_ID2) && (search_ID3 == get_ID3) && (search_ID4 == get_ID4))
 			{
+				if (get_F1 == "Yes")
+				{
+					count++;
+				}
+				if (get_F2 == "Yes")
+				{
+					count++;
+				}
+				if (get_F3 == "Yes")
+				{
+					count++;
+				}
+				if (get_F4 == "Yes")
+				{
+					count++;
+				}
+				if (get_F5 == "Yes")
+				{
+					count++;
+				}
+				if (get_W1 == "Yes")
+				{
+					count++;
+				}
+				if (get_W2 == "Yes")
+				{
+					count++;
+				}
+				if (get_W3 == "Yes")
+				{
+					count++;
+				}
+				if (get_W4 == "Yes")
+				{
+					count++;
+				}
+				if (get_W5 == "Yes")
+				{
+					count++;
+				}
+				if (get_S1 == "Yes")
+				{
+					count++;
+				}
+				if (get_S2 == "Yes")
+				{
+					count++;
+				}
+				if (get_S3 == "Yes")
+				{
+					count++;
+				}
+				if (get_S4 == "Yes")
+				{
+					count++;
+				}
+				if (get_S5 == "Yes")
+				{
+					count++;
+				}
+
+
 				// Setup database retrieval for user to easily read.
 				cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 				cout << "************************" << endl;
@@ -417,7 +512,15 @@ void member_search()
 				cout << "Student email: " << get_email << endl;
 				cout << "Student date of birth: " << get_birth_day << " " << get_birth_month << " " << get_birth_year << endl;
 				cout << "Student major: " << altered_major << endl;
+				cout << "General Meetings attended: " << count << endl;
 				cout << end_tag << endl;
+				if (count >= 10)
+				{
+					cout << endl << endl;
+					cout << "\t\t\t*****************************************************************" << endl;
+					cout << "\t\t\t*  Congratulations! You are now considered a current member!!!  *" << endl;
+					cout << "\t\t\t*****************************************************************" << endl;
+				}
 				break;
 			}
 			
@@ -449,7 +552,7 @@ void member_search()
 void update_member_info()
 {
 	string search_ID, search_ID1, search_ID2, search_ID3, search_ID4, end_tag, line;
-	string get_ID1, get_ID2, get_ID3, get_ID4, get_first_name, get_last_name, get_netID, get_email, get_birth_month, get_major, replace;
+	string get_ID1, get_ID2, get_ID3, get_ID4, get_first_name, get_last_name, get_netID, get_email, get_birth_month, get_major, get_gender, replace;
 	string get_F1, get_F2, get_F3, get_F4, get_F5, get_W1, get_W2, get_W3, get_W4, get_W5, get_S1, get_S2, get_S3, get_S4, get_S5;
 	int get_SID, get_birth_day, get_birth_year;
 	replacements replaced;
@@ -495,7 +598,7 @@ void update_member_info()
 		search_ID4 = search_ID.substr(12, 4);
 
 		// Retrieve data from database to allow for user to see
-		while (database >> get_ID1 >> get_ID2 >> get_ID3 >> get_ID4 >> get_last_name >> get_first_name >> get_SID >> get_netID >> get_email >> get_birth_day >> get_birth_month >> get_birth_year >> get_major >>
+		while (database >> get_ID1 >> get_ID2 >> get_ID3 >> get_ID4 >> get_last_name >> get_first_name >> get_SID >> get_netID >> get_email >> get_birth_day >> get_birth_month >> get_birth_year >> get_major >> get_gender >>
 			get_F1 >> get_F2 >> get_F3 >> get_F4 >> get_F5 >> get_W1 >> get_W2 >> get_W3 >> get_W4 >> get_W5 >> get_S1 >> get_S2 >> get_S3 >>
 			get_S4 >> get_S5 >> end_tag) 
 		{
@@ -562,7 +665,7 @@ void update_member_info()
 							string replacement3 = replaced.replacement.substr(8, 4);
 							string replacement4 = replaced.replacement.substr(12, 4);
 
-							string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major;
+							string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major, rep_gender;
 							int rep_SID, rep_birth_day, rep_birth_year;
 							string rep_F1, rep_F2, rep_F3, rep_F4, rep_F5, rep_W1, rep_W2, rep_W3, rep_W4, rep_W5, rep_S1, rep_S2, rep_S3, rep_S4, rep_S5;
 
@@ -571,7 +674,7 @@ void update_member_info()
 							ifstream filein("records.txt"); //File to read from
 							ofstream fileout("text.txt"); //Temporary file
 
-							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >>
+							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >> rep_gender >>
 								rep_F1 >> rep_F2 >> rep_F3 >> rep_F4 >> rep_F5 >> rep_W1 >> rep_W2 >> rep_W3 >> rep_W4 >> rep_W5 >> rep_S1 >> rep_S2 >> rep_S3 >>
 								rep_S4 >> rep_S5 >> end_tag) 
 							{
@@ -582,7 +685,7 @@ void update_member_info()
 									rep_ID3 = replacement3;
 									rep_ID4 = replacement4;
 								}
-								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major <<
+								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major << " " << rep_gender <<
 									" " << rep_F1 << " " << rep_F2 << " " << rep_F3 << " " << rep_F4 << " " << rep_F5 << " " << rep_W1 << " " << rep_W2 << " " <<
 									rep_W3 << " " << rep_W4 << " " << rep_W5 << " " << rep_S1 << " " << rep_S2 << " " << rep_S3 << " " << rep_S4 << " " << rep_S5 << " " << end_tag << endl;
 							}
@@ -595,9 +698,9 @@ void update_member_info()
 							ofstream fileout2("records.txt"); //Temporary file
 
 							string ret_F1, ret_F2, ret_F3, ret_F4, ret_F5, ret_W1, ret_W2, ret_W3, ret_W4, ret_W5, ret_S1, ret_S2, ret_S3, ret_S4, ret_S5;
-							string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major;
+							string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major, ret_gender;
 							int ret_SID, ret_birth_day, ret_birth_year;
-							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >>
+							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >> ret_gender >>
 								ret_F1 >> ret_F2 >> ret_F3 >> ret_F4 >> ret_F5 >> ret_W1 >> ret_W2 >> ret_W3 >> ret_W4 >> ret_W5 >> ret_S1 >> ret_S2 >> ret_S3 >>
 								ret_S4 >> ret_S5 >> end_tag) 
 							{
@@ -608,7 +711,7 @@ void update_member_info()
 									ret_ID3 = rep_ID3;
 									ret_ID4 = rep_ID4;
 								}
-								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major <<
+								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major << " " << ret_gender <<
 									" " << ret_F1 << " " << ret_F2 << " " << ret_F3 << " " << ret_F4 << " " << ret_F5 << " " << ret_W1 << " " << ret_W2 << " " <<
 									ret_W3 << " " << ret_W4 << " " << ret_W5 << " " << ret_S1 << " " << ret_S2 << " " << ret_S3 << " " << ret_S4 << " " << ret_S5 << " " << end_tag << endl;
 
@@ -624,7 +727,7 @@ void update_member_info()
 						// ---------------------------------
 						case 'B':
 						{
-							string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major;
+							string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major, rep_gender;
 							int rep_SID, rep_birth_day, rep_birth_year;
 							string rep_F1, rep_F2, rep_F3, rep_F4, rep_F5, rep_W1, rep_W2, rep_W3, rep_W4, rep_W5, rep_S1, rep_S2, rep_S3, rep_S4, rep_S5;
 							string ret_F1, ret_F2, ret_F3, ret_F4, ret_F5, ret_W1, ret_W2, ret_W3, ret_W4, ret_W5, ret_S1, ret_S2, ret_S3, ret_S4, ret_S5;
@@ -633,7 +736,7 @@ void update_member_info()
 							ifstream filein("records.txt"); //File to read from
 							ofstream fileout("text.txt"); //Temporary file
 
-							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >>
+							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >> rep_gender >> 
 								rep_F1 >> rep_F2 >> rep_F3 >> rep_F4 >> rep_F5 >> rep_W1 >> rep_W2 >> rep_W3 >> rep_W4 >> rep_W5 >> rep_S1 >> rep_S2 >> rep_S3 >>
 								rep_S4 >> rep_S5 >> end_tag) 
 							{
@@ -641,7 +744,7 @@ void update_member_info()
 								{
 									rep_first_name = replaced.replacement;
 								}
-								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major <<
+								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major << " " << rep_gender <<
 									" " << rep_F1 << " " << rep_F2 << " " << rep_F3 << " " << rep_F4 << " " << rep_F5 << " " << rep_W1 << " " << rep_W2 << " " <<
 									rep_W3 << " " << rep_W4 << " " << rep_W5 << " " << rep_S1 << " " << rep_S2 << " " << rep_S3 << " " << rep_S4 << " " << rep_S5 << " " << end_tag << endl;
 							}
@@ -653,9 +756,9 @@ void update_member_info()
 							ifstream filein2("text.txt"); //File to read from
 							ofstream fileout2("records.txt"); //Temporary file
 
-							string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major;
+							string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major, ret_gender;
 							int ret_SID, ret_birth_day, ret_birth_year;
-							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >>
+							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >> ret_gender >>
 								ret_F1 >> ret_F2 >> ret_F3 >> ret_F4 >> ret_F5 >> ret_W1 >> ret_W2 >> ret_W3 >> ret_W4 >> ret_W5 >> ret_S1 >> ret_S2 >> ret_S3 >>
 								ret_S4 >> ret_S5 >> end_tag) 
 							{
@@ -663,7 +766,7 @@ void update_member_info()
 								{
 									ret_first_name == rep_first_name;
 								}
-								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major <<
+								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major << " " << ret_gender <<
 									" " << ret_F1 << " " << ret_F2 << " " << ret_F3 << " " << ret_F4 << " " << ret_F5 << " " << ret_W1 << " " << ret_W2 << " " <<
 									ret_W3 << " " << ret_W4 << " " << ret_W5 << " " << ret_S1 << " " << ret_S2 << " " << ret_S3 << " " << ret_S4 << " " << ret_S5 << " " << end_tag << endl;
 
@@ -679,7 +782,7 @@ void update_member_info()
 						// ---------------------------------
 						case 'C':
 						{
-							string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major;
+							string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major, rep_gender;
 							int rep_SID, rep_birth_day, rep_birth_year;
 							string rep_F1, rep_F2, rep_F3, rep_F4, rep_F5, rep_W1, rep_W2, rep_W3, rep_W4, rep_W5, rep_S1, rep_S2, rep_S3, rep_S4, rep_S5;
 							string ret_F1, ret_F2, ret_F3, ret_F4, ret_F5, ret_W1, ret_W2, ret_W3, ret_W4, ret_W5, ret_S1, ret_S2, ret_S3, ret_S4, ret_S5;
@@ -688,7 +791,7 @@ void update_member_info()
 							ifstream filein("records.txt"); //File to read from
 							ofstream fileout("text.txt"); //Temporary file
 
-							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >>
+							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >> rep_gender >>
 								rep_F1 >> rep_F2 >> rep_F3 >> rep_F4 >> rep_F5 >> rep_W1 >> rep_W2 >> rep_W3 >> rep_W4 >> rep_W5 >> rep_S1 >> rep_S2 >> rep_S3 >>
 								rep_S4 >> rep_S5 >> end_tag) 
 							{
@@ -696,7 +799,7 @@ void update_member_info()
 								{
 									rep_last_name = replaced.replacement;
 								}
-								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major <<
+								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major << " " << rep_gender <<
 									" " << rep_F1 << " " << rep_F2 << " " << rep_F3 << " " << rep_F4 << " " << rep_F5 << " " << rep_W1 << " " << rep_W2 << " " <<
 									rep_W3 << " " << rep_W4 << " " << rep_W5 << " " << rep_S1 << " " << rep_S2 << " " << rep_S3 << " " << rep_S4 << " " << rep_S5 << " " << end_tag << endl;
 							}
@@ -708,9 +811,9 @@ void update_member_info()
 							ifstream filein2("text.txt"); //File to read from
 							ofstream fileout2("records.txt"); //Temporary file
 
-							string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major;
+							string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major, ret_gender;
 							int ret_SID, ret_birth_day, ret_birth_year;
-							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >>
+							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >> ret_gender >>
 								ret_F1 >> ret_F2 >> ret_F3 >> ret_F4 >> ret_F5 >> ret_W1 >> ret_W2 >> ret_W3 >> ret_W4 >> ret_W5 >> ret_S1 >> ret_S2 >> ret_S3 >>
 								ret_S4 >> ret_S5 >> end_tag) 
 							{
@@ -718,7 +821,7 @@ void update_member_info()
 								{
 									ret_last_name == rep_last_name;
 								}
-								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major <<
+								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major << " " << ret_gender <<
 									" " << ret_F1 << " " << ret_F2 << " " << ret_F3 << " " << ret_F4 << " " << ret_F5 << " " << ret_W1 << " " << ret_W2 << " " <<
 									ret_W3 << " " << ret_W4 << " " << ret_W5 << " " << ret_S1 << " " << ret_S2 << " " << ret_S3 << " " << ret_S4 << " " << ret_S5 << " " << end_tag << endl;
 
@@ -734,7 +837,7 @@ void update_member_info()
 						// ---------------------------------
 						case 'D':
 						{
-							string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major;
+							string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major, rep_gender;
 							int rep_SID, rep_birth_day, rep_birth_year;
 							string rep_F1, rep_F2, rep_F3, rep_F4, rep_F5, rep_W1, rep_W2, rep_W3, rep_W4, rep_W5, rep_S1, rep_S2, rep_S3, rep_S4, rep_S5;
 
@@ -742,7 +845,7 @@ void update_member_info()
 							ifstream filein("records.txt"); //File to read from
 							ofstream fileout("text.txt"); //Temporary file
 
-							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >>
+							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >> rep_gender >>
 								rep_F1 >> rep_F2 >> rep_F3 >> rep_F4 >> rep_F5 >> rep_W1 >> rep_W2 >> rep_W3 >> rep_W4 >> rep_W5 >> rep_S1 >> rep_S2 >> rep_S3 >>
 								rep_S4 >> rep_S5 >> end_tag) 
 							{
@@ -751,7 +854,7 @@ void update_member_info()
 									rep_SID = replaced.SID;
 								}
 
-								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major <<
+								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major << " " << rep_gender <<
 									" " << rep_F1 << " " << rep_F2 << " " << rep_F3 << " " << rep_F4 << " " << rep_F5 << " " << rep_W1 << " " << rep_W2 << " " <<
 									rep_W3 << " " << rep_W4 << " " << rep_W5 << " " << rep_S1 << " " << rep_S2 << " " << rep_S3 << " " << rep_S4 << " " << rep_S5 << " " << end_tag << endl;
 							}
@@ -764,9 +867,9 @@ void update_member_info()
 							ofstream fileout2("records.txt"); //Temporary file
 
 							string ret_F1, ret_F2, ret_F3, ret_F4, ret_F5, ret_W1, ret_W2, ret_W3, ret_W4, ret_W5, ret_S1, ret_S2, ret_S3, ret_S4, ret_S5;
-							string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major;
+							string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major, ret_gender;
 							int ret_SID, ret_birth_day, ret_birth_year;
-							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >>
+							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >> ret_gender >>
 								ret_F1 >> ret_F2 >> ret_F3 >> ret_F4 >> ret_F5 >> ret_W1 >> ret_W2 >> ret_W3 >> ret_W4 >> ret_W5 >> ret_S1 >> ret_S2 >> ret_S3 >>
 								ret_S4 >> ret_S5 >> end_tag) 
 							{
@@ -774,7 +877,7 @@ void update_member_info()
 								{
 									ret_SID = rep_SID;
 								}
-								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major <<
+								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major << " " << ret_gender <<
 									" " << ret_F1 << " " << ret_F2 << " " << ret_F3 << " " << ret_F4 << " " << ret_F5 << " " << ret_W1 << " " << ret_W2 << " " <<
 									ret_W3 << " " << ret_W4 << " " << ret_W5 << " " << ret_S1 << " " << ret_S2 << " " << ret_S3 << " " << ret_S4 << " " << ret_S5 << " " << end_tag << endl;
 
@@ -790,7 +893,7 @@ void update_member_info()
 						// ---------------------------------
 						case 'E':
 						{
-							string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major;
+							string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major, rep_gender;
 							int rep_SID, rep_birth_day, rep_birth_year;
 							string rep_F1, rep_F2, rep_F3, rep_F4, rep_F5, rep_W1, rep_W2, rep_W3, rep_W4, rep_W5, rep_S1, rep_S2, rep_S3, rep_S4, rep_S5;
 
@@ -798,7 +901,7 @@ void update_member_info()
 							ifstream filein("records.txt"); //File to read from
 							ofstream fileout("text.txt"); //Temporary file
 
-							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >>
+							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >> rep_gender >>
 								rep_F1 >> rep_F2 >> rep_F3 >> rep_F4 >> rep_F5 >> rep_W1 >> rep_W2 >> rep_W3 >> rep_W4 >> rep_W5 >> rep_S1 >> rep_S2 >> rep_S3 >>
 								rep_S4 >> rep_S5 >> end_tag) 
 							{
@@ -807,7 +910,7 @@ void update_member_info()
 									rep_netID = replaced.replacement;
 								}
 
-								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major <<
+								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major << " " << rep_gender <<
 									" " << rep_F1 << " " << rep_F2 << " " << rep_F3 << " " << rep_F4 << " " << rep_F5 << " " << rep_W1 << " " << rep_W2 << " " <<
 									rep_W3 << " " << rep_W4 << " " << rep_W5 << " " << rep_S1 << " " << rep_S2 << " " << rep_S3 << " " << rep_S4 << " " << rep_S5 << " " << end_tag << endl;
 							}
@@ -819,11 +922,11 @@ void update_member_info()
 							ifstream filein2("text.txt"); //File to read from
 							ofstream fileout2("records.txt"); //Temporary file
 
-							string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major;
+							string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major, ret_gender;
 							int ret_SID, ret_birth_day, ret_birth_year;
 							string ret_F1, ret_F2, ret_F3, ret_F4, ret_F5, ret_W1, ret_W2, ret_W3, ret_W4, ret_W5, ret_S1, ret_S2, ret_S3, ret_S4, ret_S5;
 
-							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >>
+							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >> ret_gender >>
 								ret_F1 >> ret_F2 >> ret_F3 >> ret_F4 >> ret_F5 >> ret_W1 >> ret_W2 >> ret_W3 >> ret_W4 >> ret_W5 >> ret_S1 >> ret_S2 >> ret_S3 >>
 								ret_S4 >> ret_S5 >> end_tag) 
 							{
@@ -831,7 +934,7 @@ void update_member_info()
 								{
 									ret_netID = rep_netID;
 								}
-								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major <<
+								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major << " " << ret_gender <<
 									" " << ret_F1 << " " << ret_F2 << " " << ret_F3 << " " << ret_F4 << " " << ret_F5 << " " << ret_W1 << " " << ret_W2 << " " <<
 									ret_W3 << " " << ret_W4 << " " << ret_W5 << " " << ret_S1 << " " << ret_S2 << " " << ret_S3 << " " << ret_S4 << " " << ret_S5 << " " << end_tag << endl;
 
@@ -847,7 +950,7 @@ void update_member_info()
 						// ---------------------------------
 						case 'F':
 						{
-							string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major;
+							string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major, rep_gender;
 							int rep_SID, rep_birth_day, rep_birth_year;
 							string rep_F1, rep_F2, rep_F3, rep_F4, rep_F5, rep_W1, rep_W2, rep_W3, rep_W4, rep_W5, rep_S1, rep_S2, rep_S3, rep_S4, rep_S5;
 
@@ -855,7 +958,7 @@ void update_member_info()
 							ifstream filein("records.txt"); //File to read from
 							ofstream fileout("text.txt"); //Temporary file
 
-							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >>
+							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >> rep_gender >>
 								rep_F1 >> rep_F2 >> rep_F3 >> rep_F4 >> rep_F5 >> rep_W1 >> rep_W2 >> rep_W3 >> rep_W4 >> rep_W5 >> rep_S1 >> rep_S2 >> rep_S3 >>
 								rep_S4 >> rep_S5 >> end_tag) 
 							{
@@ -864,7 +967,7 @@ void update_member_info()
 									rep_email = replaced.replacement;
 								}
 
-								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major <<
+								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major << " " << rep_gender <<
 									" " << rep_F1 << " " << rep_F2 << " " << rep_F3 << " " << rep_F4 << " " << rep_F5 << " " << rep_W1 << " " << rep_W2 << " " <<
 									rep_W3 << " " << rep_W4 << " " << rep_W5 << " " << rep_S1 << " " << rep_S2 << " " << rep_S3 << " " << rep_S4 << " " << rep_S5 << " " << end_tag << endl;
 							}
@@ -876,11 +979,11 @@ void update_member_info()
 							ifstream filein2("text.txt"); //File to read from
 							ofstream fileout2("records.txt"); //Temporary file
 
-							string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major;
+							string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major, ret_gender;
 							int ret_SID, ret_birth_day, ret_birth_year;
 							string ret_F1, ret_F2, ret_F3, ret_F4, ret_F5, ret_W1, ret_W2, ret_W3, ret_W4, ret_W5, ret_S1, ret_S2, ret_S3, ret_S4, ret_S5;
 
-							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >>
+							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >> ret_gender >>
 								ret_F1 >> ret_F2 >> ret_F3 >> ret_F4 >> ret_F5 >> ret_W1 >> ret_W2 >> ret_W3 >> ret_W4 >> ret_W5 >> ret_S1 >> ret_S2 >> ret_S3 >>
 								ret_S4 >> ret_S5 >> end_tag) 
 							{
@@ -888,7 +991,7 @@ void update_member_info()
 								{
 									ret_email = rep_email;
 								}
-								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major <<
+								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major << " " << ret_gender <<
 									" " << ret_F1 << " " << ret_F2 << " " << ret_F3 << " " << ret_F4 << " " << ret_F5 << " " << ret_W1 << " " << ret_W2 << " " <<
 									ret_W3 << " " << ret_W4 << " " << ret_W5 << " " << ret_S1 << " " << ret_S2 << " " << ret_S3 << " " << ret_S4 << " " << ret_S5 << " " << end_tag << endl;
 
@@ -904,7 +1007,7 @@ void update_member_info()
 						// ---------------------------------
 						case 'G':
 						{
-							string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major;
+							string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major, rep_gender;
 							int rep_SID, rep_birth_day, rep_birth_year;
 							string rep_F1, rep_F2, rep_F3, rep_F4, rep_F5, rep_W1, rep_W2, rep_W3, rep_W4, rep_W5, rep_S1, rep_S2, rep_S3, rep_S4, rep_S5;
 
@@ -912,7 +1015,7 @@ void update_member_info()
 							ifstream filein("records.txt"); //File to read from
 							ofstream fileout("text.txt"); //Temporary file
 
-							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >>
+							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >> rep_gender >>
 								rep_F1 >> rep_F2 >> rep_F3 >> rep_F4 >> rep_F5 >> rep_W1 >> rep_W2 >> rep_W3 >> rep_W4 >> rep_W5 >> rep_S1 >> rep_S2 >> rep_S3 >>
 								rep_S4 >> rep_S5 >> end_tag) 
 							{
@@ -923,7 +1026,7 @@ void update_member_info()
 									rep_birth_year = replaced.year;
 								}
 
-								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major <<
+								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major << " " << rep_gender <<
 									" " << rep_F1 << " " << rep_F2 << " " << rep_F3 << " " << rep_F4 << " " << rep_F5 << " " << rep_W1 << " " << rep_W2 << " " <<
 									rep_W3 << " " << rep_W4 << " " << rep_W5 << " " << rep_S1 << " " << rep_S2 << " " << rep_S3 << " " << rep_S4 << " " << rep_S5 << " " << end_tag << endl;
 							}
@@ -935,11 +1038,11 @@ void update_member_info()
 							ifstream filein2("text.txt"); //File to read from
 							ofstream fileout2("records.txt"); //Temporary file
 
-							string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major;
+							string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major, ret_gender;
 							int ret_SID, ret_birth_day, ret_birth_year;
 							string ret_F1, ret_F2, ret_F3, ret_F4, ret_F5, ret_W1, ret_W2, ret_W3, ret_W4, ret_W5, ret_S1, ret_S2, ret_S3, ret_S4, ret_S5;
 
-							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >>
+							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >> ret_gender >>
 								ret_F1 >> ret_F2 >> ret_F3 >> ret_F4 >> ret_F5 >> ret_W1 >> ret_W2 >> ret_W3 >> ret_W4 >> ret_W5 >> ret_S1 >> ret_S2 >> ret_S3 >>
 								ret_S4 >> ret_S5 >> end_tag) 
 							{
@@ -949,7 +1052,7 @@ void update_member_info()
 									ret_birth_month = rep_birth_month;
 									ret_birth_year = rep_birth_year;
 								}
-								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major <<
+								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major << " " << ret_gender <<
 									" " << ret_F1 << " " << ret_F2 << " " << ret_F3 << " " << ret_F4 << " " << ret_F5 << " " << ret_W1 << " " << ret_W2 << " " <<
 									ret_W3 << " " << ret_W4 << " " << ret_W5 << " " << ret_S1 << " " << ret_S2 << " " << ret_S3 << " " << ret_S4 << " " << ret_S5 << " " << end_tag << endl;
 
@@ -965,7 +1068,7 @@ void update_member_info()
 						// ---------------------------------
 						case 'H':
 						{
-							string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major;
+							string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major, rep_gender;
 							int rep_SID, rep_birth_day, rep_birth_year;
 							string rep_F1, rep_F2, rep_F3, rep_F4, rep_F5, rep_W1, rep_W2, rep_W3, rep_W4, rep_W5, rep_S1, rep_S2, rep_S3, rep_S4, rep_S5;
 
@@ -973,7 +1076,7 @@ void update_member_info()
 							ifstream filein("records.txt"); //File to read from
 							ofstream fileout("text.txt"); //Temporary file
 
-							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >>
+							while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >> rep_gender >>
 								rep_F1 >> rep_F2 >> rep_F3 >> rep_F4 >> rep_F5 >> rep_W1 >> rep_W2 >> rep_W3 >> rep_W4 >> rep_W5 >> rep_S1 >> rep_S2 >> rep_S3 >>
 								rep_S4 >> rep_S5 >> end_tag) 
 							{
@@ -982,7 +1085,7 @@ void update_member_info()
 									rep_major = replaced.replacement;
 								}
 
-								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major <<
+								fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major << " " << rep_gender <<
 									" " << rep_F1 << " " << rep_F2 << " " << rep_F3 << " " << rep_F4 << " " << rep_F5 << " " << rep_W1 << " " << rep_W2 << " " <<
 									rep_W3 << " " << rep_W4 << " " << rep_W5 << " " << rep_S1 << " " << rep_S2 << " " << rep_S3 << " " << rep_S4 << " " << rep_S5 << " " << end_tag << endl;
 							}
@@ -994,11 +1097,11 @@ void update_member_info()
 							ifstream filein2("text.txt"); //File to read from
 							ofstream fileout2("records.txt"); //Temporary file
 
-							string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major;
+							string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major, ret_gender;
 							int ret_SID, ret_birth_day, ret_birth_year;
 							string ret_F1, ret_F2, ret_F3, ret_F4, ret_F5, ret_W1, ret_W2, ret_W3, ret_W4, ret_W5, ret_S1, ret_S2, ret_S3, ret_S4, ret_S5;
 
-							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >>
+							while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >> ret_gender >>
 								ret_F1 >> ret_F2 >> ret_F3 >> ret_F4 >> ret_F5 >> ret_W1 >> ret_W2 >> ret_W3 >> ret_W4 >> ret_W5 >> ret_S1 >> ret_S2 >> ret_S3 >>
 								ret_S4 >> ret_S5 >> end_tag) 
 							{
@@ -1006,7 +1109,7 @@ void update_member_info()
 								{
 									ret_major = rep_major;
 								}
-								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major <<
+								fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major << " " << ret_gender <<
 									" " << ret_F1 << " " << ret_F2 << " " << ret_F3 << " " << ret_F4 << " " << ret_F5 << " " << ret_W1 << " " << ret_W2 << " " <<
 									ret_W3 << " " << ret_W4 << " " << ret_W5 << " " << ret_S1 << " " << ret_S2 << " " << ret_S3 << " " << ret_S4 << " " << ret_S5 << " " << end_tag << endl;
 
@@ -1078,7 +1181,6 @@ replacements replace_choice(string num1, string num2, string num3, string num4, 
 		case 'A':
 		{
 			// Update Card number
-			card_num = (num1 + num2 + num3 + num4);
 			cin.ignore();
 			// Do while to test for a minimum card input (bounds may need to be changed later)
 			do
@@ -1098,8 +1200,13 @@ replacements replace_choice(string num1, string num2, string num3, string num4, 
 			string place_holder = replacement_card.substr(pos + 1);	// Push one (1) position past the semi colon. Will be start of the card number
 			replacement_card = place_holder.substr(0, 16);	// Take in 16 places from the intial card number
 
-			cout << "\n\nYour documented card number is: " << card_num << "." << endl;
-			cout << "Your requested new card number is: " << replacement_card << "." << endl;
+			string replacement_card1 = replacement_card.substr(0, 4);
+			string replacement_card2 = replacement_card.substr(4, 4);
+			string replacement_card3 = replacement_card.substr(8, 4);
+			string replacement_card4 = replacement_card.substr(12, 4);
+
+			cout << "\n\nYour documented card number is: " << num1 << " " << num2 << " " << num3 << " " << num4 << "." << endl;
+			cout << "Your requested new card number is: " << replacement_card1 << " " << replacement_card2 << " " << replacement_card3 << " " << replacement_card4 << "." << endl;
 
 			do
 			{
@@ -1125,8 +1232,14 @@ replacements replace_choice(string num1, string num2, string num3, string num4, 
 		case 'B':
 		{
 			// Update First Name
+			cin.ignore();
 			cout << "Please enter replacement first name (no spaces): ";
-			cin >> replacement_first;
+			getline(cin, replacement_first);
+			int position = replacement_first.find(" ");
+			if (position > 0)
+			{
+				replacement_first = replacement_first.substr(position);
+			}
 
 			cout << "Your documented first name is: " << first << "." << endl;
 			cout << "Your preferred changed first name is: " << replacement_first << "." << endl;
@@ -1155,8 +1268,14 @@ replacements replace_choice(string num1, string num2, string num3, string num4, 
 		case 'C':
 		{
 			// Update Last Name
+			cin.ignore();
 			cout << "Please enter replacement last name (no spaces): ";
-			cin >> replacement_last;
+			getline(cin, replacement_last);
+			int position = replacement_last.find(" ");
+			if (position > 0)
+			{
+				replacement_last = replacement_last.substr(position);
+			}
 
 			cout << "Your documented last name is: " << last << "." << endl;
 			cout << "Your preferred changed last name is: " << replacement_last << "." << endl;
@@ -1229,8 +1348,14 @@ replacements replace_choice(string num1, string num2, string num3, string num4, 
 		case 'E':
 		{
 			// Update netID
-			cout << "Please give an updated netID: ";
-			cin >> replacement_netID;
+			cin.ignore();
+			cout << "Please enter replacement netID (no spaces): ";
+			getline(cin, replacement_netID);
+			int position = replacement_netID.find(" ");
+			if (position > 0)
+			{
+				replacement_netID = replacement_netID.substr(position);
+			}
 
 			cout << "Your documented netID is: " << netID << "." << endl;
 			cout << "Your preferred changed netID is: " << replacement_netID << "." << endl;
@@ -1259,8 +1384,14 @@ replacements replace_choice(string num1, string num2, string num3, string num4, 
 		case 'F':
 		{
 			// Update Email
-			cout << "Please give your updated email (no spaces): ";
-			cin >> replacement_email;
+			cin.ignore();
+			cout << "Please enter updated email (no spaces): ";
+			getline(cin, replacement_email);
+			int position = replacement_email.find(" ");
+			if (position > 0)
+			{
+				replacement_email = replacement_email.substr(position);
+			}
 
 			cout << "Your documented email is: " << email << "." << endl;
 			cout << "Your preferred email is: " << replacement_email << "." << endl;
@@ -1722,7 +1853,7 @@ string Insert_Major()
 void all_member_data()
 {
 	string search_ID, search_ID1, search_ID2, search_ID3, search_ID4, end_tag;
-	string get_ID1, get_ID2, get_ID3, get_ID4, get_first_name, get_last_name, get_netID, get_birth_month, get_major, get_email;
+	string get_ID1, get_ID2, get_ID3, get_ID4, get_first_name, get_last_name, get_netID, get_birth_month, get_major, get_email, get_gender;
 	string get_F1, get_F2, get_F3, get_F4, get_F5, get_W1, get_W2, get_W3, get_W4, get_W5, get_S1, get_S2, get_S3, get_S4, get_S5;
 	int get_SID, get_birth_day, get_birth_year;
 
@@ -1734,7 +1865,7 @@ void all_member_data()
 		cout << "File has opened successfully." << endl << endl;
 
 		// Data retrieval from database to display all users.
-		while (retrieve >> get_ID1 >> get_ID2 >> get_ID3 >> get_ID4 >> get_last_name >> get_first_name >> get_SID >> get_netID >> get_email >> get_birth_day >> get_birth_month >> get_birth_year >> get_major >>
+		while (retrieve >> get_ID1 >> get_ID2 >> get_ID3 >> get_ID4 >> get_last_name >> get_first_name >> get_SID >> get_netID >> get_email >> get_birth_day >> get_birth_month >> get_birth_year >> get_major >> get_gender >>
 			get_F1 >> get_F2 >> get_F3 >> get_F4 >> get_F5 >> get_W1 >> get_W2 >> get_W3 >> get_W4 >> get_W5 >> get_S1 >> get_S2 >> get_S3 >>
 			get_S4 >> get_S5 >> end_tag) 
 		{
@@ -1746,6 +1877,69 @@ void all_member_data()
 				altered_major.replace(position, 1, " ");
 				position = altered_major.find("_", position + 1);
 			}
+
+			int count = 0;
+
+				if (get_F1 == "Yes")
+				{
+					count++;
+				}
+				if (get_F2 == "Yes")
+				{
+					count++;
+				}
+				if (get_F3 == "Yes")
+				{
+					count++;
+				}
+				if (get_F4 == "Yes")
+				{
+					count++;
+				}
+				if (get_F5 == "Yes")
+				{
+					count++;
+				}
+				if (get_W1 == "Yes")
+				{
+					count++;
+				}
+				if (get_W2 == "Yes")
+				{
+					count++;
+				}
+				if (get_W3 == "Yes")
+				{
+					count++;
+				}
+				if (get_W4 == "Yes")
+				{
+					count++;
+				}
+				if (get_W5 == "Yes")
+				{
+					count++;
+				}
+				if (get_S1 == "Yes")
+				{
+					count++;
+				}
+				if (get_S2 == "Yes")
+				{
+					count++;
+				}
+				if (get_S3 == "Yes")
+				{
+					count++;
+				}
+				if (get_S4 == "Yes")
+				{
+					count++;
+				}
+				if (get_S5 == "Yes")
+				{
+					count++;
+				}
 
 				// Setup database retrieval for user to easily read.
 				cout << "\n\n\n";
@@ -1759,7 +1953,15 @@ void all_member_data()
 				cout << "Student email: " << get_email << endl;
 				cout << "Student date of birth: " << get_birth_day << " " << get_birth_month << " " << get_birth_year << endl;
 				cout << "Student major: " << altered_major << endl;
+				cout << "General Meetings attended: " << count << endl;
 				cout << end_tag << endl;
+				if (count >= 10)
+				{
+					cout << endl << endl;
+					cout << "\t\t\t*****************************************************************" << endl;
+					cout << "\t\t\t*  Congratulations! You are now considered a current member!!!  *" << endl;
+					cout << "\t\t\t*****************************************************************" << endl;
+				}
 		}
 
 		// Close file and verify
@@ -1777,7 +1979,7 @@ void all_member_data()
 void search_other()
 {
 	string search_ID, search_ID1, search_ID2, search_ID3, search_ID4, end_tag;
-	string get_ID1, get_ID2, get_ID3, get_ID4, get_first_name, get_last_name, get_netID, get_email, get_birth_month, get_major, replace;
+	string get_ID1, get_ID2, get_ID3, get_ID4, get_first_name, get_last_name, get_netID, get_email, get_birth_month, get_major, get_gender, replace;
 	string line, last_name;
 	int get_SID, get_birth_day, get_birth_year, SID;
 	char choice, choice2;
@@ -1822,7 +2024,7 @@ void search_other()
 		cout << endl << endl << endl << endl << endl;
 
 		// Retrieve data from database to allow for user to see
-		while (database >> get_ID1 >> get_ID2 >> get_ID3 >> get_ID4 >> get_last_name >> get_first_name >> get_SID >> get_netID >> get_email >> get_birth_day >> get_birth_month >> get_birth_year >> get_major >>
+		while (database >> get_ID1 >> get_ID2 >> get_ID3 >> get_ID4 >> get_last_name >> get_first_name >> get_SID >> get_netID >> get_email >> get_birth_day >> get_birth_month >> get_birth_year >> get_major >> get_gender >>
 			get_F1 >> get_F2 >> get_F3 >> get_F4 >> get_F5 >> get_W1 >> get_W2 >> get_W3 >> get_W4 >> get_W5 >> get_S1 >> get_S2 >> get_S3 >>
 			get_S4 >> get_S5 >> end_tag) 
 		{
@@ -1855,8 +2057,6 @@ void search_other()
 				token = 1;	// Information found!
 
 				// Update Card number
-				card_num = (get_ID1 + get_ID2 + get_ID3 + get_ID4);
-				//cin.ignore();
 				// Do while to test for a minimum card input (bounds may need to be changed later)
 				do
 				{
@@ -1875,8 +2075,14 @@ void search_other()
 				string place_holder = replacement_card.substr(pos + 1);	// Push one (1) position past the semi colon. Will be start of the card number
 				replacement_card = place_holder.substr(0, 16);	// Take in 16 places from the intial card number
 
-				cout << "\n\nYour documented card number is: " << card_num << "." << endl;
-				cout << "Your requested new card number is: " << replacement_card << "." << endl;
+				// Create card substrings
+				string replacement1 = replacement_card.substr(0, 4);
+				string replacement2 = replacement_card.substr(4, 4);
+				string replacement3 = replacement_card.substr(8, 4);
+				string replacement4 = replacement_card.substr(12, 4);
+
+				cout << "\n\nYour documented card number is: " << get_ID1 << " " << get_ID2 << " " << get_ID3 << " " << get_ID4 << "." << endl;
+				cout << "Your requested new card number is: " << replacement1 << " " << replacement2 << " " << replacement3 << " " << replacement4 << "." << endl;
 
 				do
 				{
@@ -1901,12 +2107,8 @@ void search_other()
 				{
 					getline(database, line);	// Take in an entire line of data from the database
 												// Insert spaces at appropriate spots to allow for sub-divide the data that will be compared. It needs to have 4 groups of 4 for the 16 digits.
-					string replacement1 = replacement_card.substr(0, 4);
-					string replacement2 = replacement_card.substr(4, 4);
-					string replacement3 = replacement_card.substr(8, 4);
-					string replacement4 = replacement_card.substr(12, 4);
 
-					string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major;
+					string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major, rep_gender;
 					int rep_SID, rep_birth_day, rep_birth_year;
 					string rep_F1, rep_F2, rep_F3, rep_F4, rep_F5, rep_W1, rep_W2, rep_W3, rep_W4, rep_W5, rep_S1, rep_S2, rep_S3, rep_S4, rep_S5;
 
@@ -1914,7 +2116,7 @@ void search_other()
 					ifstream filein("records.txt"); //File to read from
 					ofstream fileout("text.txt"); //Temporary file
 
-					while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >>
+					while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >> rep_gender >>
 						rep_F1 >> rep_F2 >> rep_F3 >> rep_F4 >> rep_F5 >> rep_W1 >> rep_W2 >> rep_W3 >> rep_W4 >> rep_W5 >> rep_S1 >> rep_S2 >> rep_S3 >>
 						rep_S4 >> rep_S5 >> end_tag) 
 					{
@@ -1925,7 +2127,7 @@ void search_other()
 							rep_ID3 = replacement3;
 							rep_ID4 = replacement4;
 						}
-						fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major <<
+						fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major << " " << rep_gender <<
 							" " << rep_F1 << " " << rep_F2 << " " << rep_F3 << " " << rep_F4 << " " << rep_F5 << " " << rep_W1 << " " << rep_W2 << " " <<
 							rep_W3 << " " << rep_W4 << " " << rep_W5 << " " << rep_S1 << " " << rep_S2 << " " << rep_S3 << " " << rep_S4 << " " << rep_S5 << " " << end_tag << endl;
 
@@ -1938,11 +2140,11 @@ void search_other()
 					ifstream filein2("text.txt"); //File to read from
 					ofstream fileout2("records.txt"); //Temporary file
 
-					string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major;
+					string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major, ret_gender;
 					int ret_SID, ret_birth_day, ret_birth_year;
 					string ret_F1, ret_F2, ret_F3, ret_F4, ret_F5, ret_W1, ret_W2, ret_W3, ret_W4, ret_W5, ret_S1, ret_S2, ret_S3, ret_S4, ret_S5;
 
-					while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >>
+					while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >> ret_gender >>
 						ret_F1 >> ret_F2 >> ret_F3 >> ret_F4 >> ret_F5 >> ret_W1 >> ret_W2 >> ret_W3 >> ret_W4 >> ret_W5 >> ret_S1 >> ret_S2 >> ret_S3 >>
 						ret_S4 >> ret_S5 >> end_tag) 
 					{
@@ -1953,7 +2155,7 @@ void search_other()
 							ret_ID3 = rep_ID3;
 							ret_ID4 = rep_ID4;
 						}
-						fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major <<
+						fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major << " " << ret_gender <<
 							" " << ret_F1 << " " << ret_F2 << " " << ret_F3 << " " << ret_F4 << " " << ret_F5 << " " << ret_W1 << " " << ret_W2 << " " <<
 							ret_W3 << " " << ret_W4 << " " << ret_W5 << " " << ret_S1 << " " << ret_S2 << " " << ret_S3 << " " << ret_S4 << " " << ret_S5 << " " << end_tag << endl;
 
@@ -2023,6 +2225,7 @@ void GM_Update()
 			// Do while to test for a minimum card input (bounds may need to be changed later)
 			do
 			{
+				token = 0;
 				cout << "Please swipe card for member lookup ('cancel' to quit): ";	// Intro message
 				getline(cin, search_ID);		// Take in all data form card swipe
 
@@ -2043,29 +2246,26 @@ void GM_Update()
 			string place_holder = search_ID.substr(pos + 1);	// Push one (1) position past the semi colon. Will be start of the card number
 			search_ID = place_holder.substr(0, 16);	// Take in 16 places from the intial card number
 
-													// Insert spaces at appropriate spots to allow for sub-divide the data that will be compared. It needs to have 4 groups of 4 for the 16 digits.
+			// Insert spaces at appropriate spots to allow for sub-divide the data that will be compared. It needs to have 4 groups of 4 for the 16 digits.
 			search_ID1 = search_ID.substr(0, 4);
 			search_ID2 = search_ID.substr(4, 4);
 			search_ID3 = search_ID.substr(8, 4);
 			search_ID4 = search_ID.substr(12, 4);
 
-			string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major;
+			string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major, rep_gender;
 			string rep_F1, rep_F2, rep_F3, rep_F4, rep_F5, rep_W1, rep_W2, rep_W3, rep_W4, rep_W5, rep_S1, rep_S2, rep_S3, rep_S4, rep_S5;
-			int rep_SID, rep_birth_day, rep_birth_year;
+			int rep_SID, rep_birth_day, rep_birth_year, count = 0;
 			// Put data in temp file
 			ifstream filein("records.txt"); //File to read from
 			ofstream fileout("text.txt"); //Temporary file
 
-			while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >>
+			while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >> rep_gender >>
 				rep_F1 >> rep_F2 >> rep_F3 >> rep_F4 >> rep_F5 >> rep_W1 >> rep_W2 >> rep_W3 >> rep_W4 >> rep_W5 >> rep_S1 >> rep_S2 >> rep_S3 >>
 				rep_S4 >> rep_S5 >> end_tag)
 			{
 				if ((rep_ID1 == search_ID1) && (rep_ID2 == search_ID2) && (rep_ID3 == search_ID3) && (rep_ID4 == search_ID4))
 				{
 					token = 1;
-					// Setup database retrieval for user to easily read.
-					cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-					cout << rep_first_name << " " << rep_last_name << " has signed in for General Meeting: " << GM.number << ", this " << GM.quarter << " Quarter." << endl;
 
 					if (GM.together == "rep_F1")
 					{
@@ -2131,9 +2331,81 @@ void GM_Update()
 					{
 						cout << "An error has occurred! Please seek data loss immediately!!" << endl << endl;
 					}
+					// Setup database retrieval for user to easily read.
+					cout << "\n\n\n\n\n\n\n\n\n";
+					if (rep_F1 == "Yes")
+					{
+						count++;
+					}
+					if (rep_F2 == "Yes")
+					{
+						count++;
+					}
+					if (rep_F3 == "Yes")
+					{
+						count++;
+					}
+					if (rep_F4 == "Yes")
+					{
+						count++;
+					}
+					if (rep_F5 == "Yes")
+					{
+						count++;
+					}
+					if (rep_W1 == "Yes")
+					{
+						count++;
+					}
+					if (rep_W2 == "Yes")
+					{
+						count++;
+					}
+					if (rep_W3 == "Yes")
+					{
+						count++;
+					}
+					if (rep_W4 == "Yes")
+					{
+						count++;
+					}
+					if (rep_W5 == "Yes")
+					{
+						count++;
+					}
+					if (rep_S1 == "Yes")
+					{
+						count++;
+					}
+					if (rep_S2 == "Yes")
+					{
+						count++;
+					}
+					if (rep_S3 == "Yes")
+					{
+						count++;
+					}
+					if (rep_S4 == "Yes")
+					{
+						count++;
+					}
+					if (rep_S5 == "Yes")
+					{
+						count++;
+					}
+
+					if (count == 10)
+					{
+						cout << endl << endl;
+						cout << "\t\t\t*****************************************************************" << endl;
+						cout << "\t\t\t*  Congratulations! You are now considered a current member!!!  *" << endl;
+						cout << "\t\t\t*****************************************************************" << endl;
+					}
+					cout << "\n\n\n\n\n\n\n\n\n\n";
+					cout << rep_first_name << " " << rep_last_name << " has signed in for General Meeting: " << GM.number << ", this " << GM.quarter << " Quarter." << endl;
 				}
 
-				fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major <<
+				fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major << " " << rep_gender <<
 					" " << rep_F1 << " " << rep_F2 << " " << rep_F3 << " " << rep_F4 << " " << rep_F5 << " " << rep_W1 << " " << rep_W2 << " " <<
 					rep_W3 << " " << rep_W4 << " " << rep_W5 << " " << rep_S1 << " " << rep_S2 << " " << rep_S3 << " " << rep_S4 << " " << rep_S5 << " " << end_tag << endl;
 			}
@@ -2145,10 +2417,10 @@ void GM_Update()
 			ifstream filein2("text.txt"); //File to read from
 			ofstream fileout2("records.txt"); //Temporary file
 
-			string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major;
+			string ret_ID1, ret_ID2, ret_ID3, ret_ID4, ret_last_name, ret_first_name, ret_netID, ret_email, ret_birth_month, ret_major, ret_gender;
 			string ret_F1, ret_F2, ret_F3, ret_F4, ret_F5, ret_W1, ret_W2, ret_W3, ret_W4, ret_W5, ret_S1, ret_S2, ret_S3, ret_S4, ret_S5;
 			int ret_SID, ret_birth_day, ret_birth_year;
-			while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >>
+			while (filein2 >> ret_ID1 >> ret_ID2 >> ret_ID3 >> ret_ID4 >> ret_last_name >> ret_first_name >> ret_SID >> ret_netID >> ret_email >> ret_birth_day >> ret_birth_month >> ret_birth_year >> ret_major >> ret_gender >>
 				ret_F1 >> ret_F2 >> ret_F3 >> ret_F4 >> ret_F5 >> ret_W1 >> ret_W2 >> ret_W3 >> ret_W4 >> ret_W5 >> ret_S1 >> ret_S2 >> ret_S3 >>
 				ret_S4 >> ret_S5 >> end_tag)
 			{
@@ -2156,7 +2428,7 @@ void GM_Update()
 				{
 					ret_first_name == rep_first_name;
 				}
-				fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major <<
+				fileout2 << ret_ID1 << " " << ret_ID2 << " " << ret_ID3 << " " << ret_ID4 << " " << ret_last_name << " " << ret_first_name << " " << ret_SID << " " << ret_netID << " " << ret_email << " " << ret_birth_day << " " << ret_birth_month << " " << ret_birth_year << " " << ret_major << " " << ret_gender <<
 					" " << ret_F1 << " " << ret_F2 << " " << ret_F3 << " " << ret_F4 << " " << ret_F5 << " " << ret_W1 << " " << ret_W2 << " " <<
 					ret_W3 << " " << ret_W4 << " " << ret_W5 << " " << ret_S1 << " " << ret_S2 << " " << ret_S3 << " " << ret_S4 << " " << ret_S5 << " " << end_tag << endl;
 			}
@@ -2330,4 +2602,886 @@ void GM_Numbers()
 	cout << "\t\t\t3) 3" << endl;
 	cout << "\t\t\t4) 4" << endl;
 	cout << "\t\t\t5) 5" << endl;
+}
+
+// -------------------------------
+//    Individual GM information
+// -------------------------------
+void Individual_GM_data()
+{
+	string search_ID, search_ID1, search_ID2, search_ID3, search_ID4, end_tag;
+	string get_ID1, get_ID2, get_ID3, get_ID4, get_first_name, get_last_name, get_netID, get_birth_month, get_major, get_email, get_gender;
+	string get_F1, get_F2, get_F3, get_F4, get_F5, get_W1, get_W2, get_W3, get_W4, get_W5, get_S1, get_S2, get_S3, get_S4, get_S5;
+	int get_SID, get_birth_day, get_birth_year, count = 0, token = 0;;
+
+	// Open database
+	ifstream database;
+	database.open("records.txt");
+
+	// Test to see if file has opened
+	if (database.is_open())
+	{
+		cout << "File has successfully been opened!" << endl << endl;	// Verification that file has been opened succesfully
+		cin.ignore();	// Ignore previous input to allow for new input.
+						// Do while to test for a minimum card input (bounds may need to be changed later)
+		do
+		{
+			cout << "Please swipe card for member lookup: ";	// Intro message
+			getline(cin, search_ID);		// Take in all data form card swipe
+
+											// Used to test length intially. If failed, display message
+			if (search_ID.length() < 95)
+			{
+				cout << "Card read error. Please retry swipe." << endl << endl;	// If executed, the min length was not reached by the card swipe, usually read error
+			}
+		} while (search_ID.length() < 95);	// Bound check to see if min data entry was reached
+
+		cout << endl << endl << endl << endl << endl;
+		size_t pos = search_ID.find(";");
+		string place_holder = search_ID.substr(pos + 1);	// Push one (1) position past the semi colon. Will be start of the card number
+		search_ID = place_holder.substr(0, 16);	// Take in 16 places from the intial card number
+
+												// Insert spaces at appropriate spots to allow for sub-divide the data that will be compared. It needs to have 4 groups of 4 for the 16 digits.
+		search_ID1 = search_ID.substr(0, 4);
+		search_ID2 = search_ID.substr(4, 4);
+		search_ID3 = search_ID.substr(8, 4);
+		search_ID4 = search_ID.substr(12, 4);
+
+
+		// Data retrieveal from database to display for user.
+		while (database >> get_ID1 >> get_ID2 >> get_ID3 >> get_ID4 >> get_last_name >> get_first_name >> get_SID >> get_netID >> get_email >> get_birth_day >> get_birth_month >> get_birth_year >> get_major >> get_gender >>
+			get_F1 >> get_F2 >> get_F3 >> get_F4 >> get_F5 >> get_W1 >> get_W2 >> get_W3 >> get_W4 >> get_W5 >> get_S1 >> get_S2 >> get_S3 >>
+			get_S4 >> get_S5 >> end_tag)
+		{
+			// To replace major '_' with spaces
+			string altered_major = get_major;
+			int position = altered_major.find("_");
+			while (position != string::npos)
+			{
+				altered_major.replace(position, 1, " ");
+				position = altered_major.find("_", position + 1);
+			}
+
+			// If card number matches
+			if ((search_ID1 == get_ID1) && (search_ID2 == get_ID2) && (search_ID3 == get_ID3) && (search_ID4 == get_ID4))
+			{
+				if (get_F1 == "Yes")
+				{
+					count++;
+				}
+				if (get_F2 == "Yes")
+				{
+					count++;
+				}
+				if (get_F3 == "Yes")
+				{
+					count++;
+				}
+				if (get_F4 == "Yes")
+				{
+					count++;
+				}
+				if (get_F5 == "Yes")
+				{
+					count++;
+				}
+				if (get_W1 == "Yes")
+				{
+					count++;
+				}
+				if (get_W2 == "Yes")
+				{
+					count++;
+				}
+				if (get_W3 == "Yes")
+				{
+					count++;
+				}
+				if (get_W4 == "Yes")
+				{
+					count++;
+				}
+				if (get_W5 == "Yes")
+				{
+					count++;
+				}
+				if (get_S1 == "Yes")
+				{
+					count++;
+				}
+				if (get_S2 == "Yes")
+				{
+					count++;
+				}
+				if (get_S3 == "Yes")
+				{
+					count++;
+				}
+				if (get_S4 == "Yes")
+				{
+					count++;
+				}
+				if (get_S5 == "Yes")
+				{
+					count++;
+				}
+
+				get_last_name.erase(remove(get_last_name.begin(), get_last_name.end(), ','), get_last_name.end());
+				// Setup database retrieval for user to easily read.
+				cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+				cout << "************************" << endl;
+				cout << "     Member GM Data" << endl;
+				cout << "************************" << endl;
+				cout << get_first_name << " " << get_last_name << "'s personal General meeting data breakdown." << endl << endl;
+				cout << "\tFall" << endl;
+				cout << "Attended General Meeting 1: " << get_F1 << endl;
+				cout << "Attended General Meeting 2: " << get_F2 << endl;
+				cout << "Attended General Meeting 3: " << get_F3 << endl;
+				cout << "Attended General Meeting 4: " << get_F4 << endl;
+				cout << "Attended General Meeting 5: " << get_F5 << endl;
+				cout << endl << endl;
+				cout << "\tWinter" << endl;
+				cout << "Attended General Meeting 1: " << get_W1 << endl;
+				cout << "Attended General Meeting 2: " << get_W2 << endl;
+				cout << "Attended General Meeting 3: " << get_W3 << endl;
+				cout << "Attended General Meeting 4: " << get_W4 << endl;
+				cout << "Attended General Meeting 5: " << get_W5 << endl;
+				cout << endl << endl;
+				cout << "\tSpring" << endl;
+				cout << "Attended General Meeting 1: " << get_S1 << endl;
+				cout << "Attended General Meeting 2: " << get_S2 << endl;
+				cout << "Attended General Meeting 3: " << get_S3 << endl;
+				cout << "Attended General Meeting 4: " << get_S4 << endl;
+				cout << "Attended General Meeting 5: " << get_S5 << endl;
+				//cout << endl << endl;
+
+				token = 1;
+			}
+
+		}
+
+		// Test if the data is not found in database
+		if (token != 1)
+		{
+			cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nData cannot be found!" << endl << endl;
+		}
+
+		// Close file and verify
+		database.close();
+		if (!database.is_open())
+		{
+			cout << "\nThe file has successfully closed!" << endl;
+		}
+	}
+	// Verify that the file has opened successfully.
+	else
+	{
+		cout << "The file has failed to open. Data may be corrupt! Please verify filename and location." << endl;
+	}
+}
+
+// -------------------------------
+//         Stats Menu code
+// -------------------------------
+void Stats()
+{
+	char choice;
+
+	cout << "\n\n\n\n\n\n\n\n\n\n\n";
+	cout << "\t\t\t**************************************" << endl;
+	cout << "\t\t\t    Welcome to the Statistics Page" << endl;
+	cout << "\t\t\t**************************************" << endl << endl << endl;
+
+	Stats_Menu();
+
+	do
+	{
+		cout << "Please select an option: ";
+		cin >> choice;
+
+		if (isalpha(choice))
+		{
+			choice = toupper(choice);
+
+			if (choice != 'A' && choice != 'B' && choice != 'C' && choice != 'D')
+			{
+				cout << "You entered an incorrect option, please try again." << endl;
+			}
+		}
+		else
+		{
+			cout << "You have entered an incorrect value, please try again." << endl;
+		}
+	} while (choice != 'A' && choice != 'B' && choice != 'C' && choice != 'D');
+
+	switch (choice)
+	{
+		case 'A':
+		{
+			stats_birthdays();
+			break;
+		}
+		case 'B':
+		{
+			stats_attendance_records();
+			break;
+		}
+		case 'C':
+		{
+			stats_majors();
+			break;
+		}
+		case 'D':
+		{
+			stats_sign_ins();
+			break;
+		}
+		default:
+		{
+			cout << "An critical error has occurred. Please check for data loss!" << endl << endl;
+			break;
+		}
+	}
+}
+
+// -------------------------------
+//        Stats Menu Display
+// -------------------------------
+void Stats_Menu()
+{
+	cout << "\t\t\tA) Birthday Months" << endl;	// Break up into months
+	cout << "\t\t\tB) Member's Attendance records" << endl;	// Break up into current members vs. non-current members
+	cout << "\t\t\tC) Majors" << endl;	// Break up into BCOE majors (individually) and other majors (collectively)
+	cout << "\t\t\tD) GM Sign-Ins" << endl << endl << endl;	// Break up into every GM and weigh total members vs. signed in (display current info on each)
+											// Give Menu for breakdown by major, breakdown by birth month and breakdown by male and female
+}
+
+// -------------------------------
+//         Gender Selection
+// -------------------------------
+string get_Gender()
+{
+	string gender;
+	char option;
+
+	cout << endl << endl << endl;
+	cout << "\t\t\tA) Male" << endl;
+	cout << "\t\t\tB) Female" << endl;
+	cout << endl << endl << endl;
+
+	cout << "Please select your gender: ";
+	cin >> option;
+
+	if (isalpha(option))
+	{
+		option = toupper(option);
+
+		if (option != 'A' && option != 'B')
+		{
+			cout << "Invalid choice. Please, try again." << endl << endl;
+			gender = get_Gender();
+		}
+	}
+	else
+	{
+		cout << "You entered an invalid entry. Please, try again." << endl << endl;
+		gender = get_Gender();
+	}
+
+	switch (option)
+	{
+		case 'A':
+		{
+			gender = "Male";
+			return gender;		// Ignores other errors prior
+			break;
+		}
+		case 'B':
+		{
+			gender = "Female";
+			return gender;		// Ignores other errors prior
+			break;
+		}
+		default:
+		{
+			cout << "An error has occurred! Check for data loss immediately." << endl;
+			break;
+		}
+	}
+}
+
+// -------------------------------
+//         Birthday Stats
+// -------------------------------
+void stats_birthdays()
+{
+	string search_ID, search_ID1, search_ID2, search_ID3, search_ID4, end_tag;
+	string get_ID1, get_ID2, get_ID3, get_ID4, get_first_name, get_last_name, get_netID, get_birth_month, get_major, get_gender, get_email;
+	string get_F1, get_F2, get_F3, get_F4, get_F5, get_W1, get_W2, get_W3, get_W4, get_W5, get_S1, get_S2, get_S3, get_S4, get_S5;
+	int get_SID, get_birth_day, get_birth_year, count = 0, pass = 0;
+	string month, send_month;
+
+	cout << "\n\n\\n\n\n\n\n\n\n";
+	cout << "\t\t\t*************************************************" << endl;
+	cout << "\t\t\t   Welcome to the Birthdays Statistitics page" << endl;
+	cout << "\t\t\t*************************************************" << endl << endl << endl;
+
+	month = stats_pick_month();
+	cout << endl << endl;
+
+	// Open database
+	ifstream database;
+	database.open("records.txt");
+
+	// Test to see if file has opened
+	if (database.is_open())
+	{
+		cout << "File has successfully been opened!" << endl << endl;	// Verification that file has been opened succesfully
+		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAll the members who have birthdays in the month of " << month << " are as follows: " << endl << endl;
+		// Data retrieval from database to display for user.
+			while (database >> get_ID1 >> get_ID2 >> get_ID3 >> get_ID4 >> get_last_name >> get_first_name >> get_SID >> get_netID >> get_email >> get_birth_day >> get_birth_month >> get_birth_year >> get_major >> get_gender >>
+				get_F1 >> get_F2 >> get_F3 >> get_F4 >> get_F5 >> get_W1 >> get_W2 >> get_W3 >> get_W4 >> get_W5 >> get_S1 >> get_S2 >> get_S3 >>
+				get_S4 >> get_S5 >> end_tag)
+			{
+				if (get_birth_month == month)
+				{
+					cout << (count + 1) << ") " << get_first_name << " " << get_last_name << " was born on day: " << get_birth_day << " in " << get_birth_year << "." << endl;
+					count++;
+				}
+
+				if (month == "All")
+				{
+					break;
+				}
+			}
+
+			if (month == "All")
+			{
+				// January
+				cout << "-------------" << endl;
+				cout << "   January" << endl;
+				cout << "-------------" << endl;
+				cout << endl << endl;
+				send_month = "January";
+				get_all_months(send_month);
+				pass += 1;
+				// February
+				cout << endl << endl << endl;
+				cout << "-------------" << endl;
+				cout << "  February" << endl;
+				cout << "-------------" << endl;
+				cout << endl << endl;
+				send_month = "February";
+				get_all_months(send_month);
+				pass += 1;
+				// March
+				cout << endl << endl << endl;
+				cout << "-------------" << endl;
+				cout << "    March" << endl;
+				cout << "-------------" << endl;
+				cout << endl << endl;
+				send_month = "March";
+				get_all_months(send_month);
+				pass += 1;
+				// April
+				cout << endl << endl << endl;
+				cout << "-------------" << endl;
+				cout << "    April" << endl;
+				cout << "-------------" << endl;
+				cout << endl << endl;
+				send_month = "April";
+				get_all_months(send_month);
+				pass += 1;
+				// May
+				cout << endl << endl << endl;
+				cout << "-------------" << endl;
+				cout << "     May" << endl;
+				cout << "-------------" << endl;
+				cout << endl << endl;
+				send_month = "May";
+				get_all_months(send_month);
+				pass += 1;
+				// June
+				cout << endl << endl << endl;
+				cout << "-------------" << endl;
+				cout << "    June" << endl;
+				cout << "-------------" << endl;
+				cout << endl << endl;
+				send_month = "June";
+				get_all_months(send_month);
+				pass += 1;
+				// July
+				cout << endl << endl << endl;
+				cout << "-------------" << endl;
+				cout << "    July" << endl;
+				cout << "-------------" << endl;
+				cout << endl << endl;
+				send_month = "July";
+				get_all_months(send_month);
+				pass += 1;
+				// August
+				cout << endl << endl << endl;
+				cout << "-------------" << endl;
+				cout << "    August" << endl;
+				cout << "-------------" << endl;
+				cout << endl << endl;
+				send_month = "August";
+				get_all_months(send_month);
+				pass += 1;
+				// September
+				cout << endl << endl << endl;
+				cout << "-------------" << endl;
+				cout << "  September" << endl;
+				cout << "-------------" << endl;
+				cout << endl << endl;
+				send_month = "September";
+				get_all_months(send_month);
+				pass += 1;
+				// October
+				cout << endl << endl << endl;
+				cout << "-------------" << endl;
+				cout << "   October" << endl;
+				cout << "-------------" << endl;
+				cout << endl << endl;
+				send_month = "October";
+				get_all_months(send_month);
+				pass += 1;
+				// November
+				cout << endl << endl << endl;
+				cout << "-------------" << endl;
+				cout << "   November" << endl;
+				cout << "-------------" << endl;
+				cout << endl << endl;
+				send_month = "November";
+				get_all_months(send_month);
+				pass += 1;
+				// December
+				cout << endl << endl << endl;
+				cout << "-------------" << endl;
+				cout << "   December" << endl;
+				cout << "-------------" << endl;
+				cout << endl << endl;
+				send_month = "December";
+				get_all_months(send_month);
+				pass += 1;
+			}
+
+		// Close file and verify
+		database.close();
+		if (!database.is_open())
+		{
+			cout << "\n\nThe file has successfully closed!" << endl << endl << endl;
+		}
+	}
+	// Verify that the file has opened successfully.
+	else
+	{
+		cout << "The file has failed to open. Data may be corrupt! Please verify filename and location." << endl;
+	}
+}
+
+// -------------------------------
+//     Attendance Record Stats
+// -------------------------------
+void stats_attendance_records()
+{
+	string search_ID, search_ID1, search_ID2, search_ID3, search_ID4, end_tag;
+	string get_ID1, get_ID2, get_ID3, get_ID4, get_first_name, get_last_name, get_netID, get_birth_month, get_major, get_gender, get_email;
+	string get_F1, get_F2, get_F3, get_F4, get_F5, get_W1, get_W2, get_W3, get_W4, get_W5, get_S1, get_S2, get_S3, get_S4, get_S5;
+	int get_SID, get_birth_day, get_birth_year, count = 0, token = 0, count2 = 0, people = 0;
+	string month;
+	double percent, current_members = 0.0, non_current_members = 0.0, total = 0.0;
+
+	// Open database
+	ifstream database;
+	database.open("records.txt");
+
+	// Test to see if file has opened
+	if (database.is_open())
+	{
+		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+		cout << "__________________________" << endl << endl;
+		cout << "      Current Members" << endl;
+		cout << "__________________________" << endl << endl;
+		// Current Members
+		while (database >> get_ID1 >> get_ID2 >> get_ID3 >> get_ID4 >> get_last_name >> get_first_name >> get_SID >> get_netID >> get_email >> get_birth_day >> get_birth_month >> get_birth_year >> get_major >> get_gender >>
+			get_F1 >> get_F2 >> get_F3 >> get_F4 >> get_F5 >> get_W1 >> get_W2 >> get_W3 >> get_W4 >> get_W5 >> get_S1 >> get_S2 >> get_S3 >>
+			get_S4 >> get_S5 >> end_tag)
+		{
+			token = 0;	// Reset the count for next lookup
+
+			if (get_F1 == "Yes")
+			{
+				token++;
+			}
+			if (get_F2 == "Yes")
+			{
+				token++;
+			}
+			if (get_F3 == "Yes")
+			{
+				token++;
+			}
+			if (get_F4 == "Yes")
+			{
+				token++;
+			}
+			if (get_F5 == "Yes")
+			{
+				token++;
+			}
+			if (get_W1 == "Yes")
+			{
+				token++;
+			}
+			if (get_W2 == "Yes")
+			{
+				token++;
+			}
+			if (get_W3 == "Yes")
+			{
+				token++;
+			}
+			if (get_W4 == "Yes")
+			{
+				token++;
+			}
+			if (get_W5 == "Yes")
+			{
+				token++;
+			}
+			if (get_S1 == "Yes")
+			{
+				token++;
+			}
+			if (get_S2 == "Yes")
+			{
+				token++;
+			}
+			if (get_S3 == "Yes")
+			{
+				token++;
+			}
+			if (get_S4 == "Yes")
+			{
+				token++;
+			}
+			if (get_S5 == "Yes")
+			{
+				token++;
+			}
+
+			if (token >= 10)
+			{
+				cout << (count + 1) << ") " << get_first_name << " " << get_last_name << " has attended " << token << " General Meetings." << endl;
+				count++;
+				people = 1;
+				current_members += 1;
+			}
+
+		}
+
+		if (people == 0)
+		{
+			cout << "**********************" << endl;
+			cout << "*   No data found!   *" << endl;
+			cout << "**********************" << endl << endl << endl;
+		}
+
+		database.close();
+	}
+
+	ifstream database2;
+	database2.open("records.txt");
+
+	if(database2.is_open())
+	{
+		people = 0;	// Reset flag for non-members
+		cout << "\n\n\n__________________________" << endl << endl;
+		cout << "   Non-Current Members" << endl;
+		cout << "__________________________" << endl << endl;		// Non-current members
+		while (database2 >> get_ID1 >> get_ID2 >> get_ID3 >> get_ID4 >> get_last_name >> get_first_name >> get_SID >> get_netID >> get_email >> get_birth_day >> get_birth_month >> get_birth_year >> get_major >> get_gender >>
+			get_F1 >> get_F2 >> get_F3 >> get_F4 >> get_F5 >> get_W1 >> get_W2 >> get_W3 >> get_W4 >> get_W5 >> get_S1 >> get_S2 >> get_S3 >>
+			get_S4 >> get_S5 >> end_tag)
+		{
+			token = 0;	// Reset the count for next lookup
+
+			if (get_F1 == "Yes")
+			{
+				token++;
+			}
+			if (get_F2 == "Yes")
+			{
+				token++;
+			}
+			if (get_F3 == "Yes")
+			{
+				token++;
+			}
+			if (get_F4 == "Yes")
+			{
+				token++;
+			}
+			if (get_F5 == "Yes")
+			{
+				token++;
+			}
+			if (get_W1 == "Yes")
+			{
+				token++;
+			}
+			if (get_W2 == "Yes")
+			{
+				token++;
+			}
+			if (get_W3 == "Yes")
+			{
+				token++;
+			}
+			if (get_W4 == "Yes")
+			{
+				token++;
+			}
+			if (get_W5 == "Yes")
+			{
+				token++;
+			}
+			if (get_S1 == "Yes")
+			{
+				token++;
+			}
+			if (get_S2 == "Yes")
+			{
+				token++;
+			}
+			if (get_S3 == "Yes")
+			{
+				token++;
+			}
+			if (get_S4 == "Yes")
+			{
+				token++;
+			}
+			if (get_S5 == "Yes")
+			{
+				token++;
+			}
+
+			if (token < 10)
+			{
+				cout << (count2 + 1) << ") " << get_first_name << " " << get_last_name << " has attended " << token << " General Meeting(s)." << endl;
+				count2++;
+				people = 1;
+				non_current_members += 1;
+			}
+		}
+
+		if (people == 0)
+		{
+			cout << "**********************" << endl;
+			cout << "*   No data found!   *" << endl;
+			cout << "**********************" << endl << endl << endl;
+		}
+
+		database2.close();
+
+		// Calculations based on received data above
+		total = (current_members + non_current_members);
+		percent = ((current_members / total) * 100);
+		cout << endl << endl << endl << "Our calculations show from our data that, out of the " << total << " data values we have, " << percent << "% are current members in SHPE @ UCR, based off only General Meeting, current member requirements." << endl << endl;
+	}
+	// Verify that the file has opened successfully.
+	else
+	{
+		cout << "The file has failed to open. Data may be corrupt! Please verify filename and location." << endl;
+	}
+
+	cout << endl << endl << endl << endl << endl << endl;
+}
+
+void stats_majors()
+{
+
+}
+
+void stats_sign_ins()
+{
+
+}
+
+// -------------------------------
+//      Month Stats Selection
+// -------------------------------
+string stats_pick_month()
+{
+	string month;
+	bool numFail;
+	int choice;
+
+	// Loop to have user select from options of months and to rerun if choice is invalid.
+	do
+	{
+		Months();
+		cout << "Please select the month in which you wish to view (Type '13' if you want view the entire year): ";
+		cin >> choice;
+
+		numFail = cin.fail();
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+		if (numFail == true)
+		{
+			cout << "You entered an invalid option, please enter a valid number!" << endl;
+		}
+	} while ((numFail == true) || (choice < 1) || (choice > 13));
+
+	// Switch statement to run through if user choices are all valid and also returns selections in a struct to be processed.
+	switch (choice)
+	{
+		case 1:
+		{
+			cout << "\n\nChoice accepted. You picked January." << endl;
+			month = "January";
+			return month;
+			break;
+		}
+		case 2:
+		{
+			cout << "\n\nChoice accepted. You picked February." << endl;
+			month = "February";
+			return month;
+			break;
+		}
+		case 3:
+		{
+			cout << "\n\nChoice accepted. You picked March." << endl;
+			month = "March";
+			return month;
+			break;
+		}
+		case 4:
+		{
+			cout << "\n\nChoice accepted. You picked April." << endl;
+			month = "April";
+			return month;
+			break;
+		}
+		case 5:
+		{
+			cout << "\n\nChoice accepted. You picked May." << endl;
+			month = "May";
+			return month;
+			break;
+		}
+		case 6:
+		{
+			cout << "\n\nChoice accepted. You picked June." << endl;
+			month = "June";
+			return month;
+			break;
+		}
+		case 7:
+		{
+			cout << "\n\nChoice accepted. You picked July." << endl;
+			month = "July";
+			return month;
+			break;
+		}
+		case 8:
+		{
+			cout << "\n\nChoice accepted. You picked August." << endl;
+			month = "August";
+			return month;
+			break;
+		}
+		case 9:
+		{
+			cout << "\n\nChoice accepted. You picked Septmeber." << endl;
+			month = "September";
+			return month;
+			break;
+		}
+		case 10:
+		{
+			cout << "\n\nChoice accepted. You picked October." << endl;
+			month = "October";
+			return month;
+			break;
+		}
+		case 11:
+		{
+			cout << "\n\nChoice accepted. You picked November." << endl;
+			month = "November";
+			return month;
+			break;
+		}
+		case 12:
+		{
+			cout << "\n\nChoice accepted. You picked December." << endl;
+			month = "December";
+			return month;
+			break;
+		}
+		case 13:
+		{
+			cout << "\n\nChoice accepted. You picked to view the year." << endl;
+			month = "All";
+			return month;
+			break;
+		}
+		default:
+		{
+			cout << "An error has occured. Try again.";
+			break;
+		}
+	}
+}
+
+// -------------------------------
+//        All Month Display
+// -------------------------------
+void get_all_months(string send_month)
+{
+	string search_ID, search_ID1, search_ID2, search_ID3, search_ID4, end_tag;
+	string get_ID1, get_ID2, get_ID3, get_ID4, get_first_name, get_last_name, get_netID, get_birth_month, get_major, get_gender, get_email;
+	string get_F1, get_F2, get_F3, get_F4, get_F5, get_W1, get_W2, get_W3, get_W4, get_W5, get_S1, get_S2, get_S3, get_S4, get_S5;
+	int get_SID, get_birth_day, get_birth_year, count = 0, token = 0;
+	string month;
+
+	// Open database
+	ifstream database;
+	database.open("records.txt");
+
+	// Test to see if file has opened
+	if (database.is_open())
+	{
+		//cout << "File has successfully been opened!" << endl << endl;	// Verification that file has been opened succesfully
+		//cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAll the members who have birthdays in the month of " << month << " are as follows: " << endl << endl;
+		// Data retrieval from database to display for user.
+		while (database >> get_ID1 >> get_ID2 >> get_ID3 >> get_ID4 >> get_last_name >> get_first_name >> get_SID >> get_netID >> get_email >> get_birth_day >> get_birth_month >> get_birth_year >> get_major >> get_gender >>
+			get_F1 >> get_F2 >> get_F3 >> get_F4 >> get_F5 >> get_W1 >> get_W2 >> get_W3 >> get_W4 >> get_W5 >> get_S1 >> get_S2 >> get_S3 >>
+			get_S4 >> get_S5 >> end_tag)
+		{
+			if (get_birth_month == send_month)
+			{
+				cout << (count + 1) << ") " << get_first_name << " " << get_last_name << " was born on day: " << get_birth_day << " in " << get_birth_year << "." << endl;
+				count++;
+				token = 1;
+			}
+		}
+
+		if (token != 1)
+		{
+			cout << "\t******************" << endl;
+			cout << "\t*  No birthdays  *" << endl;
+			cout << "\t******************" << endl;
+		}
+
+		database.close();
+	}
+	// Verify that the file has opened successfully.
+	else
+	{
+		cout << "The file has failed to open. Data may be corrupt! Please verify filename and location." << endl;
+	}
 }
