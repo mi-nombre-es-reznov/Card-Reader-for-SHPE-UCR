@@ -76,6 +76,7 @@ void stats_majors();
 void stats_sign_ins();
 string stats_pick_month();
 void get_all_months(string);
+int Password();
 
 // -------------------------------
 //              Main
@@ -83,14 +84,16 @@ void get_all_months(string);
 int main()
 {
 	char retry;
+	int key;
+
+	do
+	{
+		key = Password();	// Added for extra security
+	} while (key != 1);
 
 	/* ------------------------------------------
 		 	 SHPE Menu Internal File Intro
 	   ------------------------------------------ */
-	cout << "\t\t\t-------------------------------------------------------------------------------" << endl;
-	cout << "\t\t\t              Welcome to the SHPE @ UCR card reader database                   " << endl;
-	cout << "\t\t\t-------------------------------------------------------------------------------" << endl;
-
 	do
 	{
 		option_selection();		// Main Menu operations following input to main display
@@ -104,6 +107,8 @@ int main()
 	} while(retry == 'y');
 
 	// Closing message at the very end of the program
+
+	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThank you for using NCompEng technologies. We appreciate that you have chosen our product for your database needs.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 	system("pause");	// Pause program for viewing
 	return 0;			// Null return. End of program.
@@ -121,6 +126,7 @@ void new_user()
 	data.open("records.txt", ios::app);
 	if (data.is_open())
 	{
+		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 		cout << "File has opened successfully!" << endl << endl << endl << endl << endl;
 		/* ------------------------------------------
 				SHPE Menu Internal File Intro
@@ -263,8 +269,11 @@ void menu_choices()
 // -------------------------------
 void option_selection()
 {
+	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+	cout << "\t\t\t-------------------------------------------------------------------------------" << endl;
+	cout << "\t\t\t              Welcome to the SHPE @ UCR card reader database                   " << endl;
+	cout << "\t\t\t-------------------------------------------------------------------------------" << endl;
 	char option;
-
 	menu_choices();
 
 	/* -----------------------------------------------------
@@ -333,6 +342,7 @@ void option_selection()
 		}
 		case 'H':
 		{
+			cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 			cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThank you for using NCompEng technologies. We appreciate that you have chosen our product for your database needs.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 			system("pause");
 			exit(0);
@@ -387,6 +397,7 @@ void member_search()
 	string get_F1, get_F2, get_F3, get_F4, get_F5, get_W1, get_W2, get_W3, get_W4, get_W5, get_S1, get_S2, get_S3, get_S4, get_S5;
 	int get_SID, get_birth_day, get_birth_year, count = 0;
 
+	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 	// Open database
 	ifstream database;
 	database.open("records.txt");
@@ -560,6 +571,7 @@ void update_member_info()
 	ifstream database;
 	database.open("records.txt");
 
+	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 	// Test if database is open
 	if (database.is_open())
 	{
@@ -1158,6 +1170,7 @@ replacements replace_choice(string num1, string num2, string num3, string num4, 
 	int replacement_SID;
 	bool numFail;
 
+	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 	Replace_Menu();	// Update Menu options
 
 	// Allow user to input choice from menu in which they want to update in database
@@ -1540,6 +1553,7 @@ Bday get_Birthday()
 	bool numFail;
 	int choice;
 
+	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 	// Loop to rerun through if user gives invalid choice for year born in.
 	do
 	{
@@ -1719,6 +1733,7 @@ string get_Major()
 	string major;
 	char choice;
 
+	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 	Major_Choice();	// Major choice Menu
 	
 	// Allows for user to select choice from major choice menu
@@ -1828,7 +1843,7 @@ void Major_Choice()
 string Insert_Major() 
 {
 	string major;
-	
+	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 	cin.ignore();	// Ignore previous input
 
 	// Message to demonstrate how to insert major and to accept input.
@@ -1857,6 +1872,7 @@ void all_member_data()
 	string get_F1, get_F2, get_F3, get_F4, get_F5, get_W1, get_W2, get_W3, get_W4, get_W5, get_S1, get_S2, get_S3, get_S4, get_S5;
 	int get_SID, get_birth_day, get_birth_year;
 
+	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 	ifstream retrieve;
 	retrieve.open("records.txt");
 
@@ -1988,7 +2004,7 @@ void search_other()
 	bool numFail;
 	string get_F1, get_F2, get_F3, get_F4, get_F5, get_W1, get_W2, get_W3, get_W4, get_W5, get_S1, get_S2, get_S3, get_S4, get_S5;
 
-
+	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 	ifstream database;
 	database.open("records.txt");
 	// Test if database is open
@@ -2189,6 +2205,7 @@ void GM_Update()
 	int get_SID, get_birth_day, get_birth_year, token = 0;
 	get_GM GM;
 
+	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 	// Open database
 	ifstream database;
 	database.open("records.txt");
@@ -2394,6 +2411,7 @@ void GM_Update()
 						count++;
 					}
 
+					cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 					if (count == 10)
 					{
 						cout << endl << endl;
@@ -2468,6 +2486,7 @@ get_GM get_GM_info()
 	int number_choice;
 	bool numFail;
 	
+	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 	cout << "\n\n\nWelcome to the GM selection menu.";
 
 	do
@@ -2614,6 +2633,7 @@ void Individual_GM_data()
 	string get_F1, get_F2, get_F3, get_F4, get_F5, get_W1, get_W2, get_W3, get_W4, get_W5, get_S1, get_S2, get_S3, get_S4, get_S5;
 	int get_SID, get_birth_day, get_birth_year, count = 0, token = 0;;
 
+	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 	// Open database
 	ifstream database;
 	database.open("records.txt");
@@ -2728,6 +2748,7 @@ void Individual_GM_data()
 
 				get_last_name.erase(remove(get_last_name.begin(), get_last_name.end(), ','), get_last_name.end());
 				// Setup database retrieval for user to easily read.
+				cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 				cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 				cout << "************************" << endl;
 				cout << "     Member GM Data" << endl;
@@ -2786,7 +2807,7 @@ void Individual_GM_data()
 void Stats()
 {
 	char choice;
-
+	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 	cout << "\n\n\n\n\n\n\n\n\n\n\n";
 	cout << "\t\t\t**************************************" << endl;
 	cout << "\t\t\t    Welcome to the Statistics Page" << endl;
@@ -2921,6 +2942,7 @@ void stats_birthdays()
 	int get_SID, get_birth_day, get_birth_year, count = 0, pass = 0;
 	string month, send_month;
 
+	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 	cout << "\n\n\\n\n\n\n\n\n\n";
 	cout << "\t\t\t*************************************************" << endl;
 	cout << "\t\t\t   Welcome to the Birthdays Statistitics page" << endl;
@@ -3092,6 +3114,7 @@ void stats_attendance_records()
 	string month;
 	double percent, current_members = 0.0, non_current_members = 0.0, total = 0.0;
 
+	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 	// Open database
 	ifstream database;
 	database.open("records.txt");
@@ -3306,6 +3329,7 @@ void stats_majors()
 {
 	double Bio = 0.0, ChE = 0.0, CEN = 0.0, CS = 0.0, CSwB = 0.0, EE = 0.0, EnvE = 0.0, MSE = 0.0, MechE = 0.0, others = 0.0;
 
+	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 	cout << "\t\t\t\t\t-----------------------------------" << endl;
 	cout << "\t\t\t\t\t    Statistical Data by Majors" << endl;
@@ -3431,17 +3455,21 @@ void stats_majors()
 		cout << "_______________________________" << endl << endl;
 		cout << "          Other Majors" << endl;
 		cout << "_______________________________" << endl;
-		cout << "Our records show that " << others << " students are in other majors outside of BCOE. This is a total of " << ((others / total) * 100) << "% of all students on file." << endl << endl;
+		cout << "Our records show that " << others << " students are in other majors outside of BCOE. This is a total of " << ((others / total) * 100) << "% of all students on file." << endl;
 
 		// Close file
 		data.close();
 	}
 }
 
+// -------------------------------
+//      Diverse Breadown Stats
+// -------------------------------
 void stats_sign_ins()
 {
 	double Bio = 0.0, ChE = 0.0, CEN = 0.0, CS = 0.0, CSwB = 0.0, EE = 0.0, EnvE = 0.0, MSE = 0.0, MechE = 0.0, others = 0.0;
 
+	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 	cout << "\t\t\t\t\t------------------------------------------" << endl;
 	cout << "\t\t\t\t\t  Statistical Data from General Meetings" << endl;
@@ -5145,7 +5173,7 @@ void stats_sign_ins()
 		double total_birthdays = (Jan + Feb + Mar + Apr + May + Jun + Jul + Aug + Sep + Oct + Nov + Dec);
 
 		// Display all data
-		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 		cout << "Data for General Meeting " << GM.number << " in the " << quarter << " quarter." << endl << endl << endl << endl;
 		cout << "_______________________" << endl << endl;
 		cout << "     Gender Stats" << endl;
@@ -5182,7 +5210,7 @@ void stats_sign_ins()
 		cout << "Enviornmental Engineering: " << EnvE << "\t\t\t\t" << ((EnvE / total_majors) * 100) << "%" << endl;
 		cout << "Materials Science and Engineering: " << MSE << "\t\t\t" << ((MSE / total_majors) * 100) << "%" << endl;
 		cout << "Mechanical Engineering: " << MechE << "\t\t\t\t" << ((MechE / total_majors) * 100) << "%" << endl;
-		cout << "Other Majors outside of BCOE: " << others << "\t\t\t\t" << ((others / total_majors) * 100) << "%" << endl << endl << endl;
+		cout << "Other Majors outside of BCOE: " << others << "\t\t\t\t" << ((others / total_majors) * 100) << "%" << endl << endl;
 		// Close file
 		data.close();
 		cout << endl << endl << endl << endl;
@@ -5328,6 +5356,7 @@ void get_all_months(string send_month)
 	int get_SID, get_birth_day, get_birth_year, count = 0, token = 0;
 	string month;
 
+	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 	// Open database
 	ifstream database;
 	database.open("records.txt");
@@ -5364,4 +5393,51 @@ void get_all_months(string send_month)
 	{
 		cout << "The file has failed to open. Data may be corrupt! Please verify filename and location." << endl;
 	}
+}
+
+// -------------------------------
+//       Password Protection
+// -------------------------------
+int Password()
+{
+	int authorized = 0;
+	string password;
+
+	/*
+	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+	cout << "\t\t\t\t*************************************************************************************************************************************" << endl;
+	cout << "\t\t\t\t*************************************************************************************************************************************" << endl;
+	cout << "\t\t\t\t****---------***-*******-***---------***---------******----------------*********-***********-***-------------***------------*********" << endl;
+	cout << "\t\t\t\t****-***********-*******-***-*******-***-**************-**************-*********-***********-***-***************-**********-*********" << endl;
+	cout << "\t\t\t\t****-***********-*******-***-*******-***-**************-***-------****-*********-***********-***-***************-**********-*********" << endl;
+	cout << "\t\t\t\t****---------***---------***---------***------*********-***-*****-****-*********-***********-***-***************----------***********" << endl;
+	cout << "\t\t\t\t************-***-*******-***-***********-**************-***-******-***-*********-***********-***-***************---******************" << endl;
+	cout << "\t\t\t\t************-***-*******-***-***********-**************-***------------*********-***********-***-***************-****-***************" << endl;
+	cout << "\t\t\t\t************-***-*******-***-***********-**************-************************-***********-***-***************-*******-************" << endl;
+	cout << "\t\t\t\t****---------***-*******-***-***********---------******----------------------***-------------***-------------***-**********-*********" << endl;
+	cout << "\t\t\t\t*************************************************************************************************************************************" << endl;
+	cout << "\t\t\t\t*************************************************************************************************************************************" << endl;
+	*/
+	
+	cout << endl << endl;
+	cout << "\t\t\t\t\t\t    *********   *       *   *********   *********      ****************         *           *   *************   ************         " << endl;
+	cout << "\t\t\t\t\t\t    *           *       *   *       *   *              *              *         *           *   *               *          *         " << endl;
+	cout << "\t\t\t\t\t\t    *           *       *   *       *   *              *   *******    *         *           *   *               *          *         " << endl;
+	cout << "\t\t\t\t\t\t    *********   *       *   *********   ******         *   *     *    *         *           *   *               **********           " << endl;
+	cout << "\t\t\t\t\t\t            *   *********   *           *              *   *      *   *         *           *   *               ***                  " << endl;
+	cout << "\t\t\t\t\t\t            *   *       *   *           *              *   ************         *           *   *               *    *               " << endl;
+	cout << "\t\t\t\t\t\t            *   *       *   *           *              *                        *           *   *               *       *            " << endl;
+	cout << "\t\t\t\t\t\t    *********   *       *   *           *********      **********************   *************   *************   *          *         " << endl << endl << endl;
+	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+
+	cout << "You are entering a program that contains sensitive data that shall not be manipulated by non-authorized users." << endl << endl;
+	cout << "Please enter the password to continue: ";
+	getline(cin, password);
+
+	if (password == "sHP3 @ UCR")
+	{
+		authorized = 1;
+	}
+
+	return authorized;
 }
