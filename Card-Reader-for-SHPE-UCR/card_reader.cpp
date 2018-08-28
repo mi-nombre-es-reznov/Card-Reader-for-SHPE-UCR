@@ -3,13 +3,15 @@
 // Card reader test for SHPE @ UCR
 //
 //
-// Last Modified: 22 Aug 18
+// Last Modified: 27 Aug 18
 //
 // This program will allow for the user to pick between the options of adding a new member, looking up a member, or even updating
 // a members data. It has bound checks almost everywhere and cannot easily be broken, from observations thus far. User data will be
 // displayed on the screen for the user to see but also is constantly opening and closing files to write and save data, this is also
 // a security measure employed to, hopefully, protect the external data as much as possible. The data consists of card number (SID card
-// UCR specific), first and last name, Student ID number, netID, email, birthday, and even member's major.
+// UCR specific), first and last name, Student ID number, netID, email, birthday, and even member's major. It now has a password protective cover layer
+// to weed out unauthorized users. It has several data paths to obtain statistics. Everything is now interlinked with eachother and it is a complete
+// program. It is also setup to run with best visual aesthetics with full screen command prompt.
 
 #include <iostream>		// For input/output
 #include <cstring>		// In order to use the substring function
