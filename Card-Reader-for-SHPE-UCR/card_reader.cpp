@@ -3299,14 +3299,1894 @@ void stats_attendance_records()
 	cout << endl << endl << endl << endl << endl << endl;
 }
 
+// -------------------------------
+//       Major Breadown Stats
+// -------------------------------
 void stats_majors()
 {
+	double Bio = 0.0, ChE = 0.0, CEN = 0.0, CS = 0.0, CSwB = 0.0, EE = 0.0, EnvE = 0.0, MSE = 0.0, MechE = 0.0, others = 0.0;
 
+	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+	cout << "\t\t\t\t\t-----------------------------------" << endl;
+	cout << "\t\t\t\t\t    Statistical Data by Majors" << endl;
+	cout << "\t\t\t\t\t-----------------------------------" << endl << endl;
+
+	// Get data all in variables by major, calculations after
+	ifstream data;
+	data.open("records.txt");
+
+	if (data.is_open())
+	{
+		string search_ID, search_ID1, search_ID2, search_ID3, search_ID4, end_tag;
+		string get_ID1, get_ID2, get_ID3, get_ID4, get_first_name, get_last_name, get_netID, get_birth_month, get_major, get_gender, get_email;
+		string get_F1, get_F2, get_F3, get_F4, get_F5, get_W1, get_W2, get_W3, get_W4, get_W5, get_S1, get_S2, get_S3, get_S4, get_S5;
+		int get_SID, get_birth_day, get_birth_year, count = 0;
+
+		// Data retrieveal from database to display for user.
+		while (data >> get_ID1 >> get_ID2 >> get_ID3 >> get_ID4 >> get_last_name >> get_first_name >> get_SID >> get_netID >> get_email >> get_birth_day >> get_birth_month >> get_birth_year >> get_major >> get_gender >>
+			get_F1 >> get_F2 >> get_F3 >> get_F4 >> get_F5 >> get_W1 >> get_W2 >> get_W3 >> get_W4 >> get_W5 >> get_S1 >> get_S2 >> get_S3 >>
+			get_S4 >> get_S5 >> end_tag)
+		{
+			if (get_major == "Bioengineering")
+			{
+				Bio += 1;
+			}
+			else if (get_major == "Chemical_Engineering")
+			{
+				ChE += 1;
+			}
+			else if (get_major == "Computer_Engineering")
+			{
+				CEN += 1;
+			}
+			else if (get_major == "Computer_Science")
+			{
+				CS += 1;
+			}
+			else if (get_major == "Computer_Science_with_Business_Applications")
+			{
+				CSwB += 1;
+			}
+			else if (get_major == "Electrical_Engineering")
+			{
+				EE += 1;
+			}
+			else if (get_major == "Enviornmental_Engineering")
+			{
+				EnvE += 1;
+			}
+			else if (get_major == "Materials_Science_and_Engineering")
+			{
+				MSE += 1;
+			}
+			else if (get_major == "Mechanical_Engineering")
+			{
+				MechE += 1;
+			}
+			else
+			{
+				others += 1;
+			}
+		}
+
+		// Perform Calculations and display info
+		double total = (Bio + ChE + CEN + CS + CSwB + EE + EnvE + MSE + MechE + others);
+		cout << "Data was calculated using the " << total << " data values we have." << endl;
+
+		// Bioengineering
+		cout << "_______________________________" << endl << endl;
+		cout << "         Bioengineering" << endl;
+		cout << "_______________________________" << endl;
+		cout << "Our records show that " << Bio << " students are in this major. This is a total of " << ((Bio / total) * 100) << "% of all students on file." << endl << endl;
+
+		// Chemical Engineering
+		cout << "_______________________________" << endl << endl;
+		cout << "     Chemical Engineering" << endl;
+		cout << "_______________________________" << endl;
+		cout << "Our records show that " << ChE << " students are in this major. This is a total of " << ((ChE / total) * 100) << "% of all students on file." << endl << endl;
+
+		// Computer Engineering
+		cout << "_______________________________" << endl << endl;
+		cout << "     Computer Engineering" << endl;
+		cout << "_______________________________" << endl;
+		cout << "Our records show that " << CEN << " students are in this major. This is a total of " << ((CEN / total) * 100) << "% of all students on file." << endl << endl;
+
+		// Computer Science
+		cout << "_______________________________" << endl << endl;
+		cout << "        Computer Science" << endl;
+		cout << "_______________________________" << endl;
+		cout << "Our records show that " << CS << " students are in this major. This is a total of " << ((CS / total) * 100) << "% of all students on file." << endl << endl;
+
+		// Computer Science with Business Applications
+		cout << "_______________________________" << endl << endl;
+		cout << "    Computer Science w/ BA" << endl;
+		cout << "_______________________________" << endl;
+		cout << "Our records show that " << CSwB << " students are in this major. This is a total of " << ((CSwB / total) * 100) << "% of all students on file." << endl << endl;
+
+		// Electrical Engineering
+		cout << "_______________________________" << endl << endl;
+		cout << "     Electrical Engineering" << endl;
+		cout << "_______________________________" << endl;
+		cout << "Our records show that " << EE << " students are in this major. This is a total of " << ((EE / total) * 100) << "% of all students on file." << endl << endl;
+
+		// Enviornmental Engineering
+		cout << "_______________________________" << endl << endl;
+		cout << "   Enviornmental Engineering" << endl;
+		cout << "_______________________________" << endl;
+		cout << "Our records show that " << EnvE << " students are in this major. This is a total of " << ((EnvE / total) * 100) << "% of all students on file." << endl << endl;
+
+		// Material Science and Engineering
+		cout << "_______________________________" << endl << endl;
+		cout << "   Materials Science and Eng." << endl;
+		cout << "_______________________________" << endl;
+		cout << "Our records show that " << MSE << " students are in this major. This is a total of " << ((MSE / total) * 100) << "% of all students on file." << endl << endl;
+
+		// Mechanical Engineering
+		cout << "_______________________________" << endl << endl;
+		cout << "     Mechanical Engineering" << endl;
+		cout << "_______________________________" << endl;
+		cout << "Our records show that " << MechE << " students are in this major. This is a total of " << ((MechE / total) * 100) << "% of all students on file." << endl << endl;
+
+		// Other majors
+		cout << "_______________________________" << endl << endl;
+		cout << "          Other Majors" << endl;
+		cout << "_______________________________" << endl;
+		cout << "Our records show that " << others << " students are in other majors outside of BCOE. This is a total of " << ((others / total) * 100) << "% of all students on file." << endl << endl;
+
+		// Close file
+		data.close();
+	}
 }
 
 void stats_sign_ins()
 {
+	double Bio = 0.0, ChE = 0.0, CEN = 0.0, CS = 0.0, CSwB = 0.0, EE = 0.0, EnvE = 0.0, MSE = 0.0, MechE = 0.0, others = 0.0;
 
+	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+	cout << "\t\t\t\t\t------------------------------------------" << endl;
+	cout << "\t\t\t\t\t  Statistical Data from General Meetings" << endl;
+	cout << "\t\t\t\t\t------------------------------------------" << endl << endl;
+
+	// Get data all in variables by major, calculations after
+	ifstream data;
+	data.open("records.txt");
+
+	if (data.is_open())
+	{
+		string search_ID, search_ID1, search_ID2, search_ID3, search_ID4, end_tag;
+		string get_ID1, get_ID2, get_ID3, get_ID4, get_first_name, get_last_name, get_netID, get_birth_month, get_major, get_gender, get_email;
+		string rep_F1, rep_F2, rep_F3, rep_F4, rep_F5, rep_W1, rep_W2, rep_W3, rep_W4, rep_W5, rep_S1, rep_S2, rep_S3, rep_S4, rep_S5;
+		int get_SID, get_birth_day, get_birth_year, count = 0;
+		get_GM GM;
+		double total_data = 0.0, attended = 0.0, Male = 0, Female = 0, Jan = 0.0, Feb = 0.0, Mar = 0.0, Apr = 0.0, May = 0.0, Jun = 0.0, Jul = 0.0, Aug = 0.0, Sep = 0.0, Oct = 0.0, Nov = 0.0, Dec = 0.0;
+
+		// Get which GM to lookup
+		GM = get_GM_info();
+
+		// Data retrieval from database to display for user.
+		while (data >> get_ID1 >> get_ID2 >> get_ID3 >> get_ID4 >> get_last_name >> get_first_name >> get_SID >> get_netID >> get_email >> get_birth_day >> get_birth_month >> get_birth_year >> get_major >> get_gender >>
+			rep_F1 >> rep_F2 >> rep_F3 >> rep_F4 >> rep_F5 >> rep_W1 >> rep_W2 >> rep_W3 >> rep_W4 >> rep_W5 >> rep_S1 >> rep_S2 >> rep_S3 >>
+			rep_S4 >> rep_S5 >> end_tag)
+		{
+			if (GM.together == "rep_F1")
+			{
+				if (rep_F1 == "Yes")
+				{
+					// Get Major Data
+					if (get_major == "Bioengineering")
+					{
+						Bio += 1;
+					}
+					else if (get_major == "Chemical_Engineering")
+					{
+						ChE += 1;
+					}
+					else if (get_major == "Computer_Engineering")
+					{
+						CEN += 1;
+					}
+					else if (get_major == "Computer_Science")
+					{
+						CS += 1;
+					}
+					else if (get_major == "Computer_Science_with_Business_Applications")
+					{
+						CSwB += 1;
+					}
+					else if (get_major == "Electrical_Engineering")
+					{
+						EE += 1;
+					}
+					else if (get_major == "Enviornmental_Engineering")
+					{
+						EnvE += 1;
+					}
+					else if (get_major == "Materials_Science_and_Engineering")
+					{
+						MSE += 1;
+					}
+					else if (get_major == "Mechanical_Engineering")
+					{
+						MechE += 1;
+					}
+					else
+					{
+						others += 1;
+					}
+
+					// Get Gender Data
+					if (get_gender == "Male")
+					{
+						Male += 1;
+					}
+					else
+					{
+						Female += 1;
+					}
+
+					// Get Month Data
+					if (get_birth_month == "January")
+					{
+						Jan += 1;
+					}
+					else if (get_birth_month == "February")
+					{
+						Feb += 1;
+					}
+					else if (get_birth_month == "March")
+					{
+						Mar += 1;
+					}
+					else if (get_birth_month == "April")
+					{
+						Apr += 1;
+					}
+					else if (get_birth_month == "May")
+					{
+						May += 1;
+					}
+					else if (get_birth_month == "June")
+					{
+						Jun += 1;
+					}
+					else if (get_birth_month == "July")
+					{
+						Jul += 1;
+					}
+					else if (get_birth_month == "August")
+					{
+						Aug += 1;
+					}
+					else if (get_birth_month == "September")
+					{
+						Sep += 1;
+					}
+					else if (get_birth_month == "October")
+					{
+						Oct += 1;
+					}
+					else if (get_birth_month == "November")
+					{
+						Nov += 1;
+					}
+					else if (get_birth_month == "December")
+					{
+						Dec += 1;
+					}
+					// Add one if member was there
+					attended += 1;
+				}
+				total_data += 1;	// Add to total count of all data
+			}
+			else if (GM.together == "rep_F2")
+			{
+				if (rep_F2 == "Yes")
+				{
+					// Get Major Data
+					if (get_major == "Bioengineering")
+					{
+						Bio += 1;
+					}
+					else if (get_major == "Chemical_Engineering")
+					{
+						ChE += 1;
+					}
+					else if (get_major == "Computer_Engineering")
+					{
+						CEN += 1;
+					}
+					else if (get_major == "Computer_Science")
+					{
+						CS += 1;
+					}
+					else if (get_major == "Computer_Science_with_Business_Applications")
+					{
+						CSwB += 1;
+					}
+					else if (get_major == "Electrical_Engineering")
+					{
+						EE += 1;
+					}
+					else if (get_major == "Enviornmental_Engineering")
+					{
+						EnvE += 1;
+					}
+					else if (get_major == "Materials_Science_and_Engineering")
+					{
+						MSE += 1;
+					}
+					else if (get_major == "Mechanical_Engineering")
+					{
+						MechE += 1;
+					}
+					else
+					{
+						others += 1;
+					}
+
+					// Get Gender Data
+					if (get_gender == "Male")
+					{
+						Male += 1;
+					}
+					else
+					{
+						Female += 1;
+					}
+
+					// Get Month Data
+					if (get_birth_month == "January")
+					{
+						Jan += 1;
+					}
+					else if (get_birth_month == "February")
+					{
+						Feb += 1;
+					}
+					else if (get_birth_month == "March")
+					{
+						Mar += 1;
+					}
+					else if (get_birth_month == "April")
+					{
+						Apr += 1;
+					}
+					else if (get_birth_month == "May")
+					{
+						May += 1;
+					}
+					else if (get_birth_month == "June")
+					{
+						Jun += 1;
+					}
+					else if (get_birth_month == "July")
+					{
+						Jul += 1;
+					}
+					else if (get_birth_month == "August")
+					{
+						Aug += 1;
+					}
+					else if (get_birth_month == "September")
+					{
+						Sep += 1;
+					}
+					else if (get_birth_month == "October")
+					{
+						Oct += 1;
+					}
+					else if (get_birth_month == "November")
+					{
+						Nov += 1;
+					}
+					else if (get_birth_month == "December")
+					{
+						Dec += 1;
+					}
+					// Add one if member was there
+					attended += 1;
+				}
+				total_data += 1;	// Add to total count of all data
+			}
+			else if (GM.together == "rep_F3")
+			{
+				if (rep_F3 == "Yes")
+				{
+					// Get Major Data
+					if (get_major == "Bioengineering")
+					{
+						Bio += 1;
+					}
+					else if (get_major == "Chemical_Engineering")
+					{
+						ChE += 1;
+					}
+					else if (get_major == "Computer_Engineering")
+					{
+						CEN += 1;
+					}
+					else if (get_major == "Computer_Science")
+					{
+						CS += 1;
+					}
+					else if (get_major == "Computer_Science_with_Business_Applications")
+					{
+						CSwB += 1;
+					}
+					else if (get_major == "Electrical_Engineering")
+					{
+						EE += 1;
+					}
+					else if (get_major == "Enviornmental_Engineering")
+					{
+						EnvE += 1;
+					}
+					else if (get_major == "Materials_Science_and_Engineering")
+					{
+						MSE += 1;
+					}
+					else if (get_major == "Mechanical_Engineering")
+					{
+						MechE += 1;
+					}
+					else
+					{
+						others += 1;
+					}
+
+					// Get Gender Data
+					if (get_gender == "Male")
+					{
+						Male += 1;
+					}
+					else
+					{
+						Female += 1;
+					}
+
+					// Get Month Data
+					if (get_birth_month == "January")
+					{
+						Jan += 1;
+					}
+					else if (get_birth_month == "February")
+					{
+						Feb += 1;
+					}
+					else if (get_birth_month == "March")
+					{
+						Mar += 1;
+					}
+					else if (get_birth_month == "April")
+					{
+						Apr += 1;
+					}
+					else if (get_birth_month == "May")
+					{
+						May += 1;
+					}
+					else if (get_birth_month == "June")
+					{
+						Jun += 1;
+					}
+					else if (get_birth_month == "July")
+					{
+						Jul += 1;
+					}
+					else if (get_birth_month == "August")
+					{
+						Aug += 1;
+					}
+					else if (get_birth_month == "September")
+					{
+						Sep += 1;
+					}
+					else if (get_birth_month == "October")
+					{
+						Oct += 1;
+					}
+					else if (get_birth_month == "November")
+					{
+						Nov += 1;
+					}
+					else if (get_birth_month == "December")
+					{
+						Dec += 1;
+					}
+					// Add one if member was there
+					attended += 1;
+				}
+				total_data += 1;	// Add to total count of all data
+			}
+			else if (GM.together == "rep_F4")
+			{
+				if (rep_F4 == "Yes")
+				{
+					// Get Major Data
+					if (get_major == "Bioengineering")
+					{
+						Bio += 1;
+					}
+					else if (get_major == "Chemical_Engineering")
+					{
+						ChE += 1;
+					}
+					else if (get_major == "Computer_Engineering")
+					{
+						CEN += 1;
+					}
+					else if (get_major == "Computer_Science")
+					{
+						CS += 1;
+					}
+					else if (get_major == "Computer_Science_with_Business_Applications")
+					{
+						CSwB += 1;
+					}
+					else if (get_major == "Electrical_Engineering")
+					{
+						EE += 1;
+					}
+					else if (get_major == "Enviornmental_Engineering")
+					{
+						EnvE += 1;
+					}
+					else if (get_major == "Materials_Science_and_Engineering")
+					{
+						MSE += 1;
+					}
+					else if (get_major == "Mechanical_Engineering")
+					{
+						MechE += 1;
+					}
+					else
+					{
+						others += 1;
+					}
+
+					// Get Gender Data
+					if (get_gender == "Male")
+					{
+						Male += 1;
+					}
+					else
+					{
+						Female += 1;
+					}
+
+					// Get Month Data
+					if (get_birth_month == "January")
+					{
+						Jan += 1;
+					}
+					else if (get_birth_month == "February")
+					{
+						Feb += 1;
+					}
+					else if (get_birth_month == "March")
+					{
+						Mar += 1;
+					}
+					else if (get_birth_month == "April")
+					{
+						Apr += 1;
+					}
+					else if (get_birth_month == "May")
+					{
+						May += 1;
+					}
+					else if (get_birth_month == "June")
+					{
+						Jun += 1;
+					}
+					else if (get_birth_month == "July")
+					{
+						Jul += 1;
+					}
+					else if (get_birth_month == "August")
+					{
+						Aug += 1;
+					}
+					else if (get_birth_month == "September")
+					{
+						Sep += 1;
+					}
+					else if (get_birth_month == "October")
+					{
+						Oct += 1;
+					}
+					else if (get_birth_month == "November")
+					{
+						Nov += 1;
+					}
+					else if (get_birth_month == "December")
+					{
+						Dec += 1;
+					}
+					// Add one if member was there
+					attended += 1;
+				}
+				total_data += 1;	// Add to total count of all data
+			}
+			else if (GM.together == "rep_F5")
+			{
+				if (rep_F5 == "Yes")
+				{
+					// Get Major Data
+					if (get_major == "Bioengineering")
+					{
+						Bio += 1;
+					}
+					else if (get_major == "Chemical_Engineering")
+					{
+						ChE += 1;
+					}
+					else if (get_major == "Computer_Engineering")
+					{
+						CEN += 1;
+					}
+					else if (get_major == "Computer_Science")
+					{
+						CS += 1;
+					}
+					else if (get_major == "Computer_Science_with_Business_Applications")
+					{
+						CSwB += 1;
+					}
+					else if (get_major == "Electrical_Engineering")
+					{
+						EE += 1;
+					}
+					else if (get_major == "Enviornmental_Engineering")
+					{
+						EnvE += 1;
+					}
+					else if (get_major == "Materials_Science_and_Engineering")
+					{
+						MSE += 1;
+					}
+					else if (get_major == "Mechanical_Engineering")
+					{
+						MechE += 1;
+					}
+					else
+					{
+						others += 1;
+					}
+
+					// Get Gender Data
+					if (get_gender == "Male")
+					{
+						Male += 1;
+					}
+					else
+					{
+						Female += 1;
+					}
+
+					// Get Month Data
+					if (get_birth_month == "January")
+					{
+						Jan += 1;
+					}
+					else if (get_birth_month == "February")
+					{
+						Feb += 1;
+					}
+					else if (get_birth_month == "March")
+					{
+						Mar += 1;
+					}
+					else if (get_birth_month == "April")
+					{
+						Apr += 1;
+					}
+					else if (get_birth_month == "May")
+					{
+						May += 1;
+					}
+					else if (get_birth_month == "June")
+					{
+						Jun += 1;
+					}
+					else if (get_birth_month == "July")
+					{
+						Jul += 1;
+					}
+					else if (get_birth_month == "August")
+					{
+						Aug += 1;
+					}
+					else if (get_birth_month == "September")
+					{
+						Sep += 1;
+					}
+					else if (get_birth_month == "October")
+					{
+						Oct += 1;
+					}
+					else if (get_birth_month == "November")
+					{
+						Nov += 1;
+					}
+					else if (get_birth_month == "December")
+					{
+						Dec += 1;
+					}
+					// Add one if member was there
+					attended += 1;
+				}
+				total_data += 1;	// Add to total count of all data
+			}
+			else if (GM.together == "rep_W1")
+			{
+				if (rep_W1 == "Yes")
+				{
+					// Get Major Data
+					if (get_major == "Bioengineering")
+					{
+						Bio += 1;
+					}
+					else if (get_major == "Chemical_Engineering")
+					{
+						ChE += 1;
+					}
+					else if (get_major == "Computer_Engineering")
+					{
+						CEN += 1;
+					}
+					else if (get_major == "Computer_Science")
+					{
+						CS += 1;
+					}
+					else if (get_major == "Computer_Science_with_Business_Applications")
+					{
+						CSwB += 1;
+					}
+					else if (get_major == "Electrical_Engineering")
+					{
+						EE += 1;
+					}
+					else if (get_major == "Enviornmental_Engineering")
+					{
+						EnvE += 1;
+					}
+					else if (get_major == "Materials_Science_and_Engineering")
+					{
+						MSE += 1;
+					}
+					else if (get_major == "Mechanical_Engineering")
+					{
+						MechE += 1;
+					}
+					else
+					{
+						others += 1;
+					}
+
+					// Get Gender Data
+					if (get_gender == "Male")
+					{
+						Male += 1;
+					}
+					else
+					{
+						Female += 1;
+					}
+
+					// Get Month Data
+					if (get_birth_month == "January")
+					{
+						Jan += 1;
+					}
+					else if (get_birth_month == "February")
+					{
+						Feb += 1;
+					}
+					else if (get_birth_month == "March")
+					{
+						Mar += 1;
+					}
+					else if (get_birth_month == "April")
+					{
+						Apr += 1;
+					}
+					else if (get_birth_month == "May")
+					{
+						May += 1;
+					}
+					else if (get_birth_month == "June")
+					{
+						Jun += 1;
+					}
+					else if (get_birth_month == "July")
+					{
+						Jul += 1;
+					}
+					else if (get_birth_month == "August")
+					{
+						Aug += 1;
+					}
+					else if (get_birth_month == "September")
+					{
+						Sep += 1;
+					}
+					else if (get_birth_month == "October")
+					{
+						Oct += 1;
+					}
+					else if (get_birth_month == "November")
+					{
+						Nov += 1;
+					}
+					else if (get_birth_month == "December")
+					{
+						Dec += 1;
+					}
+					// Add one if member was there
+					attended += 1;
+				}
+				total_data += 1;	// Add to total count of all data
+			}
+			else if (GM.together == "rep_W2")
+			{
+				if (rep_W2 == "Yes")
+				{
+					// Get Major Data
+					if (get_major == "Bioengineering")
+					{
+						Bio += 1;
+					}
+					else if (get_major == "Chemical_Engineering")
+					{
+						ChE += 1;
+					}
+					else if (get_major == "Computer_Engineering")
+					{
+						CEN += 1;
+					}
+					else if (get_major == "Computer_Science")
+					{
+						CS += 1;
+					}
+					else if (get_major == "Computer_Science_with_Business_Applications")
+					{
+						CSwB += 1;
+					}
+					else if (get_major == "Electrical_Engineering")
+					{
+						EE += 1;
+					}
+					else if (get_major == "Enviornmental_Engineering")
+					{
+						EnvE += 1;
+					}
+					else if (get_major == "Materials_Science_and_Engineering")
+					{
+						MSE += 1;
+					}
+					else if (get_major == "Mechanical_Engineering")
+					{
+						MechE += 1;
+					}
+					else
+					{
+						others += 1;
+					}
+
+					// Get Gender Data
+					if (get_gender == "Male")
+					{
+						Male += 1;
+					}
+					else
+					{
+						Female += 1;
+					}
+
+					// Get Month Data
+					if (get_birth_month == "January")
+					{
+						Jan += 1;
+					}
+					else if (get_birth_month == "February")
+					{
+						Feb += 1;
+					}
+					else if (get_birth_month == "March")
+					{
+						Mar += 1;
+					}
+					else if (get_birth_month == "April")
+					{
+						Apr += 1;
+					}
+					else if (get_birth_month == "May")
+					{
+						May += 1;
+					}
+					else if (get_birth_month == "June")
+					{
+						Jun += 1;
+					}
+					else if (get_birth_month == "July")
+					{
+						Jul += 1;
+					}
+					else if (get_birth_month == "August")
+					{
+						Aug += 1;
+					}
+					else if (get_birth_month == "September")
+					{
+						Sep += 1;
+					}
+					else if (get_birth_month == "October")
+					{
+						Oct += 1;
+					}
+					else if (get_birth_month == "November")
+					{
+						Nov += 1;
+					}
+					else if (get_birth_month == "December")
+					{
+						Dec += 1;
+					}
+					// Add one if member was there
+					attended += 1;
+				}
+				total_data += 1;	// Add to total count of all data
+			}
+			else if (GM.together == "rep_W3")
+			{
+				if (rep_W3 == "Yes")
+				{
+					// Get Major Data
+					if (get_major == "Bioengineering")
+					{
+						Bio += 1;
+					}
+					else if (get_major == "Chemical_Engineering")
+					{
+						ChE += 1;
+					}
+					else if (get_major == "Computer_Engineering")
+					{
+						CEN += 1;
+					}
+					else if (get_major == "Computer_Science")
+					{
+						CS += 1;
+					}
+					else if (get_major == "Computer_Science_with_Business_Applications")
+					{
+						CSwB += 1;
+					}
+					else if (get_major == "Electrical_Engineering")
+					{
+						EE += 1;
+					}
+					else if (get_major == "Enviornmental_Engineering")
+					{
+						EnvE += 1;
+					}
+					else if (get_major == "Materials_Science_and_Engineering")
+					{
+						MSE += 1;
+					}
+					else if (get_major == "Mechanical_Engineering")
+					{
+						MechE += 1;
+					}
+					else
+					{
+						others += 1;
+					}
+
+					// Get Gender Data
+					if (get_gender == "Male")
+					{
+						Male += 1;
+					}
+					else
+					{
+						Female += 1;
+					}
+
+					// Get Month Data
+					if (get_birth_month == "January")
+					{
+						Jan += 1;
+					}
+					else if (get_birth_month == "February")
+					{
+						Feb += 1;
+					}
+					else if (get_birth_month == "March")
+					{
+						Mar += 1;
+					}
+					else if (get_birth_month == "April")
+					{
+						Apr += 1;
+					}
+					else if (get_birth_month == "May")
+					{
+						May += 1;
+					}
+					else if (get_birth_month == "June")
+					{
+						Jun += 1;
+					}
+					else if (get_birth_month == "July")
+					{
+						Jul += 1;
+					}
+					else if (get_birth_month == "August")
+					{
+						Aug += 1;
+					}
+					else if (get_birth_month == "September")
+					{
+						Sep += 1;
+					}
+					else if (get_birth_month == "October")
+					{
+						Oct += 1;
+					}
+					else if (get_birth_month == "November")
+					{
+						Nov += 1;
+					}
+					else if (get_birth_month == "December")
+					{
+						Dec += 1;
+					}
+					// Add one if member was there
+					attended += 1;
+				}
+				total_data += 1;	// Add to total count of all data
+			}
+			else if (GM.together == "rep_W4")
+			{
+				if (rep_W4 == "Yes")
+				{
+					// Get Major Data
+					if (get_major == "Bioengineering")
+					{
+						Bio += 1;
+					}
+					else if (get_major == "Chemical_Engineering")
+					{
+						ChE += 1;
+					}
+					else if (get_major == "Computer_Engineering")
+					{
+						CEN += 1;
+					}
+					else if (get_major == "Computer_Science")
+					{
+						CS += 1;
+					}
+					else if (get_major == "Computer_Science_with_Business_Applications")
+					{
+						CSwB += 1;
+					}
+					else if (get_major == "Electrical_Engineering")
+					{
+						EE += 1;
+					}
+					else if (get_major == "Enviornmental_Engineering")
+					{
+						EnvE += 1;
+					}
+					else if (get_major == "Materials_Science_and_Engineering")
+					{
+						MSE += 1;
+					}
+					else if (get_major == "Mechanical_Engineering")
+					{
+						MechE += 1;
+					}
+					else
+					{
+						others += 1;
+					}
+
+					// Get Gender Data
+					if (get_gender == "Male")
+					{
+						Male += 1;
+					}
+					else
+					{
+						Female += 1;
+					}
+
+					// Get Month Data
+					if (get_birth_month == "January")
+					{
+						Jan += 1;
+					}
+					else if (get_birth_month == "February")
+					{
+						Feb += 1;
+					}
+					else if (get_birth_month == "March")
+					{
+						Mar += 1;
+					}
+					else if (get_birth_month == "April")
+					{
+						Apr += 1;
+					}
+					else if (get_birth_month == "May")
+					{
+						May += 1;
+					}
+					else if (get_birth_month == "June")
+					{
+						Jun += 1;
+					}
+					else if (get_birth_month == "July")
+					{
+						Jul += 1;
+					}
+					else if (get_birth_month == "August")
+					{
+						Aug += 1;
+					}
+					else if (get_birth_month == "September")
+					{
+						Sep += 1;
+					}
+					else if (get_birth_month == "October")
+					{
+						Oct += 1;
+					}
+					else if (get_birth_month == "November")
+					{
+						Nov += 1;
+					}
+					else if (get_birth_month == "December")
+					{
+						Dec += 1;
+					}
+					// Add one if member was there
+					attended += 1;
+				}
+				total_data += 1;	// Add to total count of all data
+			}
+			else if (GM.together == "rep_W5")
+			{
+				if (rep_W5 == "Yes")
+				{
+					// Get Major Data
+					if (get_major == "Bioengineering")
+					{
+						Bio += 1;
+					}
+					else if (get_major == "Chemical_Engineering")
+					{
+						ChE += 1;
+					}
+					else if (get_major == "Computer_Engineering")
+					{
+						CEN += 1;
+					}
+					else if (get_major == "Computer_Science")
+					{
+						CS += 1;
+					}
+					else if (get_major == "Computer_Science_with_Business_Applications")
+					{
+						CSwB += 1;
+					}
+					else if (get_major == "Electrical_Engineering")
+					{
+						EE += 1;
+					}
+					else if (get_major == "Enviornmental_Engineering")
+					{
+						EnvE += 1;
+					}
+					else if (get_major == "Materials_Science_and_Engineering")
+					{
+						MSE += 1;
+					}
+					else if (get_major == "Mechanical_Engineering")
+					{
+						MechE += 1;
+					}
+					else
+					{
+						others += 1;
+					}
+
+					// Get Gender Data
+					if (get_gender == "Male")
+					{
+						Male += 1;
+					}
+					else
+					{
+						Female += 1;
+					}
+
+					// Get Month Data
+					if (get_birth_month == "January")
+					{
+						Jan += 1;
+					}
+					else if (get_birth_month == "February")
+					{
+						Feb += 1;
+					}
+					else if (get_birth_month == "March")
+					{
+						Mar += 1;
+					}
+					else if (get_birth_month == "April")
+					{
+						Apr += 1;
+					}
+					else if (get_birth_month == "May")
+					{
+						May += 1;
+					}
+					else if (get_birth_month == "June")
+					{
+						Jun += 1;
+					}
+					else if (get_birth_month == "July")
+					{
+						Jul += 1;
+					}
+					else if (get_birth_month == "August")
+					{
+						Aug += 1;
+					}
+					else if (get_birth_month == "September")
+					{
+						Sep += 1;
+					}
+					else if (get_birth_month == "October")
+					{
+						Oct += 1;
+					}
+					else if (get_birth_month == "November")
+					{
+						Nov += 1;
+					}
+					else if (get_birth_month == "December")
+					{
+						Dec += 1;
+					}
+					// Add one if member was there
+					attended += 1;
+				}
+				total_data += 1;	// Add to total count of all data
+			}
+			else if (GM.together == "rep_S1")
+			{
+				if (rep_S1 == "Yes")
+				{
+					// Get Major Data
+					if (get_major == "Bioengineering")
+					{
+						Bio += 1;
+					}
+					else if (get_major == "Chemical_Engineering")
+					{
+						ChE += 1;
+					}
+					else if (get_major == "Computer_Engineering")
+					{
+						CEN += 1;
+					}
+					else if (get_major == "Computer_Science")
+					{
+						CS += 1;
+					}
+					else if (get_major == "Computer_Science_with_Business_Applications")
+					{
+						CSwB += 1;
+					}
+					else if (get_major == "Electrical_Engineering")
+					{
+						EE += 1;
+					}
+					else if (get_major == "Enviornmental_Engineering")
+					{
+						EnvE += 1;
+					}
+					else if (get_major == "Materials_Science_and_Engineering")
+					{
+						MSE += 1;
+					}
+					else if (get_major == "Mechanical_Engineering")
+					{
+						MechE += 1;
+					}
+					else
+					{
+						others += 1;
+					}
+
+					// Get Gender Data
+					if (get_gender == "Male")
+					{
+						Male += 1;
+					}
+					else
+					{
+						Female += 1;
+					}
+
+					// Get Month Data
+					if (get_birth_month == "January")
+					{
+						Jan += 1;
+					}
+					else if (get_birth_month == "February")
+					{
+						Feb += 1;
+					}
+					else if (get_birth_month == "March")
+					{
+						Mar += 1;
+					}
+					else if (get_birth_month == "April")
+					{
+						Apr += 1;
+					}
+					else if (get_birth_month == "May")
+					{
+						May += 1;
+					}
+					else if (get_birth_month == "June")
+					{
+						Jun += 1;
+					}
+					else if (get_birth_month == "July")
+					{
+						Jul += 1;
+					}
+					else if (get_birth_month == "August")
+					{
+						Aug += 1;
+					}
+					else if (get_birth_month == "September")
+					{
+						Sep += 1;
+					}
+					else if (get_birth_month == "October")
+					{
+						Oct += 1;
+					}
+					else if (get_birth_month == "November")
+					{
+						Nov += 1;
+					}
+					else if (get_birth_month == "December")
+					{
+						Dec += 1;
+					}
+					// Add one if member was there
+					attended += 1;
+				}
+				total_data += 1;	// Add to total count of all data
+			}
+			else if (GM.together == "rep_S2")
+			{
+				if (rep_S2 == "Yes")
+				{
+					// Get Major Data
+					if (get_major == "Bioengineering")
+					{
+						Bio += 1;
+					}
+					else if (get_major == "Chemical_Engineering")
+					{
+						ChE += 1;
+					}
+					else if (get_major == "Computer_Engineering")
+					{
+						CEN += 1;
+					}
+					else if (get_major == "Computer_Science")
+					{
+						CS += 1;
+					}
+					else if (get_major == "Computer_Science_with_Business_Applications")
+					{
+						CSwB += 1;
+					}
+					else if (get_major == "Electrical_Engineering")
+					{
+						EE += 1;
+					}
+					else if (get_major == "Enviornmental_Engineering")
+					{
+						EnvE += 1;
+					}
+					else if (get_major == "Materials_Science_and_Engineering")
+					{
+						MSE += 1;
+					}
+					else if (get_major == "Mechanical_Engineering")
+					{
+						MechE += 1;
+					}
+					else
+					{
+						others += 1;
+					}
+
+					// Get Gender Data
+					if (get_gender == "Male")
+					{
+						Male += 1;
+					}
+					else
+					{
+						Female += 1;
+					}
+
+					// Get Month Data
+					if (get_birth_month == "January")
+					{
+						Jan += 1;
+					}
+					else if (get_birth_month == "February")
+					{
+						Feb += 1;
+					}
+					else if (get_birth_month == "March")
+					{
+						Mar += 1;
+					}
+					else if (get_birth_month == "April")
+					{
+						Apr += 1;
+					}
+					else if (get_birth_month == "May")
+					{
+						May += 1;
+					}
+					else if (get_birth_month == "June")
+					{
+						Jun += 1;
+					}
+					else if (get_birth_month == "July")
+					{
+						Jul += 1;
+					}
+					else if (get_birth_month == "August")
+					{
+						Aug += 1;
+					}
+					else if (get_birth_month == "September")
+					{
+						Sep += 1;
+					}
+					else if (get_birth_month == "October")
+					{
+						Oct += 1;
+					}
+					else if (get_birth_month == "November")
+					{
+						Nov += 1;
+					}
+					else if (get_birth_month == "December")
+					{
+						Dec += 1;
+					}
+					// Add one if member was there
+					attended += 1;
+				}
+				total_data += 1;	// Add to total count of all data
+			}
+			else if (GM.together == "rep_S3")
+			{
+				if (rep_S3 == "Yes")
+				{
+					// Get Major Data
+					if (get_major == "Bioengineering")
+					{
+						Bio += 1;
+					}
+					else if (get_major == "Chemical_Engineering")
+					{
+						ChE += 1;
+					}
+					else if (get_major == "Computer_Engineering")
+					{
+						CEN += 1;
+					}
+					else if (get_major == "Computer_Science")
+					{
+						CS += 1;
+					}
+					else if (get_major == "Computer_Science_with_Business_Applications")
+					{
+						CSwB += 1;
+					}
+					else if (get_major == "Electrical_Engineering")
+					{
+						EE += 1;
+					}
+					else if (get_major == "Enviornmental_Engineering")
+					{
+						EnvE += 1;
+					}
+					else if (get_major == "Materials_Science_and_Engineering")
+					{
+						MSE += 1;
+					}
+					else if (get_major == "Mechanical_Engineering")
+					{
+						MechE += 1;
+					}
+					else
+					{
+						others += 1;
+					}
+
+					// Get Gender Data
+					if (get_gender == "Male")
+					{
+						Male += 1;
+					}
+					else
+					{
+						Female += 1;
+					}
+
+					// Get Month Data
+					if (get_birth_month == "January")
+					{
+						Jan += 1;
+					}
+					else if (get_birth_month == "February")
+					{
+						Feb += 1;
+					}
+					else if (get_birth_month == "March")
+					{
+						Mar += 1;
+					}
+					else if (get_birth_month == "April")
+					{
+						Apr += 1;
+					}
+					else if (get_birth_month == "May")
+					{
+						May += 1;
+					}
+					else if (get_birth_month == "June")
+					{
+						Jun += 1;
+					}
+					else if (get_birth_month == "July")
+					{
+						Jul += 1;
+					}
+					else if (get_birth_month == "August")
+					{
+						Aug += 1;
+					}
+					else if (get_birth_month == "September")
+					{
+						Sep += 1;
+					}
+					else if (get_birth_month == "October")
+					{
+						Oct += 1;
+					}
+					else if (get_birth_month == "November")
+					{
+						Nov += 1;
+					}
+					else if (get_birth_month == "December")
+					{
+						Dec += 1;
+					}
+					// Add one if member was there
+					attended += 1;
+				}
+				total_data += 1;	// Add to total count of all data
+			}
+			else if (GM.together == "rep_S4")
+			{
+				if (rep_S4 == "Yes")
+				{
+					// Get Major Data
+					if (get_major == "Bioengineering")
+					{
+						Bio += 1;
+					}
+					else if (get_major == "Chemical_Engineering")
+					{
+						ChE += 1;
+					}
+					else if (get_major == "Computer_Engineering")
+					{
+						CEN += 1;
+					}
+					else if (get_major == "Computer_Science")
+					{
+						CS += 1;
+					}
+					else if (get_major == "Computer_Science_with_Business_Applications")
+					{
+						CSwB += 1;
+					}
+					else if (get_major == "Electrical_Engineering")
+					{
+						EE += 1;
+					}
+					else if (get_major == "Enviornmental_Engineering")
+					{
+						EnvE += 1;
+					}
+					else if (get_major == "Materials_Science_and_Engineering")
+					{
+						MSE += 1;
+					}
+					else if (get_major == "Mechanical_Engineering")
+					{
+						MechE += 1;
+					}
+					else
+					{
+						others += 1;
+					}
+
+					// Get Gender Data
+					if (get_gender == "Male")
+					{
+						Male += 1;
+					}
+					else
+					{
+						Female += 1;
+					}
+
+					// Get Month Data
+					if (get_birth_month == "January")
+					{
+						Jan += 1;
+					}
+					else if (get_birth_month == "February")
+					{
+						Feb += 1;
+					}
+					else if (get_birth_month == "March")
+					{
+						Mar += 1;
+					}
+					else if (get_birth_month == "April")
+					{
+						Apr += 1;
+					}
+					else if (get_birth_month == "May")
+					{
+						May += 1;
+					}
+					else if (get_birth_month == "June")
+					{
+						Jun += 1;
+					}
+					else if (get_birth_month == "July")
+					{
+						Jul += 1;
+					}
+					else if (get_birth_month == "August")
+					{
+						Aug += 1;
+					}
+					else if (get_birth_month == "September")
+					{
+						Sep += 1;
+					}
+					else if (get_birth_month == "October")
+					{
+						Oct += 1;
+					}
+					else if (get_birth_month == "November")
+					{
+						Nov += 1;
+					}
+					else if (get_birth_month == "December")
+					{
+						Dec += 1;
+					}
+					// Add one if member was there
+					attended += 1;
+				}
+				total_data += 1;	// Add to total count of all data
+			}
+			else if (GM.together == "rep_S5")
+			{
+				if (rep_S5 == "Yes")
+				{
+					// Get Major Data
+					if (get_major == "Bioengineering")
+					{
+						Bio += 1;
+					}
+					else if (get_major == "Chemical_Engineering")
+					{
+						ChE += 1;
+					}
+					else if (get_major == "Computer_Engineering")
+					{
+						CEN += 1;
+					}
+					else if (get_major == "Computer_Science")
+					{
+						CS += 1;
+					}
+					else if (get_major == "Computer_Science_with_Business_Applications")
+					{
+						CSwB += 1;
+					}
+					else if (get_major == "Electrical_Engineering")
+					{
+						EE += 1;
+					}
+					else if (get_major == "Enviornmental_Engineering")
+					{
+						EnvE += 1;
+					}
+					else if (get_major == "Materials_Science_and_Engineering")
+					{
+						MSE += 1;
+					}
+					else if (get_major == "Mechanical_Engineering")
+					{
+						MechE += 1;
+					}
+					else
+					{
+						others += 1;
+					}
+
+					// Get Gender Data
+					if (get_gender == "Male")
+					{
+						Male += 1;
+					}
+					else
+					{
+						Female += 1;
+					}
+
+					// Get Month Data
+					if (get_birth_month == "January")
+					{
+						Jan += 1;
+					}
+					else if (get_birth_month == "February")
+					{
+						Feb += 1;
+					}
+					else if (get_birth_month == "March")
+					{
+						Mar += 1;
+					}
+					else if (get_birth_month == "April")
+					{
+						Apr += 1;
+					}
+					else if (get_birth_month == "May")
+					{
+						May += 1;
+					}
+					else if (get_birth_month == "June")
+					{
+						Jun += 1;
+					}
+					else if (get_birth_month == "July")
+					{
+						Jul += 1;
+					}
+					else if (get_birth_month == "August")
+					{
+						Aug += 1;
+					}
+					else if (get_birth_month == "September")
+					{
+						Sep += 1;
+					}
+					else if (get_birth_month == "October")
+					{
+						Oct += 1;
+					}
+					else if (get_birth_month == "November")
+					{
+						Nov += 1;
+					}
+					else if (get_birth_month == "December")
+					{
+						Dec += 1;
+					}
+					// Add one if member was there
+					attended += 1;
+				}
+				total_data += 1;	// Add to total count of all data
+			}
+			else
+			{
+				cout << "An error has occurred! Please seek data loss immediately!!" << endl << endl;
+			}
+		}
+
+		// Convert to quarter name
+		string quarter;
+		if (GM.quarter == "rep_F")
+		{
+			quarter = "Fall";
+		}
+		else if (GM.quarter == "rep_W")
+		{
+			quarter = "Winter";
+		}
+		else if (GM.quarter == "rep_S")
+		{
+			quarter = "Spring";
+		}
+
+		// Perform Calculations and display info
+		double total_majors = (Bio + ChE + CEN + CS + CSwB + EE + EnvE + MSE + MechE + others);
+		double total_genders = (Male + Female);
+		double total_birthdays = (Jan + Feb + Mar + Apr + May + Jun + Jul + Aug + Sep + Oct + Nov + Dec);
+
+		// Display all data
+		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+		cout << "Data for General Meeting " << GM.number << " in the " << quarter << " quarter." << endl << endl << endl << endl;
+		cout << "_______________________" << endl << endl;
+		cout << "     Gender Stats" << endl;
+		cout << "_______________________" << endl << endl << endl;
+		cout << "Females in attendance: " << Female << "\t" << ((Female/total_genders) * 100) << "%" << endl;
+		cout << "Males in attendance: " << Male << "\t\t" << ((Male / total_genders) * 100) << "%" << endl << endl;
+		cout << "Females percentage in total: " << ((Female / total_data) * 100) << "%" << endl;
+		cout << "Males percentage in total: " << ((Male / total_data) * 100) << "%" << endl << endl;
+		cout << "There are a total of " << total_data << " students in the database." << endl << endl << endl << endl << endl;
+		cout << "_______________________" << endl << endl;
+		cout << " Birthday Month Stats" << endl;
+		cout << "_______________________" << endl << endl << endl;
+		cout << "January: " << Jan << "\t\t" << ((Jan / total_birthdays) * 100) << "%" << endl;
+		cout << "February: " << Feb << "\t\t" << ((Feb / total_birthdays) * 100) << "%" << endl;
+		cout << "March: " << Mar << "\t\t" << ((Mar / total_birthdays) * 100) << "%" << endl;
+		cout << "April: " << Apr << "\t\t" << ((Apr / total_birthdays) * 100) << "%" << endl;
+		cout << "May: " << May << "\t\t\t" << ((May / total_birthdays) * 100) << "%" << endl;
+		cout << "June: " << Jun << "\t\t\t" << ((Jun / total_birthdays) * 100) << "%" << endl;
+		cout << "July: " << Jul << "\t\t\t" << ((Jul / total_birthdays) * 100) << "%" << endl;
+		cout << "August: " << Aug << "\t\t" << ((Aug / total_birthdays) * 100) << "%" << endl;
+		cout << "September: " << Sep << "\t\t" << ((Sep / total_birthdays) * 100) << "%" << endl;
+		cout << "October: " << Oct << "\t\t" << ((Oct / total_birthdays) * 100) << "%" << endl;
+		cout << "November: " << Nov << "\t\t" << ((Nov / total_birthdays) * 100) << "%" << endl;
+		cout << "December: " << Dec << "\t\t" << ((Dec / total_birthdays) * 100) << "%" << endl << endl << endl << endl << endl;
+		cout << "_______________________" << endl << endl;
+		cout << "      Major Stats" << endl;
+		cout << "_______________________" << endl << endl << endl;
+		cout << "Bioengineering: " << Bio << "\t\t\t\t\t" << ((Bio / total_majors) * 100) << "%" << endl;
+		cout << "Chemical Engineering: " << ChE << "\t\t\t\t\t" << ((ChE / total_majors) * 100) << "%" << endl;
+		cout << "Computer Engineering: " << CEN << "\t\t\t\t\t" << ((CEN / total_majors) * 100) << "%" << endl;
+		cout << "Computer Science: " << CS << "\t\t\t\t\t" << ((CS / total_majors) * 100) << "%" << endl;
+		cout << "Computer Science with Business Applications: " << CSwB << "\t\t" << ((CSwB/ total_majors) * 100) << "%" << endl;
+		cout << "Electrical Engineering: " << EE << "\t\t\t\t" << ((EE / total_majors) * 100) << "%" << endl;
+		cout << "Enviornmental Engineering: " << EnvE << "\t\t\t\t" << ((EnvE / total_majors) * 100) << "%" << endl;
+		cout << "Materials Science and Engineering: " << MSE << "\t\t\t" << ((MSE / total_majors) * 100) << "%" << endl;
+		cout << "Mechanical Engineering: " << MechE << "\t\t\t\t" << ((MechE / total_majors) * 100) << "%" << endl;
+		cout << "Other Majors outside of BCOE: " << others << "\t\t\t\t" << ((others / total_majors) * 100) << "%" << endl << endl << endl;
+		// Close file
+		data.close();
+		cout << endl << endl << endl << endl;
+	}
 }
 
 // -------------------------------
