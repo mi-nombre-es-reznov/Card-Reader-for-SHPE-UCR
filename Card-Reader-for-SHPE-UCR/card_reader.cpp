@@ -11,7 +11,8 @@
 // a security measure employed to, hopefully, protect the external data as much as possible. The data consists of card number (SID card
 // UCR specific), first and last name, Student ID number, netID, email, birthday, and even member's major. It now has a password protective cover layer
 // to weed out unauthorized users. It has several data paths to obtain statistics. Everything is now interlinked with eachother and it is a complete
-// program. It is also setup to run with best visual aesthetics with full screen command prompt.
+// program. It is also setup to run with best visual aesthetics with full screen command prompt. New addition now allows for user to save a
+// copy of the current data after every GM sign-in.
 
 #include <iostream>		// For input/output
 #include <cstring>		// In order to use the substring function
@@ -2470,6 +2471,41 @@ void GM_Update()
 			}
 
 		}while (search_ID != "0000000000000000");
+
+		string copy_name;
+
+		cout << "Please enter a name to name the saved copy of the master data: ";
+		getline(cin, copy_name);
+		copy_name = (copy_name + ".txt");
+
+
+
+
+
+
+
+		string rep_ID1, rep_ID2, rep_ID3, rep_ID4, rep_last_name, rep_first_name, rep_netID, rep_email, rep_birth_month, rep_major, rep_gender;
+		string rep_F1, rep_F2, rep_F3, rep_F4, rep_F5, rep_W1, rep_W2, rep_W3, rep_W4, rep_W5, rep_S1, rep_S2, rep_S3, rep_S4, rep_S5;
+		int rep_SID, rep_birth_day, rep_birth_year, count = 0;
+		// Put data in temp file
+		ifstream filein("records.txt"); //File to read from
+		ofstream fileout(copy_name); //Temporary file
+
+		while (filein >> rep_ID1 >> rep_ID2 >> rep_ID3 >> rep_ID4 >> rep_last_name >> rep_first_name >> rep_SID >> rep_netID >> rep_email >> rep_birth_day >> rep_birth_month >> rep_birth_year >> rep_major >> rep_gender >>
+			rep_F1 >> rep_F2 >> rep_F3 >> rep_F4 >> rep_F5 >> rep_W1 >> rep_W2 >> rep_W3 >> rep_W4 >> rep_W5 >> rep_S1 >> rep_S2 >> rep_S3 >>
+			rep_S4 >> rep_S5 >> end_tag)
+		{
+			fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major << " " << rep_gender <<
+				" " << rep_F1 << " " << rep_F2 << " " << rep_F3 << " " << rep_F4 << " " << rep_F5 << " " << rep_W1 << " " << rep_W2 << " " <<
+				rep_W3 << " " << rep_W4 << " " << rep_W5 << " " << rep_S1 << " " << rep_S2 << " " << rep_S3 << " " << rep_S4 << " " << rep_S5 << " " << end_tag << endl;
+		}
+
+		filein.close();
+		fileout.close();
+
+
+
+
 	}
 	// Verify that the file has opened successfully.
 	else
@@ -5430,7 +5466,7 @@ int Password()
 	cout << "\t\t\t\t\t\t            *   *       *   *           *              *   ************         *           *   *               *    *               " << endl;
 	cout << "\t\t\t\t\t\t            *   *       *   *           *              *                        *           *   *               *       *            " << endl;
 	cout << "\t\t\t\t\t\t    *********   *       *   *           *********      **********************   *************   *************   *          *         " << endl << endl << endl;
-	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 
 	cout << "You are entering a program that contains sensitive data that shall not be manipulated by non-authorized users." << endl << endl;
 	cout << "Please enter the password to continue: ";
