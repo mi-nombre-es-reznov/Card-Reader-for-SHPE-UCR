@@ -1790,7 +1790,7 @@ string get_Major()
 	}
 	case 'G':
 	{
-		major = "Enviornmental_Engineering";
+		major = "Environmental_Engineering";
 		break;
 	}
 	case 'H':
@@ -1834,7 +1834,7 @@ void Major_Choice()
 	cout << "\t\t\tD) Computer Science\n";
 	cout << "\t\t\tE) Computer Science with Business Applications\n";
 	cout << "\t\t\tF) Electrical Engineering\n";
-	cout << "\t\t\tG) Enviornmental Engineering\n";
+	cout << "\t\t\tG) Environmental Engineering\n";
 	cout << "\t\t\tH) Materials Science and Engineering\n";
 	cout << "\t\t\tI) Mechanical Engineering\n";
 	cout << "\t\t\tJ) Other\n";
@@ -2503,6 +2503,10 @@ void GM_Update()
 
 		filein.close();
 		fileout.close();
+
+
+
+
 	}
 	// Verify that the file has opened successfully.
 	else
@@ -2550,26 +2554,25 @@ get_GM get_GM_info()
 
 	switch (quarter_choice)
 	{
-		case 'A':
-		{
-			quarter = "rep_F";
-			break;
-		}
-		case 'B':
-		{
-			quarter = "rep_W";
-			break;
-		}
-		case 'C':
-		{
-			quarter = "rep_S";
-			break;
-		}
-		default:
-		{
-			cout << "An error has occurred. Please try again." << endl;
-			break;
-		}
+	case 'A':
+	{
+		quarter = "rep_F";
+		break;
+	}
+	case 'B':
+	{
+		quarter = "rep_W";
+		break;
+	}
+	case 'C':
+	{
+		quarter = "rep_S";
+		break;
+	}
+	default:
+	{
+		cout << "An error has occurred. Please try again." << endl;
+	}
 	}
 
 
@@ -2593,35 +2596,35 @@ get_GM get_GM_info()
 
 	switch (number_choice)
 	{
-		case 1:
-		{
-			number = "1";
-			break;
-		}
-		case 2:
-		{
-			number = "2";
-			break;
-		}
-		case 3:
-		{
-			number = "3";
-			break;
-		}
-		case 4:
-		{
-			number = "4";
-			break;
-		}
-		case 5:
-		{
-			number = "5";
-			break;
-		}
-		default:
-		{
-			cout << "An error has occured. Please try again." << endl;
-		}
+	case 1:
+	{
+		number = "1";
+		break;
+	}
+	case 2:
+	{
+		number = "2";
+		break;
+	}
+	case 3:
+	{
+		number = "3";
+		break;
+	}
+	case 4:
+	{
+		number = "4";
+		break;
+	}
+	case 5:
+	{
+		number = "5";
+		break;
+	}
+	default:
+	{
+		cout << "An error has occured. Please try again." << endl;
+	}
 	}
 
 	together = (quarter + number);
@@ -3414,7 +3417,7 @@ void stats_majors()
 			{
 				EE += 1;
 			}
-			else if (get_major == "Enviornmental_Engineering")
+			else if (get_major == "Environmental_Engineering")
 			{
 				EnvE += 1;
 			}
@@ -3474,7 +3477,7 @@ void stats_majors()
 
 		// Enviornmental Engineering
 		cout << "_______________________________" << endl << endl;
-		cout << "   Enviornmental Engineering" << endl;
+		cout << "   Environmental Engineering" << endl;
 		cout << "_______________________________" << endl;
 		cout << "Our records show that " << EnvE << " students are in this major. This is a total of " << ((EnvE / total) * 100) << "% of all students on file." << endl << endl;
 
@@ -3564,7 +3567,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Enviornmental_Engineering")
+					else if (get_major == "Environmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -3674,7 +3677,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Enviornmental_Engineering")
+					else if (get_major == "Environmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -3784,7 +3787,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Enviornmental_Engineering")
+					else if (get_major == "Environmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -3894,7 +3897,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Enviornmental_Engineering")
+					else if (get_major == "Environmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -4004,7 +4007,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Enviornmental_Engineering")
+					else if (get_major == "Environmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -4114,7 +4117,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Enviornmental_Engineering")
+					else if (get_major == "Environmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -4224,7 +4227,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Enviornmental_Engineering")
+					else if (get_major == "Environmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -4334,7 +4337,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Enviornmental_Engineering")
+					else if (get_major == "Environmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -4444,7 +4447,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Enviornmental_Engineering")
+					else if (get_major == "Environmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -4554,7 +4557,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Enviornmental_Engineering")
+					else if (get_major == "Environmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -4664,7 +4667,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Enviornmental_Engineering")
+					else if (get_major == "Environmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -4774,7 +4777,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Enviornmental_Engineering")
+					else if (get_major == "Environmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -4884,7 +4887,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Enviornmental_Engineering")
+					else if (get_major == "Environmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -4994,7 +4997,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Enviornmental_Engineering")
+					else if (get_major == "Environmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -5104,7 +5107,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Enviornmental_Engineering")
+					else if (get_major == "Environmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -5246,7 +5249,7 @@ void stats_sign_ins()
 		cout << "Computer Science: " << CS << "\t\t\t\t\t" << ((CS / total_majors) * 100) << "%" << endl;
 		cout << "Computer Science with Business Applications: " << CSwB << "\t\t" << ((CSwB / total_majors) * 100) << "%" << endl;
 		cout << "Electrical Engineering: " << EE << "\t\t\t\t" << ((EE / total_majors) * 100) << "%" << endl;
-		cout << "Enviornmental Engineering: " << EnvE << "\t\t\t\t" << ((EnvE / total_majors) * 100) << "%" << endl;
+		cout << "Environmental Engineering: " << EnvE << "\t\t\t\t" << ((EnvE / total_majors) * 100) << "%" << endl;
 		cout << "Materials Science and Engineering: " << MSE << "\t\t\t" << ((MSE / total_majors) * 100) << "%" << endl;
 		cout << "Mechanical Engineering: " << MechE << "\t\t\t\t" << ((MechE / total_majors) * 100) << "%" << endl;
 		cout << "Other Majors outside of BCOE: " << others << "\t\t\t\t" << ((others / total_majors) * 100) << "%" << endl << endl;
@@ -5496,16 +5499,16 @@ void get_individual_GM_members()
 		string get_F1, get_F2, get_F3, get_F4, get_F5, get_W1, get_W2, get_W3, get_W4, get_W5, get_S1, get_S2, get_S3, get_S4, get_S5;
 		int get_SID, get_birth_day, get_birth_year, count = 0, token = 0, count2 = 0;
 		string month;
-		string GM_quarter, GM_number;
+		string GM_quarter, GM_number, state;
 		get_GM GM_info;
 
 		GM_info = get_GM_info();
-		//cout << "data: " << GM_info.together << endl;
-		cout << endl;
+		cout << "data" << GM_info.together << endl;
 		system("CLS");
 
 		while (database >> get_ID1 >> get_ID2 >> get_ID3 >> get_ID4 >> get_last_name >> get_first_name >> get_SID >> get_netID >> get_email >> get_birth_day >> get_birth_month >> get_birth_year >> get_major >> get_gender >>
-			get_F1 >> get_F2 >> get_F3 >> get_F4 >> get_F5 >> get_W1 >> get_W2 >> get_W3 >> get_W4 >> get_W5 >> get_S1 >> get_S2 >> get_S3 >> get_S4 >> get_S5 >> end_tag)
+			get_F1 >> get_F2 >> get_F3 >> get_F4 >> get_F5 >> get_W1 >> get_W2 >> get_W3 >> get_W4 >> get_W5 >> get_S1 >> get_S2 >> get_S3 >>
+			get_S4 >> get_S5 >> end_tag)
 		{
 			if (GM_info.together == "rep_F1")
 			{
@@ -5514,12 +5517,6 @@ void get_individual_GM_members()
 					cout << (count + 1) << ") " << get_first_name << " " << get_last_name << " " << get_email << endl;
 					count++;
 				}
-
-				if (count == 0)
-				{
-					cout << "There is no data that for this GM.";
-					break;
-				}
 			}
 			else if (GM_info.together == "rep_F2")
 			{
@@ -5527,12 +5524,6 @@ void get_individual_GM_members()
 				{
 					cout << (count + 1) << ") " << get_first_name << " " << get_last_name << " " << get_email << endl;
 					count++;
-				}
-
-				if (count == 0)
-				{
-					cout << "There is no data that for this GM.";
-					break;
 				}
 			}
 			else if (GM_info.together == "rep_F3")
@@ -5543,11 +5534,6 @@ void get_individual_GM_members()
 					count++;
 				}
 
-				if (count == 0)
-				{
-					cout << "There is no data that for this GM.";
-					break;
-				}
 			}
 			else if (GM_info.together == "rep_F4")
 			{
@@ -5557,11 +5543,6 @@ void get_individual_GM_members()
 					count++;
 				}
 
-				if (count == 0)
-				{
-					cout << "There is no data that for this GM.";
-					break;
-				}
 			}
 			else if (GM_info.together == "rep_F5")
 			{
@@ -5571,150 +5552,16 @@ void get_individual_GM_members()
 					count++;
 				}
 
-				if (count == 0)
-				{
-					cout << "There is no data that for this GM.";
-					break;
-				}
-			}
-			else if (GM_info.together == "rep_W1")
-			{
-				if (get_W1 == "Yes")
-				{
-					cout << (count + 1) << ") " << get_first_name << " " << get_last_name << " " << get_email << endl;
-					count++;
-				}
-
-				if (count == 0)
-				{
-					cout << "There is no data that for this GM.";
-					break;
-				}
-			}
-			else if (GM_info.together == "rep_W2")
-			{
-				if (get_W2 == "Yes")
-				{
-					cout << (count + 1) << ") " << get_first_name << " " << get_last_name << " " << get_email << endl;
-					count++;
-				}
-
-				if (count == 0)
-				{
-					cout << "There is no data that for this GM.";
-					break;
-				}
-			}
-			else if (GM_info.together == "rep_W3")
-			{
-				if (get_W3 == "Yes")
-				{
-					cout << (count + 1) << ") " << get_first_name << " " << get_last_name << " " << get_email << endl;
-					count++;
-				}
-				
-				if(count == 0)
-				{
-					cout << "There is no data for this GM." << endl;
-					break;
-				}
-			}
-			else if (GM_info.together == "rep_W4")
-			{
-				if (get_W4 == "Yes")
-				{
-					cout << (count + 1) << ") " << get_first_name << " " << get_last_name << " " << get_email << endl;
-					count++;
-				}
-
-				if (count == 0)
-				{
-					cout << "There is no data that for this GM.";
-					break;
-				}
-			}
-			else if (GM_info.together == "rep_W5")
-			{
-				if (get_W5 == "Yes")
-				{
-					cout << (count + 1) << ") " << get_first_name << " " << get_last_name << " " << get_email << endl;
-					count++;
-				}
-
-				if (count == 0)
-				{
-					cout << "There is no data that for this GM.";
-					break;
-				}
-			}
-			else if (GM_info.together == "rep_S1")
-			{
-				if (get_S1 == "Yes")
-				{
-					cout << (count + 1) << ") " << get_first_name << " " << get_last_name << " " << get_email << endl;
-					count++;
-				}
-
-				if (count == 0)
-				{
-					cout << "There is no data that for this GM.";
-				}
-			}
-			else if (GM_info.together == "rep_S2")
-			{
-				if (get_S2 == "Yes")
-				{
-					cout << (count + 1) << ") " << get_first_name << " " << get_last_name << " " << get_email << endl;
-					count++;
-				}
-
-				if (count == 0)
-				{
-					cout << "There is no data that for this GM.";
-				}
-			}
-			else if (GM_info.together == "rep_S3")
-			{
-				if (get_S3 == "Yes")
-				{
-					cout << (count + 1) << ") " << get_first_name << " " << get_last_name << " " << get_email << endl;
-					count++;
-				}
-
-				if (count == 0)
-				{
-					cout << "There is no data that for this GM.";
-				}
-			}
-			else if (GM_info.together == "rep_S4")
-			{
-				if (get_S4 == "Yes")
-				{
-					cout << (count + 1) << ") " << get_first_name << " " << get_last_name << " " << get_email << endl;
-					count++;
-				}
-
-				if (count == 0)
-				{
-					cout << "There is no data that for this GM.";
-				}
-			}
-			else if (GM_info.together == "rep_S5")
-			{
-				if (get_S5 == "Yes")
-				{
-					cout << (count + 1) << ") " << get_first_name << " " << get_last_name << " " << get_email << endl;
-					count++;
-				}
-
-				if (count == 0)
-				{
-					cout << "There is no data that for this GM.";
-				}
 			}
 
 			count2++;
 		}
+		
+		if (count == 0)
+		{
+			cout << "There is no data that for this GM.";
+		}
+
 		cout << "\n\nThere are a total of " << count << ", out of " << count2 << " members, who attended General Meeting " << GM_info.number << "." << endl;
 		cout << endl << endl << endl << endl << endl;
 	}
