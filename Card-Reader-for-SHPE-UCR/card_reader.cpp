@@ -5658,6 +5658,7 @@ void get_individual_GM_members()
 				if (count == 0)
 				{
 					cout << "There is no data that for this GM.";
+					break;
 				}
 			}
 			else if (GM_info.together == "rep_S2")
@@ -5671,6 +5672,7 @@ void get_individual_GM_members()
 				if (count == 0)
 				{
 					cout << "There is no data that for this GM.";
+					break;
 				}
 			}
 			else if (GM_info.together == "rep_S3")
@@ -5684,6 +5686,7 @@ void get_individual_GM_members()
 				if (count == 0)
 				{
 					cout << "There is no data that for this GM.";
+					break;
 				}
 			}
 			else if (GM_info.together == "rep_S4")
@@ -5697,6 +5700,7 @@ void get_individual_GM_members()
 				if (count == 0)
 				{
 					cout << "There is no data that for this GM.";
+					break;
 				}
 			}
 			else if (GM_info.together == "rep_S5")
@@ -5710,6 +5714,7 @@ void get_individual_GM_members()
 				if (count == 0)
 				{
 					cout << "There is no data that for this GM.";
+					break;
 				}
 			}
 
