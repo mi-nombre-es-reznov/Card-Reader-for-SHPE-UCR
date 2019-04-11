@@ -2503,10 +2503,6 @@ void GM_Update()
 
 		filein.close();
 		fileout.close();
-
-
-
-
 	}
 	// Verify that the file has opened successfully.
 	else
@@ -2554,25 +2550,26 @@ get_GM get_GM_info()
 
 	switch (quarter_choice)
 	{
-	case 'A':
-	{
-		quarter = "rep_F";
-		break;
-	}
-	case 'B':
-	{
-		quarter = "rep_W";
-		break;
-	}
-	case 'C':
-	{
-		quarter = "rep_S";
-		break;
-	}
-	default:
-	{
-		cout << "An error has occurred. Please try again." << endl;
-	}
+		case 'A':
+		{
+			quarter = "rep_F";
+			break;
+		}
+		case 'B':
+		{
+			quarter = "rep_W";
+			break;
+		}
+		case 'C':
+		{
+			quarter = "rep_S";
+			break;
+		}
+		default:
+		{
+			cout << "An error has occurred. Please try again." << endl;
+			break;
+		}
 	}
 
 
@@ -2596,35 +2593,35 @@ get_GM get_GM_info()
 
 	switch (number_choice)
 	{
-	case 1:
-	{
-		number = "1";
-		break;
-	}
-	case 2:
-	{
-		number = "2";
-		break;
-	}
-	case 3:
-	{
-		number = "3";
-		break;
-	}
-	case 4:
-	{
-		number = "4";
-		break;
-	}
-	case 5:
-	{
-		number = "5";
-		break;
-	}
-	default:
-	{
-		cout << "An error has occured. Please try again." << endl;
-	}
+		case 1:
+		{
+			number = "1";
+			break;
+		}
+		case 2:
+		{
+			number = "2";
+			break;
+		}
+		case 3:
+		{
+			number = "3";
+			break;
+		}
+		case 4:
+		{
+			number = "4";
+			break;
+		}
+		case 5:
+		{
+			number = "5";
+			break;
+		}
+		default:
+		{
+			cout << "An error has occured. Please try again." << endl;
+		}
 	}
 
 	together = (quarter + number);
@@ -5503,12 +5500,11 @@ void get_individual_GM_members()
 		get_GM GM_info;
 
 		GM_info = get_GM_info();
-		cout << "data" << GM_info.together << endl;
+		cout << "data: " << GM_info.together << endl;
 		system("CLS");
 
 		while (database >> get_ID1 >> get_ID2 >> get_ID3 >> get_ID4 >> get_last_name >> get_first_name >> get_SID >> get_netID >> get_email >> get_birth_day >> get_birth_month >> get_birth_year >> get_major >> get_gender >>
-			get_F1 >> get_F2 >> get_F3 >> get_F4 >> get_F5 >> get_W1 >> get_W2 >> get_W3 >> get_W4 >> get_W5 >> get_S1 >> get_S2 >> get_S3 >>
-			get_S4 >> get_S5 >> end_tag)
+			get_F1 >> get_F2 >> get_F3 >> get_F4 >> get_F5 >> get_W1 >> get_W2 >> get_W3 >> get_W4 >> get_W5 >> get_S1 >> get_S2 >> get_S3 >> get_S4 >> get_S5 >> end_tag)
 		{
 			if (GM_info.together == "rep_F1")
 			{
@@ -5521,7 +5517,6 @@ void get_individual_GM_members()
 				if (count == 0)
 				{
 					cout << "There is no data that for this GM.";
-					break;
 				}
 			}
 			else if (GM_info.together == "rep_F2")
@@ -5535,7 +5530,6 @@ void get_individual_GM_members()
 				if (count == 0)
 				{
 					cout << "There is no data that for this GM.";
-					break;
 				}
 			}
 			else if (GM_info.together == "rep_F3")
@@ -5549,7 +5543,6 @@ void get_individual_GM_members()
 				if (count == 0)
 				{
 					cout << "There is no data that for this GM.";
-					break;
 				}
 			}
 			else if (GM_info.together == "rep_F4")
@@ -5563,7 +5556,6 @@ void get_individual_GM_members()
 				if (count == 0)
 				{
 					cout << "There is no data that for this GM.";
-					break;
 				}
 			}
 			else if (GM_info.together == "rep_F5")
@@ -5577,7 +5569,6 @@ void get_individual_GM_members()
 				if (count == 0)
 				{
 					cout << "There is no data that for this GM.";
-					break;
 				}
 			}
 			else if (GM_info.together == "rep_W1")
@@ -5591,7 +5582,6 @@ void get_individual_GM_members()
 				if (count == 0)
 				{
 					cout << "There is no data that for this GM.";
-					break;
 				}
 			}
 			else if (GM_info.together == "rep_W2")
@@ -5605,7 +5595,6 @@ void get_individual_GM_members()
 				if (count == 0)
 				{
 					cout << "There is no data that for this GM.";
-					break;
 				}
 			}
 			else if (GM_info.together == "rep_W3")
@@ -5614,6 +5603,11 @@ void get_individual_GM_members()
 				{
 					cout << (count + 1) << ") " << get_first_name << " " << get_last_name << " " << get_email << endl;
 					count++;
+				}
+				
+				if(count == 0)
+				{
+					cout << "There is no data for this GM." << endl;
 				}
 			}
 			else if (GM_info.together == "rep_W4")
@@ -5627,7 +5621,6 @@ void get_individual_GM_members()
 				if (count == 0)
 				{
 					cout << "There is no data that for this GM.";
-					break;
 				}
 			}
 			else if (GM_info.together == "rep_W5")
@@ -5641,7 +5634,6 @@ void get_individual_GM_members()
 				if (count == 0)
 				{
 					cout << "There is no data that for this GM.";
-					break;
 				}
 			}
 			else if (GM_info.together == "rep_S1")
@@ -5655,7 +5647,6 @@ void get_individual_GM_members()
 				if (count == 0)
 				{
 					cout << "There is no data that for this GM.";
-					break;
 				}
 			}
 			else if (GM_info.together == "rep_S2")
@@ -5669,7 +5660,6 @@ void get_individual_GM_members()
 				if (count == 0)
 				{
 					cout << "There is no data that for this GM.";
-					break;
 				}
 			}
 			else if (GM_info.together == "rep_S3")
@@ -5683,7 +5673,6 @@ void get_individual_GM_members()
 				if (count == 0)
 				{
 					cout << "There is no data that for this GM.";
-					break;
 				}
 			}
 			else if (GM_info.together == "rep_S4")
@@ -5697,7 +5686,6 @@ void get_individual_GM_members()
 				if (count == 0)
 				{
 					cout << "There is no data that for this GM.";
-					break;
 				}
 			}
 			else if (GM_info.together == "rep_S5")
@@ -5711,7 +5699,6 @@ void get_individual_GM_members()
 				if (count == 0)
 				{
 					cout << "There is no data that for this GM.";
-					break;
 				}
 			}
 
