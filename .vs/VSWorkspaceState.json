@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\test_card_reader"
   ],
-  "SelectedNode": "\\Card-Reader-for-SHPE-UCR",
+  "SelectedNode": "\\test_card_reader.sln",
   "PreviewInSolutionExplorer": false
 }

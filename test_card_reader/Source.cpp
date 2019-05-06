@@ -21,10 +21,10 @@
 #include <algorithm>	// To allow for removal of spaces in strings
 using namespace std;	// Using standard namespace declaration
 
-/* ----------------------------------------------------------------------------------
-	Structs to allow for multiple values to be returned at once from a call function
-   ---------------------------------------------------------------------------------- */
-   // Main struct to pass data for updating
+						/* ----------------------------------------------------------------------------------
+						Structs to allow for multiple values to be returned at once from a call function
+						---------------------------------------------------------------------------------- */
+						// Main struct to pass data for updating
 struct replacements
 {
 	char choice;			// Holds value from menu selection
@@ -81,6 +81,7 @@ string stats_pick_month();
 void get_all_months(string);
 int Password();
 void get_individual_GM_members();
+void Summer_opportunites(string, string, int);
 
 // -------------------------------
 //              Main
@@ -96,13 +97,13 @@ int main()
 	} while (key != 1);
 
 	/* ------------------------------------------
-			 SHPE Menu Internal File Intro
+			  SHPE Menu Internal File Intro
 	   ------------------------------------------ */
 	do
 	{
 		option_selection();		// Main Menu operations following input to main display
 
-		// Loop for input validation
+								// Loop for input validation
 		do
 		{
 			retry = Retry();	// Asks about looping Main Menu (Main) again
@@ -133,8 +134,8 @@ void new_user()
 		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 		cout << "File has opened successfully!" << endl << endl << endl << endl << endl;
 		/* ------------------------------------------
-				SHPE Menu Internal File Intro
-		   ------------------------------------------ */
+		SHPE Menu Internal File Intro
+		------------------------------------------ */
 
 		cout << "\t\t\t\t---------------------------------------------------" << endl;
 		cout << "\t\t\t\t                  Add a new User                   " << endl;
@@ -152,7 +153,7 @@ void new_user()
 			cout << "\n\n\nPlease swipe a card: ";	// Intro message
 			getline(cin, get_card_info);		// Take in all data form card swipe
 
-			// Used to test length intially. If failed, display message
+												// Used to test length intially. If failed, display message
 			if (get_card_info.length() < 95)
 			{
 				cout << "Card read error. Please retry swipe." << endl << endl;	// If executed, the min length was not reached by the card swipe, usually read error
@@ -281,8 +282,8 @@ void option_selection()
 	menu_choices();
 
 	/* -----------------------------------------------------
-			This will be for selection of a menu option
-	   ----------------------------------------------------- */
+	This will be for selection of a menu option
+	----------------------------------------------------- */
 	cout << "\n\n\nPlease select an option: ";
 	cin >> option;
 	if (isalpha(option))
@@ -411,13 +412,13 @@ void member_search()
 	{
 		cout << "File has successfully been opened!" << endl << endl;	// Verification that file has been opened succesfully
 		cin.ignore();	// Ignore previous input to allow for new input.
-		// Do while to test for a minimum card input (bounds may need to be changed later)
+						// Do while to test for a minimum card input (bounds may need to be changed later)
 		do
 		{
 			cout << "Please swipe card for member lookup: ";	// Intro message
 			getline(cin, search_ID);		// Take in all data form card swipe
 
-												// Used to test length intially. If failed, display message
+											// Used to test length intially. If failed, display message
 			if (search_ID.length() < 95)
 			{
 				cout << "Card read error. Please retry swipe." << endl << endl;	// If executed, the min length was not reached by the card swipe, usually read error
@@ -429,7 +430,7 @@ void member_search()
 		string place_holder = search_ID.substr(pos + 1);	// Push one (1) position past the semi colon. Will be start of the card number
 		search_ID = place_holder.substr(0, 16);	// Take in 16 places from the intial card number
 
-		// Insert spaces at appropriate spots to allow for sub-divide the data that will be compared. It needs to have 4 groups of 4 for the 16 digits.
+												// Insert spaces at appropriate spots to allow for sub-divide the data that will be compared. It needs to have 4 groups of 4 for the 16 digits.
 		search_ID1 = search_ID.substr(0, 4);
 		search_ID2 = search_ID.substr(4, 4);
 		search_ID3 = search_ID.substr(8, 4);
@@ -581,7 +582,7 @@ void update_member_info()
 	{
 		cout << "File has successfully been opened!" << endl << endl;	// Database has opened successfully
 		cin.ignore();	// Ignore previous input to allow for new input
-		// Do while to test for a minimum card input (bounds may need to be changed later)
+						// Do while to test for a minimum card input (bounds may need to be changed later)
 		do
 		{
 			cout << "Please swipe card for member lookup (if updating card, please enter 'card'): ";	// Intro message
@@ -607,7 +608,7 @@ void update_member_info()
 		string place_holder = search_ID.substr(pos + 1);	// Push one (1) position past the semi colon. Will be start of the card number
 		search_ID = place_holder.substr(0, 16);	// Take in 16 places from the intial card number
 
-		// Insert spaces at appropriate spots to allow for sub-divide the data that will be compared. It needs to have 4 groups of 4 for the 16 digits.
+												// Insert spaces at appropriate spots to allow for sub-divide the data that will be compared. It needs to have 4 groups of 4 for the 16 digits.
 		search_ID1 = search_ID.substr(0, 4);
 		search_ID2 = search_ID.substr(4, 4);
 		search_ID3 = search_ID.substr(8, 4);
@@ -657,7 +658,7 @@ void update_member_info()
 					}
 				} while (replaced.replacement == "null");	// Repeat while data value is equal to 'null'
 
-				// Breaks out of loop - no error messages occur
+															// Breaks out of loop - no error messages occur
 				if (replaced.choice == 'I')
 				{
 					break;
@@ -1177,7 +1178,7 @@ replacements replace_choice(string num1, string num2, string num3, string num4, 
 	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 	Replace_Menu();	// Update Menu options
 
-	// Allow user to input choice from menu in which they want to update in database
+					// Allow user to input choice from menu in which they want to update in database
 	cin >> choice;
 
 	// Test choice that user entered to see if it is alphabetic.
@@ -1740,7 +1741,7 @@ string get_Major()
 	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 	Major_Choice();	// Major choice Menu
 
-	// Allows for user to select choice from major choice menu
+					// Allows for user to select choice from major choice menu
 	cout << "Please select your major: ";
 	cin >> choice;
 
@@ -1790,7 +1791,7 @@ string get_Major()
 	}
 	case 'G':
 	{
-		major = "Environmental_Engineering";
+		major = "Enviornmental_Engineering";
 		break;
 	}
 	case 'H':
@@ -1834,7 +1835,7 @@ void Major_Choice()
 	cout << "\t\t\tD) Computer Science\n";
 	cout << "\t\t\tE) Computer Science with Business Applications\n";
 	cout << "\t\t\tF) Electrical Engineering\n";
-	cout << "\t\t\tG) Environmental Engineering\n";
+	cout << "\t\t\tG) Enviornmental Engineering\n";
 	cout << "\t\t\tH) Materials Science and Engineering\n";
 	cout << "\t\t\tI) Mechanical Engineering\n";
 	cout << "\t\t\tJ) Other\n";
@@ -1850,7 +1851,7 @@ string Insert_Major()
 	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 	cin.ignore();	// Ignore previous input
 
-	// Message to demonstrate how to insert major and to accept input.
+					// Message to demonstrate how to insert major and to accept input.
 	cout << "\n\n\nYou have selected the option for a major outside of Bourns College of Engineering (BCOE).\nPlease insert your major: ";
 	getline(cin, major);
 
@@ -2076,8 +2077,8 @@ void search_other()
 
 				token = 1;	// Information found!
 
-				// Update Card number
-				// Do while to test for a minimum card input (bounds may need to be changed later)
+							// Update Card number
+							// Do while to test for a minimum card input (bounds may need to be changed later)
 				do
 				{
 					cout << "\n\nPlease swipe card for replacement numbers: ";	// Intro message
@@ -2095,7 +2096,7 @@ void search_other()
 				string place_holder = replacement_card.substr(pos + 1);	// Push one (1) position past the semi colon. Will be start of the card number
 				replacement_card = place_holder.substr(0, 16);	// Take in 16 places from the intial card number
 
-				// Create card substrings
+																// Create card substrings
 				string replacement1 = replacement_card.substr(0, 4);
 				string replacement2 = replacement_card.substr(4, 4);
 				string replacement3 = replacement_card.substr(8, 4);
@@ -2267,7 +2268,7 @@ void GM_Update()
 			string place_holder = search_ID.substr(pos + 1);	// Push one (1) position past the semi colon. Will be start of the card number
 			search_ID = place_holder.substr(0, 16);	// Take in 16 places from the intial card number
 
-			// Insert spaces at appropriate spots to allow for sub-divide the data that will be compared. It needs to have 4 groups of 4 for the 16 digits.
+													// Insert spaces at appropriate spots to allow for sub-divide the data that will be compared. It needs to have 4 groups of 4 for the 16 digits.
 			search_ID1 = search_ID.substr(0, 4);
 			search_ID2 = search_ID.substr(4, 4);
 			search_ID3 = search_ID.substr(8, 4);
@@ -2423,8 +2424,11 @@ void GM_Update()
 						cout << "\t\t\t*  Congratulations! You are now considered a current member!!!  *" << endl;
 						cout << "\t\t\t*****************************************************************" << endl;
 					}
+
 					cout << "\n\n\n\n\n\n\n\n\n\n";
 					cout << rep_first_name << " " << rep_last_name << " has signed in for General Meeting: " << GM.number << ", this " << GM.quarter << " Quarter." << endl;
+
+					Summer_opportunites(rep_first_name, rep_last_name, rep_SID);
 				}
 
 				fileout << rep_ID1 << " " << rep_ID2 << " " << rep_ID3 << " " << rep_ID4 << " " << rep_last_name << " " << rep_first_name << " " << rep_SID << " " << rep_netID << " " << rep_email << " " << rep_birth_day << " " << rep_birth_month << " " << rep_birth_year << " " << rep_major << " " << rep_gender <<
@@ -2503,10 +2507,6 @@ void GM_Update()
 
 		filein.close();
 		fileout.close();
-
-
-
-
 	}
 	// Verify that the file has opened successfully.
 	else
@@ -2572,6 +2572,7 @@ get_GM get_GM_info()
 	default:
 	{
 		cout << "An error has occurred. Please try again." << endl;
+		break;
 	}
 	}
 
@@ -3477,7 +3478,7 @@ void stats_majors()
 
 		// Enviornmental Engineering
 		cout << "_______________________________" << endl << endl;
-		cout << "   Environmental Engineering" << endl;
+		cout << "   Enviornmental Engineering" << endl;
 		cout << "_______________________________" << endl;
 		cout << "Our records show that " << EnvE << " students are in this major. This is a total of " << ((EnvE / total) * 100) << "% of all students on file." << endl << endl;
 
@@ -3567,7 +3568,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Environmental_Engineering")
+					else if (get_major == "Enviornmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -3677,7 +3678,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Environmental_Engineering")
+					else if (get_major == "Enviornmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -3787,7 +3788,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Environmental_Engineering")
+					else if (get_major == "Enviornmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -3897,7 +3898,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Environmental_Engineering")
+					else if (get_major == "Enviornmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -4007,7 +4008,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Environmental_Engineering")
+					else if (get_major == "Enviornmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -4117,7 +4118,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Environmental_Engineering")
+					else if (get_major == "Enviornmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -4227,7 +4228,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Environmental_Engineering")
+					else if (get_major == "Enviornmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -4337,7 +4338,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Environmental_Engineering")
+					else if (get_major == "Enviornmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -4447,7 +4448,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Environmental_Engineering")
+					else if (get_major == "Enviornmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -4557,7 +4558,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Environmental_Engineering")
+					else if (get_major == "Enviornmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -4667,7 +4668,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Environmental_Engineering")
+					else if (get_major == "Enviornmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -4777,7 +4778,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Environmental_Engineering")
+					else if (get_major == "Enviornmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -4887,7 +4888,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Environmental_Engineering")
+					else if (get_major == "Enviornmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -4997,7 +4998,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Environmental_Engineering")
+					else if (get_major == "Enviornmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -5107,7 +5108,7 @@ void stats_sign_ins()
 					{
 						EE += 1;
 					}
-					else if (get_major == "Environmental_Engineering")
+					else if (get_major == "Enviornmental_Engineering")
 					{
 						EnvE += 1;
 					}
@@ -5249,7 +5250,7 @@ void stats_sign_ins()
 		cout << "Computer Science: " << CS << "\t\t\t\t\t" << ((CS / total_majors) * 100) << "%" << endl;
 		cout << "Computer Science with Business Applications: " << CSwB << "\t\t" << ((CSwB / total_majors) * 100) << "%" << endl;
 		cout << "Electrical Engineering: " << EE << "\t\t\t\t" << ((EE / total_majors) * 100) << "%" << endl;
-		cout << "Environmental Engineering: " << EnvE << "\t\t\t\t" << ((EnvE / total_majors) * 100) << "%" << endl;
+		cout << "Enviornmental Engineering: " << EnvE << "\t\t\t\t" << ((EnvE / total_majors) * 100) << "%" << endl;
 		cout << "Materials Science and Engineering: " << MSE << "\t\t\t" << ((MSE / total_majors) * 100) << "%" << endl;
 		cout << "Mechanical Engineering: " << MechE << "\t\t\t\t" << ((MechE / total_majors) * 100) << "%" << endl;
 		cout << "Other Majors outside of BCOE: " << others << "\t\t\t\t" << ((others / total_majors) * 100) << "%" << endl << endl;
@@ -5499,16 +5500,16 @@ void get_individual_GM_members()
 		string get_F1, get_F2, get_F3, get_F4, get_F5, get_W1, get_W2, get_W3, get_W4, get_W5, get_S1, get_S2, get_S3, get_S4, get_S5;
 		int get_SID, get_birth_day, get_birth_year, count = 0, token = 0, count2 = 0;
 		string month;
-		string GM_quarter, GM_number, state;
+		string GM_quarter, GM_number;
 		get_GM GM_info;
 
 		GM_info = get_GM_info();
-		cout << "data" << GM_info.together << endl;
+		//cout << "data: " << GM_info.together << endl;
+		cout << endl;
 		system("CLS");
 
 		while (database >> get_ID1 >> get_ID2 >> get_ID3 >> get_ID4 >> get_last_name >> get_first_name >> get_SID >> get_netID >> get_email >> get_birth_day >> get_birth_month >> get_birth_year >> get_major >> get_gender >>
-			get_F1 >> get_F2 >> get_F3 >> get_F4 >> get_F5 >> get_W1 >> get_W2 >> get_W3 >> get_W4 >> get_W5 >> get_S1 >> get_S2 >> get_S3 >>
-			get_S4 >> get_S5 >> end_tag)
+			get_F1 >> get_F2 >> get_F3 >> get_F4 >> get_F5 >> get_W1 >> get_W2 >> get_W3 >> get_W4 >> get_W5 >> get_S1 >> get_S2 >> get_S3 >> get_S4 >> get_S5 >> end_tag)
 		{
 			if (GM_info.together == "rep_F1")
 			{
@@ -5517,6 +5518,12 @@ void get_individual_GM_members()
 					cout << (count + 1) << ") " << get_first_name << " " << get_last_name << " " << get_email << endl;
 					count++;
 				}
+
+				if (count == 0)
+				{
+					cout << "There is no data that for this GM.";
+					break;
+				}
 			}
 			else if (GM_info.together == "rep_F2")
 			{
@@ -5524,6 +5531,12 @@ void get_individual_GM_members()
 				{
 					cout << (count + 1) << ") " << get_first_name << " " << get_last_name << " " << get_email << endl;
 					count++;
+				}
+
+				if (count == 0)
+				{
+					cout << "There is no data that for this GM.";
+					break;
 				}
 			}
 			else if (GM_info.together == "rep_F3")
@@ -5534,6 +5547,11 @@ void get_individual_GM_members()
 					count++;
 				}
 
+				if (count == 0)
+				{
+					cout << "There is no data that for this GM.";
+					break;
+				}
 			}
 			else if (GM_info.together == "rep_F4")
 			{
@@ -5543,6 +5561,11 @@ void get_individual_GM_members()
 					count++;
 				}
 
+				if (count == 0)
+				{
+					cout << "There is no data that for this GM.";
+					break;
+				}
 			}
 			else if (GM_info.together == "rep_F5")
 			{
@@ -5552,16 +5575,155 @@ void get_individual_GM_members()
 					count++;
 				}
 
+				if (count == 0)
+				{
+					cout << "There is no data that for this GM.";
+					break;
+				}
+			}
+			else if (GM_info.together == "rep_W1")
+			{
+				if (get_W1 == "Yes")
+				{
+					cout << (count + 1) << ") " << get_first_name << " " << get_last_name << " " << get_email << endl;
+					count++;
+				}
+
+				if (count == 0)
+				{
+					cout << "There is no data that for this GM.";
+					break;
+				}
+			}
+			else if (GM_info.together == "rep_W2")
+			{
+				if (get_W2 == "Yes")
+				{
+					cout << (count + 1) << ") " << get_first_name << " " << get_last_name << " " << get_email << endl;
+					count++;
+				}
+
+				if (count == 0)
+				{
+					cout << "There is no data that for this GM.";
+					break;
+				}
+			}
+			else if (GM_info.together == "rep_W3")
+			{
+				if (get_W3 == "Yes")
+				{
+					cout << (count + 1) << ") " << get_first_name << " " << get_last_name << " " << get_email << endl;
+					count++;
+				}
+
+				if (count == 0)
+				{
+					cout << "There is no data for this GM." << endl;
+					break;
+				}
+			}
+			else if (GM_info.together == "rep_W4")
+			{
+				if (get_W4 == "Yes")
+				{
+					cout << (count + 1) << ") " << get_first_name << " " << get_last_name << " " << get_email << endl;
+					count++;
+				}
+
+				if (count == 0)
+				{
+					cout << "There is no data that for this GM.";
+					break;
+				}
+			}
+			else if (GM_info.together == "rep_W5")
+			{
+				if (get_W5 == "Yes")
+				{
+					cout << (count + 1) << ") " << get_first_name << " " << get_last_name << " " << get_email << endl;
+					count++;
+				}
+
+				if (count == 0)
+				{
+					cout << "There is no data that for this GM.";
+					break;
+				}
+			}
+			else if (GM_info.together == "rep_S1")
+			{
+				if (get_S1 == "Yes")
+				{
+					cout << (count + 1) << ") " << get_first_name << " " << get_last_name << " " << get_email << endl;
+					count++;
+				}
+
+				if (count == 0)
+				{
+					cout << "There is no data that for this GM.";
+					break;
+				}
+			}
+			else if (GM_info.together == "rep_S2")
+			{
+				if (get_S2 == "Yes")
+				{
+					cout << (count + 1) << ") " << get_first_name << " " << get_last_name << " " << get_email << endl;
+					count++;
+				}
+
+				if (count == 0)
+				{
+					cout << "There is no data that for this GM.";
+					break;
+				}
+			}
+			else if (GM_info.together == "rep_S3")
+			{
+				if (get_S3 == "Yes")
+				{
+					cout << (count + 1) << ") " << get_first_name << " " << get_last_name << " " << get_email << endl;
+					count++;
+				}
+
+				if (count == 0)
+				{
+					cout << "There is no data that for this GM.";
+					break;
+				}
+			}
+			else if (GM_info.together == "rep_S4")
+			{
+				if (get_S4 == "Yes")
+				{
+					cout << (count + 1) << ") " << get_first_name << " " << get_last_name << " " << get_email << endl;
+					count++;
+				}
+
+				if (count == 0)
+				{
+					cout << "There is no data that for this GM.";
+					break;
+				}
+			}
+			else if (GM_info.together == "rep_S5")
+			{
+				if (get_S5 == "Yes")
+				{
+					cout << (count + 1) << ") " << get_first_name << " " << get_last_name << " " << get_email << endl;
+					count++;
+				}
+
+				if (count == 0)
+				{
+					cout << "There is no data that for this GM.";
+					break;
+				}
 			}
 
 			count2++;
 		}
-		
-		if (count == 0)
-		{
-			cout << "There is no data that for this GM.";
-		}
-
 		cout << "\n\nThere are a total of " << count << ", out of " << count2 << " members, who attended General Meeting " << GM_info.number << "." << endl;
 		cout << endl << endl << endl << endl << endl;
 	}
@@ -5569,4 +5731,97 @@ void get_individual_GM_members()
 	{
 		cout << "Data has failed to load properly. Check data immediately for errors!!!" << endl;
 	}
+}
+
+void Summer_opportunites(string fn, string ln, int SID)
+{
+	char choice;
+	string place;
+
+	system("pause");
+	system("CLS");
+
+	// Check file for previous entry
+	ifstream file;
+	file.open("location.txt");
+
+	int ret_SID;
+	string ret_fn, ret_ln, ret_opp;
+	bool flag = false;
+
+	if (file.is_open())
+	{
+		// Check for previous entry
+		while (file >> ret_SID >> ret_fn >> ret_ln >> ret_opp)
+		{
+			if (ret_SID == SID)
+			{
+				cout << "Data presented. No further information required." << endl << endl;
+				flag = true;
+				choice = 'n';
+				break;
+			}
+
+			//cout << "Ret_SID: " << ret_SID << endl << "SID: " << SID << endl;
+		}
+	}
+
+	file.close();
+
+	if (flag == false)
+	{
+		do
+		{
+			cout << fn << ", do you have a job/internship lined up for this summer [y/n]? ";
+			cin >> choice;
+			choice = tolower(choice);
+		} while (choice != 'y' && choice != 'n');
+	}
+
+	cin.ignore();
+
+	switch (choice)
+	{
+		case 'y':
+		{
+			cout << "That is fantastic!!!\nPlease enter the name of the place you got accepted to: "; 
+			getline(cin, place);
+
+			// To replace location ' ' with '_'
+			string altered_place = place;
+			int position = altered_place.find(" ");
+			while (position != string::npos)
+			{
+				altered_place.replace(position, 1, "_");
+				position = altered_place.find(" ", position + 1);
+			}
+
+			// Writing opportunity to file
+			ofstream file2;
+			file2.open("location.txt", ios::app);
+
+			if (file2.is_open())
+			{
+				cout << "\n\nFile opened successfully!\n\n";
+				cout << "Entering data into file. Please wait." << endl;
+
+				file2 << SID << " " << fn << " " << ln << " " << altered_place << endl;
+			}
+
+			file2.close();
+
+			break;
+		}
+		case 'n':
+		{
+			cout << "Thank you for your feedback.\nBe sure to check out RocketSHPE on our website for possible opportunities!!!" << endl;
+			break;
+		}
+		default:
+		{
+			cout << "Error in choice. Please check data." << endl << endl;
+			break;
+		}
+	}
+
 }

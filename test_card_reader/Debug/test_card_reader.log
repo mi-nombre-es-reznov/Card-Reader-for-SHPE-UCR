@@ -1,11 +1,1 @@
-﻿  Source.cpp
-c:\users\xxsexybeastxx\source\repos\test_card_reader\test_card_reader\source.cpp(2005): warning C4101: 'choice': unreferenced local variable
-c:\users\xxsexybeastxx\source\repos\test_card_reader\test_card_reader\source.cpp(2007): warning C4101: 'replacement_SID': unreferenced local variable
-c:\users\xxsexybeastxx\source\repos\test_card_reader\test_card_reader\source.cpp(2209): warning C4101: 'get_birth_day': unreferenced local variable
-c:\users\xxsexybeastxx\source\repos\test_card_reader\test_card_reader\source.cpp(2209): warning C4101: 'get_SID': unreferenced local variable
-c:\users\xxsexybeastxx\source\repos\test_card_reader\test_card_reader\source.cpp(2209): warning C4101: 'get_birth_year': unreferenced local variable
-c:\users\xxsexybeastxx\source\repos\test_card_reader\test_card_reader\source.cpp(1528): warning C4715: 'replace_choice': not all control paths return a value
-c:\users\xxsexybeastxx\source\repos\test_card_reader\test_card_reader\source.cpp(1703): warning C4715: 'get_Birthday': not all control paths return a value
-c:\users\xxsexybeastxx\source\repos\test_card_reader\test_card_reader\source.cpp(2974): warning C4715: 'get_Gender': not all control paths return a value
-c:\users\xxsexybeastxx\source\repos\test_card_reader\test_card_reader\source.cpp(5388): warning C4715: 'stats_pick_month': not all control paths return a value
-  test_card_reader.vcxproj -> C:\Users\xXSexybeastXx\source\repos\test_card_reader\Debug\test_card_reader.exe
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\VC\VCTargets\Platforms\Win32\PlatformToolsets\v141\Toolset.targets(34,5): error MSB8036: The Windows SDK version 10.0.17134.0 was not found. Install the required version of Windows SDK or change the SDK version in the project property pages or by right-clicking the solution and selecting "Retarget solution".
