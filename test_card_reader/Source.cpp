@@ -5758,7 +5758,7 @@ void Summer_opportunites(string fn, string ln, int SID)
 			{
 				cout << "Data presented. No further information required." << endl << endl;
 				flag = true;
-				choice = 'n';
+				choice = 'o';
 				break;
 			}
 
@@ -5815,6 +5815,24 @@ void Summer_opportunites(string fn, string ln, int SID)
 		case 'n':
 		{
 			cout << "Thank you for your feedback.\nBe sure to check out RocketSHPE on our website for possible opportunities!!!" << endl;
+
+			// Writing opportunity to file
+			ofstream file2;
+			file2.open("location.txt", ios::app);
+
+			if (file2.is_open())
+			{
+				cout << "\n\nFile opened successfully!\n\n";
+				cout << "Entering data into file. Please wait." << endl;
+
+				file2 << SID << " " << fn << " " << ln << " " << "n/a" << endl;
+			}
+
+			file2.close();
+			break;
+		}
+		case 'o':
+		{
 			break;
 		}
 		default:
